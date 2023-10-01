@@ -1,0 +1,14 @@
+blank_issues_enabled: true
+contact_links:
+  - name: LUCIT Devs Chat
+    url: https://app.gitter.im/#/room/#lucit-licensing-python:gitter.im
+    about: Chat with LUCIT Devs.
+  - name: LUCIT Licensing Python Discussions
+    url: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/discussions
+    about: Ask general questions.
+  - name: LUCIT Licensing Python Documentation
+    url: https://lucit-licensing-python.docs.lucit.tech/
+    about: The complete LUCIT Licensing Python Documentation.
+  - name: Get Professional and Fast Support
+    url: https://www.lucit.tech/get-support.html
+    about: Contact the LUCIT Support Team.

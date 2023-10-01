@@ -1,0 +1,7 @@
+name: lucit_licensing_python
+dependencies:
+- python>=3.7
+- pip:
+    - cython
+    - requests
+    - simplejson
