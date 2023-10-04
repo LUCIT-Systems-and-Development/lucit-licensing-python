@@ -37,20 +37,7 @@ jobs:
         run: echo "PACKAGE_VERSION=$(python setup.py --version)" >> $GITHUB_ENV
 
       - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
+        uses: softprops/action-gh-release@v1
         with:
-          draft: false
-          prerelease: false
-          title: "Release ${{ env.PACKAGE_VERSION }}"
-          body: "Description of the release"
-          commitish: ${{ github.sha }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./wheelhouse/
-          asset_name: "*.whl"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ needs.create_release.outputs.tag-name }}
+          files: release_${{ matrix.release_suffix }}
