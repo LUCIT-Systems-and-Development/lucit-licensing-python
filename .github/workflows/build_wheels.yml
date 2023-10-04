@@ -9,7 +9,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-11]
+        os: [ubuntu-20.04, windows-2019, macos-11]
     steps:
       - uses: actions/checkout@v4
       - name: Build wheels
@@ -52,4 +52,4 @@ jobs:
             https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/blob/main/CHANGELOG.md
           files: ${{ env.FILE_LIST }}
           name: lucit_licensing_python
-          tag_name: 1.0.9
+          tag_name: 1.0.10
