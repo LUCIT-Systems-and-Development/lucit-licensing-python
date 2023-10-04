@@ -45,3 +45,26 @@ jobs:
           path: dist
 
       - uses: pypa/gh-action-pypi-publish@release/v1
+
+      - name: Get version from setup.py
+        run: echo "PACKAGE_VERSION=$(python setup.py --version)" >> $GITHUB_ENV
+
+      - name: Create Release
+        id: create_release
+        uses: gh-actions/create-release@v1
+        with:
+          draft: false
+          prerelease: false
+          title: "Release ${{ env.PACKAGE_VERSION }}"
+          body: "Description of the release"
+          commitish: ${{ github.sha }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Release Asset
+        uses: gh-actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./wheelhouse/
+          asset_name: *.whl
+          asset_content_type: application/zip
+          token: ${{ secrets.GITHUB_TOKEN }}
