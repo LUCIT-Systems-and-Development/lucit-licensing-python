@@ -43,7 +43,6 @@ setup(
     keywords='',
     project_urls={
         'Howto': 'https://www.lucit.tech/lucit-licensing-python.html#howto',
-        'Documentation': 'https://lucit-licensing-python.docs.lucit.tech',
         'Wiki': 'https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/wiki',
         'Author': 'https://www.lucit.tech',
         'Changes': 'https://lucit-licensing-python.docs.lucit.tech//CHANGELOG.html',
@@ -61,6 +60,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         'Intended Audience :: Developers',
         "Operating System :: OS Independent",
         'Topic :: Software Development :: Libraries :: Python Modules',

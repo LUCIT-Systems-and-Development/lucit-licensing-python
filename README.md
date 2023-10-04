@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-LSOSL-blue)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
 [![Supported Python Version](https://img.shields.io/pypi/pyversions/unicorn_binance_trailing_stop_loss.svg)](https://www.python.org/downloads/)
 [![PyPI - Status](https://img.shields.io/pypi/status/unicorn_binance_trailing_stop_loss.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues)
-[![codecov](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python/branch/master/graph/badge.svg?token=5I03AZ3F5S)](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python)
+[![codecov](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python/graph/badge.svg?token=Y95LLP231L)](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python)
 [![Gitter](https://badges.gitter.im/lucit-licensing-python.svg)](https://app.gitter.im/#/room/#lucit-licensing-python:gitter.im)
 
 # LUCIT Licensing Python (Module)
