@@ -53,10 +53,11 @@ jobs:
             https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/blob/main/CHANGELOG.md
           discussion_category_name: releases
           draft: false
-          files: ${{ env.FILE_LIST }}
+          files: |
+            ${{ env.FILE_LIST }}
           generate_release_notes: true
           name: lucit_licensing_python
           prerelease: false
-          tag_name: 1.0.13
+          tag_name: 1.0.14
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
