@@ -23,7 +23,7 @@ The current dependencies are listed
 
 If you run into errors during the installation take a look [here](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/wiki/Installation).
 
-### A wheel and a source file of the latest release with `pip` from [PyPI](https://pypi.org/project/lucit-licensing-python/)
+### A binary, PyPy or source code based wheel of the latest version with `pip` from [PyPI](https://pypi.org/project/lucit-licensing-python/)
 `pip install lucit-licensing-python --upgrade`
 
 ### A conda package of the latest release with `conda` from [Anaconda](https://anaconda.org/conda-forge/lucit-licensing-python) via [CONDA-FORGE](https://conda-forge.org).
@@ -31,7 +31,7 @@ If you run into errors during the installation take a look [here](https://github
 
 `conda update -c conda-forge lucit-licensing-python`
 
-### From source of the latest release with PIP from [Github](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
+### From source of the latest release with PIP from [GitHub](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
 #### Linux, macOS, ...
 Run in bash:
 
@@ -42,7 +42,7 @@ Use the below command with the version (such as 0.7.0) you determined
 [here](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/releases/latest):
 
 `pip install https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/archive/0.7.0.tar.gz --upgrade`
-### From the latest source (dev-stage) with PIP from [Github](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
+### From the latest source (dev-stage) with PIP from [GitHub](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
 This is not a release version and can not be considered to be stable!
 
 `pip install https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/tarball/master --upgrade`
@@ -53,6 +53,7 @@ or the [current master branch](https://github.com/LUCIT-Systems-and-Development/
  and use:
 
 - ./environment.yml
+- ./pyproject.toml
 - ./requirements.txt
 - ./setup.py
 
@@ -66,7 +67,8 @@ or the [current master branch](https://github.com/LUCIT-Systems-and-Development/
 [https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/wiki](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/wiki)
 
 ## Receive Notifications
-Follow us on [X](https://twitter.com/LUCIT_SysDev) or on [Facebook](https://www.facebook.com/lucit.systems.and.development)!
+Follow us on [LinkedIn](https://www.linkedin.com/company/lucit-systems-and-development), 
+[X](https://twitter.com/LUCIT_SysDev) or [Facebook](https://www.facebook.com/lucit.systems.and.development)!
 
 ## How to report Bugs or suggest Improvements?
 [List of planned features](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement) - 
@@ -75,7 +77,7 @@ click ![thumbs-up](https://raw.githubusercontent.com/lucit-systems-and-developme
 Before you report a bug, [try the latest release](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python#installation-and-upgrade). If the issue still exists, provide the error trace, OS 
 and Python version and explain how to reproduce the error. A demo script is appreciated.
 
-If you dont find an issue related to your topic, please open a new [issue](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues)!
+If you don't find an issue related to your topic, please open a new [issue](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues)!
 
 [Report a security bug!](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/security/policy)
 
