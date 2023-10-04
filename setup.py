@@ -16,23 +16,8 @@
 # Copyright (c) 2023-2023, LUCIT Systems and Development (https://www.lucit.tech)
 # All rights reserved.
 
-import os
 from setuptools import setup
 from Cython.Build import cythonize
-
-# Working Directory
-print(f"CWD: {os. getcwd()}")
-current_directory = os.getcwd()
-files = os.listdir(current_directory+"/../..")
-
-for file in files:
-    print(file)
-
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-print(f"CWD: {os. getcwd()}")
-from lucit_licensing_python.manager import Manager
-
-llp = Manager(start=False)
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -43,7 +28,7 @@ setup(
          'lucit_licensing_python/manager.py'],
         annotate=False),
     name='lucit-licensing-python',
-    version=llp.get_module_version(),
+    version="1.0.1",
     author="LUCIT Systems and Development",
     author_email='info@lucit.tech',
     url="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python",

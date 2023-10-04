@@ -11,5 +11,5 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## 1.0.1.dev (development stage/unreleased/unstable)
 
-## 0.0.1
+## 1.0.1
 - RELEASE!!! :)
