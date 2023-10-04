@@ -25,12 +25,11 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python3 -m pip install --upgrade pip
-        python3 -m pip install cibuildwheel
-        python3 -m pip install Cython
+        python -m pip install --upgrade pip
+        pip install cibuildwheel
 
     - name: Build wheels
-      run: python3 -m cibuildwheel --output-dir wheelhouse
+      run: cibuildwheel --output-dir wheelhouse
 
     - name: Publish to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
