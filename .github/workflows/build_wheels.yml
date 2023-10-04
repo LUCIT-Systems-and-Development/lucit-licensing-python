@@ -1,8 +1,6 @@
 name: Build and Publish
-
 on:
   workflow_dispatch:
-
 jobs:
   build_wheels:
     name: Build wheels on ${{ matrix.os }}
@@ -17,7 +15,6 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           path: ./wheelhouse/*.whl
-
   build_sdist:
     name: Build source distribution
     runs-on: ubuntu-latest
@@ -28,7 +25,6 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           path: dist/*.tar.gz
-
   upload_pypi:
     needs: [build_wheels, build_sdist]
     runs-on: ubuntu-latest
@@ -40,14 +36,13 @@ jobs:
         with:
           name: artifact
           path: dist
-
       - uses: pypa/gh-action-pypi-publish@release/v1
-
+      - name: Get package name from setup.py
+        run: echo "PACKAGE_NAME=$(python setup.py --name)" >> $GITHUB_ENV
       - name: Get version from setup.py
         run: echo "PACKAGE_VERSION=$(python setup.py --version)" >> $GITHUB_ENV
-
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ env.PACKAGE_VERSION }}
+          tag_name: ${{ env.PACKAGE_NAME }}_${{ env.PACKAGE_VERSION }}
           files: release_${{ matrix.release_suffix }}
