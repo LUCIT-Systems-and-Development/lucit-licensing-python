@@ -44,3 +44,4 @@ security-check() {
 
 security-check
 python3 setup.py bdist_wheel sdist
+#python3 setup.py sdist
