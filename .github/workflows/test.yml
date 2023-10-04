@@ -5,19 +5,6 @@ permissions:
   contents: write
   discussions: write
 jobs:
-  build_wheels:
-    name: Build wheels on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-20.04, windows-2019, macos-11]
-    steps:
-      - uses: actions/checkout@v4
-      - name: Build wheels
-        uses: pypa/cibuildwheel@v2.16.2
-      - uses: actions/upload-artifact@v3
-        with:
-          path: ./wheelhouse/*.whl
   build_sdist:
     name: Build source distribution
     runs-on: ubuntu-latest
@@ -29,7 +16,7 @@ jobs:
         with:
           path: dist/*.tar.gz
   Release:
-    needs: [build_wheels, build_sdist]
+    needs: [build_sdist]
     runs-on: ubuntu-latest
     environment: pypi
     permissions:
@@ -42,7 +29,7 @@ jobs:
       - uses: pypa/gh-action-pypi-publish@release/v1
       - name: Create list of .whl files
         run: |
-          find . -name "*.whl" > filelist.txt
+          find . -name "*.tar.gz" > filelist.txt
           echo "FILE_LIST=$(cat filelist.txt)" >> $GITHUB_ENV
           echo "${{ env.FILE_LIST }}"
       - name: Create GitHub Release
@@ -53,11 +40,9 @@ jobs:
             https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/blob/main/CHANGELOG.md
           discussion_category_name: releases
           draft: false
-          files: |
-            ${{ env.FILE_LIST }}
+          files: dist/lucit-licensing-python-1.0.23.tar.gz
           generate_release_notes: true
           name: lucit_licensing_python
           prerelease: false
-          tag_name: 1.0.16
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: 1.0.23
+          token: ${{ secrets.RELEASE_TOKEN }}
