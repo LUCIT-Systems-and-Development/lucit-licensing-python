@@ -1,7 +1,7 @@
 [![Get professional and fast support](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/unicorn-binance-suite/master/images/support/LUCIT-get-professional-and-fast-support.png)](https://www.lucit.tech/get-support.html)
 
 [![Github](https://img.shields.io/badge/source-github-cbc2c8)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
-[![License](https://img.shields.io/github/license/LUCIT-Systems-and-Development/lucit-licensing-python.svg?color=blue)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/license-LSOSL-blue)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
 [![Supported Python Version](https://img.shields.io/pypi/pyversions/unicorn_binance_trailing_stop_loss.svg)](https://www.python.org/downloads/)
 [![PyPI - Status](https://img.shields.io/pypi/status/unicorn_binance_trailing_stop_loss.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues)
 [![codecov](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python/branch/master/graph/badge.svg?token=5I03AZ3F5S)](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python)
