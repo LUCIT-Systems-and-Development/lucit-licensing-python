@@ -44,6 +44,6 @@ jobs:
           generate_release_notes: true
           name: lucit_licensing_python
           prerelease: false
-          tag_name: 1.0.19
+          tag_name: 1.0.20
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
