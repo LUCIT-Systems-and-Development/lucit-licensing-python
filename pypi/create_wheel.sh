@@ -44,4 +44,4 @@ https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/
 }
 
 security-check
-python3 setup.py bdist_wheel sdist
+# python3 setup.py bdist_wheel sdist
