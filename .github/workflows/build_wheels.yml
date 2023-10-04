@@ -61,9 +61,13 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Release Asset
-        uses: gh-actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./wheelhouse/
-          asset_name: "*.whl"
-          token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          for wheel in *.whl; do
+            echo "Uploading $wheel..."
+            curl \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Content-Type: application/octet-stream" \
+              --data-binary "@$wheel" \
+              "${{ steps.create_release.outputs.upload_url }}?name=$wheel"
+          done
+          
