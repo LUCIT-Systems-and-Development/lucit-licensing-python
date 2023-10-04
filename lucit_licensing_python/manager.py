@@ -45,7 +45,7 @@ class Manager(threading.Thread):
         self.id = str(uuid.uuid4())
         self.license_token = license_token
         self.mac = str(hex(uuid.getnode()))
-        self.module_version: str = "1.0.2a"
+        self.module_version: str = "1.0.3"
         self.needed_license_type = needed_license_type
         self.os = platform.system()
         self.parent_shutdown_function = parent_shutdown_function
@@ -55,8 +55,7 @@ class Manager(threading.Thread):
         self.sigterm = False
         self.time_delta = 0.0
         self.url: str = "https://private.api.lucit.services/licensing/v1/"
-        self.version: str = "1.0.0"
-        logger.info(f"Starting instance of `lucit-licensing-python_{self.version}"
+        logger.info(f"Starting instance of `lucit-licensing-python_{self.module_version}"
                     f"{'_compiled' if cython.compiled else '_source'}' ...")
         if start is True:
             self.start()
