@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, windows-2019, macos-11]
+        os: [macos-11]
     steps:
       - uses: actions/checkout@v4
       - name: Build wheels
@@ -25,7 +25,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           path: dist/*.tar.gz
-  upload_pypi:
+  release:
     needs: [build_wheels, build_sdist]
     runs-on: ubuntu-latest
     environment: pypi
@@ -39,13 +39,14 @@ jobs:
       - uses: pypa/gh-action-pypi-publish@release/v1
       - name: Create list of .whl files
         run: |
-          find ./wheelhouse/ -name "*.whl" | tr '\n' ',' > filelist.txt
+          find . -name "*.whl" | tr '\n' ',' > filelist.txt
           echo "FILE_LIST=$(cat filelist.txt)" >> $GITHUB_ENV
-      - name: Create Release
+          echo "${{ env.FILE_LIST }}"
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           body: |
             Please read the CHANGELOG for further information: 
             https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/blob/main/CHANGELOG.md
           files: ${{ env.FILE_LIST }}
-          tag_name: 1.0.7
+          tag_name: 1.0.8
