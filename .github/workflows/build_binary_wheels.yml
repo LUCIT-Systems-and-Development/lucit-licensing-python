@@ -3,7 +3,7 @@ name: Build and Publish
 on:
   push:
     branches:
-      - main  # Adjust this to your repository's default branch if not 'main'
+      - main
 
 jobs:
   build_and_publish:
@@ -26,8 +26,8 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install Cython
         pip install cibuildwheel
+        pip install Cython
 
     - name: Build wheels
       run: cibuildwheel --output-dir wheelhouse
