@@ -49,5 +49,5 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ needs.create_release.outputs.tag-name }}
+          tag_name: ${{ env.PACKAGE_VERSION }}
           files: release_${{ matrix.release_suffix }}
