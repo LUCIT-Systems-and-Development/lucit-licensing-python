@@ -21,7 +21,9 @@ from setuptools import setup
 from Cython.Build import cythonize
 
 # Working Directory
+print(f"CWD: {os. getcwd()}")
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+print(f"CWD: {os. getcwd()}")
 from lucit_licensing_python.manager import Manager
 
 llp = Manager(start=False)
