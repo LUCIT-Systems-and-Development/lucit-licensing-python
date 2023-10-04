@@ -23,7 +23,7 @@ from Cython.Build import cythonize
 # Working Directory
 print(f"CWD: {os. getcwd()}")
 current_directory = os.getcwd()
-files = os.listdir(current_directory)
+files = os.listdir(current_directory+"/lucit_licensing_python")
 
 for file in files:
     print(file)
