@@ -15,8 +15,6 @@
 #
 # Copyright (c) 2023-2023, LUCIT Systems and Development (https://www.lucit.tech)
 # All rights reserved.
-#
-
 
 from setuptools import setup
 from Cython.Build import cythonize

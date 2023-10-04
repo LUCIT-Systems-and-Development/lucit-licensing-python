@@ -15,7 +15,6 @@
 #
 # Copyright (c) 2023-2023, LUCIT Systems and Development (https://www.lucit.tech)
 # All rights reserved.
-#
 
 import asyncio
 import logging

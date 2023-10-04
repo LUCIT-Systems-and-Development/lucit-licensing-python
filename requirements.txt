@@ -3,6 +3,6 @@
 # ./setup.py
 # https://github.com/conda-forge/lucit-licensing-python-feedstock/blob/main/recipe/meta.yaml
 
-cython
+Cython
 requests
 simplejson
