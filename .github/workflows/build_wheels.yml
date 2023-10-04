@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  discussions: write
 jobs:
   build_wheels:
     name: Build wheels on ${{ matrix.os }}
