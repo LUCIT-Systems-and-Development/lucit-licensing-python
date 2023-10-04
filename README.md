@@ -1,6 +1,10 @@
 [![Get a UNICORN Binance Suite License](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/unicorn-binance-suite/master/images/logo/LUCIT-UBS-License-Offer.png)](https://shop.lucit.services)
 
 [![Github](https://img.shields.io/badge/source-github-cbc2c8)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
+[![GitHub Release](https://img.shields.io/github/release/LUCIT-Systems-and-Development/lucit-licensing-python.svg?label=github)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/releases)
+[![GitHub Downloads](https://img.shields.io/github/downloads/LUCIT-Systems-and-Development/lucit-licensing-python/total?color=blue)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/releases)
+[![Conda Release](https://img.shields.io/conda/vn/conda-forge/lucit-licensing-python.svg?color=blue)](https://anaconda.org/conda-forge/lucit-licensing-python)
+[![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/lucit-licensing-python.svg?color=blue)](https://anaconda.org/conda-forge/lucit-licensing-python)
 [![License](https://img.shields.io/badge/license-LSOSL-blue)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
 [![Supported Python Version](https://img.shields.io/pypi/pyversions/unicorn_binance_trailing_stop_loss.svg)](https://www.python.org/downloads/)
 [![PyPI - Status](https://img.shields.io/pypi/status/unicorn_binance_trailing_stop_loss.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues)
