@@ -55,7 +55,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     license='LUCIT Synergetic Open Source License',
-    install_requires=['cython', 'requests', 'simplejson'],
+    install_requires=['Cython', 'requests', 'simplejson'],
     keywords='',
     project_urls={
         'Howto': 'https://www.lucit.tech/lucit-licensing-python.html#howto',
