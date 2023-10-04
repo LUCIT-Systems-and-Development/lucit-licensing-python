@@ -5,7 +5,7 @@
 [![Supported Python Version](https://img.shields.io/pypi/pyversions/unicorn_binance_trailing_stop_loss.svg)](https://www.python.org/downloads/)
 [![PyPI - Status](https://img.shields.io/pypi/status/unicorn_binance_trailing_stop_loss.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues)
 [![codecov](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python/branch/master/graph/badge.svg?token=5I03AZ3F5S)](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python)
-[![Gitter](https://badges.gitter.im/unicorn-binance-suite/lucit-licensing-python.svg)](https://app.gitter.im/#/room/#lucit-licensing-python:gitter.im)
+[![Gitter](https://badges.gitter.im/lucit-licensing-python.svg)](https://app.gitter.im/#/room/#lucit-licensing-python:gitter.im)
 
 # LUCIT Licensing Python (Module)
 
@@ -26,7 +26,7 @@ If you run into errors during the installation take a look [here](https://github
 ### A wheel and a source file of the latest release with `pip` from [PyPI](https://pypi.org/project/lucit-licensing-python/)
 `pip install lucit-licensing-python --upgrade`
 
-### A conda package of the latest release with `conda` from [Anaconda](https://anaconda.org/conda-forge/unicorn-fy) via [CONDA-FORGE](https://conda-forge.org).
+### A conda package of the latest release with `conda` from [Anaconda](https://anaconda.org/conda-forge/lucit-licensing-python) via [CONDA-FORGE](https://conda-forge.org).
 `conda install -c conda-forge lucit-licensing-python`
 
 `conda update -c conda-forge lucit-licensing-python`
@@ -90,20 +90,7 @@ contribute follow
 
 We ![love](https://raw.githubusercontent.com/lucit-systems-and-development/lucit-licensing-python/master/images/misc/heart.png) open source!
 
-## Disclaimer
-This project is for informational purposes only. You should not construe this information or any other material as 
-legal, tax, investment, financial or other advice. Nothing contained herein constitutes a solicitation, recommendation, 
-endorsement or offer by us or any third party provider to buy or sell any securities or other financial instruments in 
-this or any other jurisdiction in which such solicitation or offer would be unlawful under the securities laws of such 
-jurisdiction.
-
-### If you intend to use real money, use it at your own risk!
-
-Under no circumstances will we be responsible or liable for any claims, damages, losses, expenses, costs or liabilities 
-of any kind, including but not limited to direct or indirect damages for loss of profits.
-
 ## Commercial Support
-
 [![Get professional and fast support](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/unicorn-binance-suite/master/images/support/LUCIT-get-professional-and-fast-support.png)](https://www.lucit.tech/get-support.html)
 
 ***Do you need a developer, operator or consultant?*** [Contact us](https://www.lucit.tech/contact.html) for a non-binding initial consultation!
