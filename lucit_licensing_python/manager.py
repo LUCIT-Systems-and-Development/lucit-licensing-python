@@ -45,7 +45,7 @@ class Manager(threading.Thread):
         self.id = str(uuid.uuid4())
         self.license_token = license_token
         self.mac = str(hex(uuid.getnode()))
-        self.module_version: str = "1.0.0"
+        self.module_version: str = "1.0.1"
         self.needed_license_type = needed_license_type
         self.os = platform.system()
         self.parent_shutdown_function = parent_shutdown_function

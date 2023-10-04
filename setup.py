@@ -18,11 +18,12 @@
 
 from setuptools import setup
 from Cython.Build import cythonize
+from lucit_licensing_python.manager import Manager
 
+llp = Manager(start=False)
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
-
 
 setup(
     ext_modules=cythonize(
@@ -30,7 +31,7 @@ setup(
          'lucit_licensing_python/manager.py'],
         annotate=False),
     name='lucit-licensing-python',
-    version="1.0.0",
+    version=llp.get_module_version(),
     author="LUCIT Systems and Development",
     author_email='info@lucit.tech',
     url="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python",
@@ -65,3 +66,5 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
 )
+
+del llp
