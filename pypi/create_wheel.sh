@@ -33,7 +33,7 @@
 # IN THE SOFTWARE.
 
 security-check() {
-    echo -n "Did you change the version in \`CHANGELOG.md\`, \`setup.py\` and \`lucit_licensing_python/manager.py\`? [yes|NO] "
+    echo -n "Did you change the version in \`build_wheels.yml\`, \`CHANGELOG.md\`, \`setup.py\` and \`lucit_licensing_python/manager.py\`? [yes|NO] "
     local SURE
     read SURE
     if [ "$SURE" != "yes" ]; then
