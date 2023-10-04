@@ -40,11 +40,10 @@ jobs:
             https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/blob/main/CHANGELOG.md
           discussion_category_name: releases
           draft: false
-          files: |
-            dist/lucit-licensing-python-1.0.18.tar.gz
+          files: dist/lucit-licensing-python-1.0.19.tar.gz
           generate_release_notes: true
           name: lucit_licensing_python
           prerelease: false
-          tag_name: 1.0.18
+          tag_name: 1.0.19
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
