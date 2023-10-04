@@ -1,38 +1,28 @@
-name: Build and Publish
+name: Build
 
-on:
-  push:
-    branches:
-      - main
+on: [push, pull_request]
 
 jobs:
-  build_and_publish:
-    name: Build and Publish to PyPI
-    runs-on: ubuntu-latest
+  build_wheels:
+    name: Build wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
-        python-version: [3.7, 3.8, 3.9, 3.10.11, 3.11, 3.12]
+        os: [ubuntu-20.04, windows-2019, macos-11]
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.16.2
+        # env:
+        #   CIBW_SOME_OPTION: value
+        #    ...
+        # with:
+        #   package-dir: .
+        #   output-dir: wheelhouse
+        #   config-file: "{package}/pyproject.toml"
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install cibuildwheel
-
-    - name: Build wheels
-      run: cibuildwheel --output-dir wheelhouse
-
-    - name: Publish to PyPI
-      uses: pypa/gh-action-pypi-publish@release/v1
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_TOKEN }}
+      - uses: actions/upload-artifact@v3
+        with:
+          path: ./wheelhouse/*.whl
