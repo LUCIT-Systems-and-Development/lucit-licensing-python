@@ -7,7 +7,7 @@
 [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/lucit-licensing-python.svg?color=blue)](https://anaconda.org/conda-forge/lucit-licensing-python)
 [![License](https://img.shields.io/badge/license-LSOSL-blue)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
 [![Supported Python Version](https://img.shields.io/pypi/pyversions/unicorn_binance_trailing_stop_loss.svg)](https://www.python.org/downloads/)
-[![PyPI - Status](https://img.shields.io/pypi/status/unicorn_binance_trailing_stop_loss.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues)
+[![PyPI - Status](https://img.shields.io/pypi/status/lucit-licensing-python.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues)
 [![CodeQL](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/codeql-analysis.yml)
 [![Unit Tests](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/unit-tests.yml)
 [![codecov](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python/graph/badge.svg?token=Y95LLP231L)](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python)
