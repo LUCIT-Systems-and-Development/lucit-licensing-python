@@ -3,13 +3,14 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  discussions: write
 jobs:
   build_wheels:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, windows-2019, macos-11]
+        os: [macos-11]
     steps:
       - uses: actions/checkout@v4
       - name: Build wheels
@@ -46,10 +47,14 @@ jobs:
           echo "${{ env.FILE_LIST }}"
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           body: |
             Please read the CHANGELOG for further information: 
             https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/blob/main/CHANGELOG.md
+          discussion_category_name: releases
           files: ${{ env.FILE_LIST }}
           name: lucit_licensing_python
-          tag_name: 1.0.10
+          tag_name: 1.0.11
+
