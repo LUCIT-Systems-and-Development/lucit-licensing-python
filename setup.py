@@ -22,6 +22,12 @@ from Cython.Build import cythonize
 
 # Working Directory
 print(f"CWD: {os. getcwd()}")
+current_directory = os.getcwd()
+files = os.listdir(current_directory)
+
+for file in files:
+    print(file)
+
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 print(f"CWD: {os. getcwd()}")
 from lucit_licensing_python.manager import Manager
