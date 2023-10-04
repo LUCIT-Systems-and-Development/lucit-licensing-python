@@ -39,9 +39,19 @@ security-check() {
     if [ "$SURE" != "yes" ]; then
         exit 1
     fi
-    echo "ok, lets go ...
-https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml"
+    echo "https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml"
+}
+
+compile-check() {
+    echo -n "Compile local? [yes|NO] "
+    local SURE
+    read SURE
+    if [ "$SURE" != "yes" ]; then
+        exit 1
+    fi
+    echo "ok, lets go ..."
+    python3 setup.py bdist_wheel sdist
 }
 
 security-check
-# python3 setup.py bdist_wheel sdist
+compile-check
