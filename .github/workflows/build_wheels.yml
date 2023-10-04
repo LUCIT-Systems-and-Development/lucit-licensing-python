@@ -1,16 +1,14 @@
 name: Build and Publish
 on:
   workflow_dispatch:
-permissions:
-  contents: write
-  discussions: write
+permissions: read-all|write-all
 jobs:
   build_wheels:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-11]
+        os: [ubuntu-20.04, windows-2019, macos-11]
     steps:
       - uses: actions/checkout@v4
       - name: Build wheels
@@ -54,7 +52,9 @@ jobs:
             Please read the CHANGELOG for further information: 
             https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/blob/main/CHANGELOG.md
           discussion_category_name: releases
+          draft: false
           files: ${{ env.FILE_LIST }}
+          generate_release_notes: true
           name: lucit_licensing_python
-          tag_name: 1.0.11
+          tag_name: 1.0.12
 
