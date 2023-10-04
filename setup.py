@@ -16,8 +16,12 @@
 # Copyright (c) 2023-2023, LUCIT Systems and Development (https://www.lucit.tech)
 # All rights reserved.
 
+import os
 from setuptools import setup
 from Cython.Build import cythonize
+
+# Working Directory
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 from lucit_licensing_python.manager import Manager
 
 llp = Manager(start=False)

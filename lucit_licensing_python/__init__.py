@@ -1,0 +1,1 @@
+from lucit_licensing_python.manager import Manager
