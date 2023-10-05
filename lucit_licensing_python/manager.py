@@ -13,7 +13,7 @@
 #
 # Author: LUCIT Systems and Development
 #
-# Copyright (c) 2023-2023, LUCIT Systems and Development (https://www.lucit.tech)
+# Copyright (c) 2019-2023, LUCIT Systems and Development (https://www.lucit.tech)
 # All rights reserved.
 
 import cython
@@ -35,7 +35,7 @@ from simplejson.errors import JSONDecodeError
 logger = logging.getLogger("lucit-licensing-logger")
 
 
-class Manager(threading.Thread):
+class LucitLicensingManager(threading.Thread):
     def __init__(self, api_secret: str = None, license_token: str = None,
                  program_used: str = None, start: bool = True,
                  parent_shutdown_function: Callable[[bool], bool] = None,
@@ -43,9 +43,10 @@ class Manager(threading.Thread):
         super().__init__()
         self.api_secret = api_secret
         self.id = str(uuid.uuid4())
+        self.last_verified_licensing_result = None
         self.license_token = license_token
         self.mac = str(hex(uuid.getnode()))
-        self.module_version: str = "1.0.32"
+        self.module_version: str = "1.0.35"
         self.needed_license_type = needed_license_type
         self.os = platform.system()
         self.parent_shutdown_function = parent_shutdown_function
@@ -61,6 +62,9 @@ class Manager(threading.Thread):
             self.start()
 
     def __generate_signature(self, api_secret: str = None, data: dict = None) -> str:
+        if api_secret is None or data is None:
+            logger.error(f"The parameters 'api_key' and 'data' must not be None! ")
+            return ""
         ordered_data = self.__order_params(data)
         query_string = '&'.join(["{}={}".format(d[0], d[1]) for d in ordered_data])
         m = hmac.new(api_secret.encode('utf-8'), query_string.encode('utf-8'), hashlib.sha256)
@@ -165,12 +169,16 @@ class Manager(threading.Thread):
         else:
             return False
 
-    def close(self, key_value: str = None) -> dict:
+    def close(self, close_api_session=True, key_value: str = None) -> dict:
+        logger.debug(f"Stopping LUCIT Licensing Manager ...")
         self.sigterm = True
         if self.parent_shutdown_function is not None:
             self.parent_shutdown_function(close_api_session=False)
-        return self.__private_request(api_secret=None, license_token=None,
-                                      key_value=key_value, endpoint="close")
+        if close_api_session is True:
+            return self.__private_request(api_secret=None, license_token=None,
+                                          key_value=key_value, endpoint="close")
+        else:
+            return {"close": {"status": "NOT_EXECUTED"}}
 
     def get_module_version(self):
         return self.module_version
@@ -192,11 +200,12 @@ class Manager(threading.Thread):
                 if license_result['license']['licensed_product'] != self.needed_license_type:
                     logger.critical(f"License not usable, its issued for product: "
                                     f"{license_result['license']['licensed_product']}")
-                    self.close()
+                    self.close(close_api_session=False)
                     break
                 else:
                     if license_result['license']['status'] == "VALID":
                         try:
+                            self.last_verified_licensing_result = license_result
                             request_interval = int(license_result['license']['request_interval'])
                             if request_interval != self.request_interval:
                                 logger.debug(f"Setting `request_interval` to {request_interval}")
@@ -206,7 +215,7 @@ class Manager(threading.Thread):
                         logger.debug(f"License validated for product: {license_result['license']['licensed_product']}")
                     else:
                         logger.critical(f"License is invalid! License Status: {license_result['license']['status']}")
-                        self.close()
+                        self.close(close_api_session=False)
                         break
             except KeyError:
                 if "403 Forbidden" in license_result['error']:
@@ -215,25 +224,25 @@ class Manager(threading.Thread):
                         self.sync_time()
                     elif "403 Forbidden - Access forbidden due to misuse of test licenses." in license_result['error']:
                         logger.critical(f"License is invalid!")
-                        self.close()
+                        self.close(close_api_session=False)
                         break
                     elif "403 Forbidden - Insufficient access rights." in license_result['error']:
                         logger.critical(f"{license_result['error']}")
-                        self.close()
+                        self.close(close_api_session=False)
                         break
                     else:
                         logger.critical(f"{license_result['error']}")
-                        self.close()
+                        self.close(close_api_session=True)
                         break
                 elif "429 Too Many Requests" in license_result['error']:
                     logger.critical(f"{license_result['error']}")
-                    time.sleep(30)
+                    time.sleep(10)
                 elif "Connection Error - Connection could not be established" in license_result['error']:
                     logger.critical(f"{license_result['error']}")
                     if connection_errors > 10:
                         logger.critical(f"Connection to LUCIT Licensing Backend could not be established. Please "
                                         f"try again later!")
-                        self.close()
+                        self.close(close_api_session=False)
                         break
                     connection_errors += 1
                     time.sleep(1)
@@ -249,8 +258,8 @@ class Manager(threading.Thread):
                 else:
                     break
 
-    def stop(self, key_value: str = None) -> dict:
-        return self.close(key_value=key_value)
+    def stop(self, close_api_session=True, key_value: str = None) -> dict:
+        return self.close(close_api_session=close_api_session, key_value=key_value)
 
     def sync_time(self) -> bool:
         try:

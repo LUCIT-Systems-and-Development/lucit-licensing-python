@@ -13,22 +13,22 @@
 #
 # Author: LUCIT Systems and Development
 #
-# Copyright (c) 2023-2023, LUCIT Systems and Development (https://www.lucit.tech)
+# Copyright (c) 2019-2023, LUCIT Systems and Development (https://www.lucit.tech)
 # All rights reserved.
 
 import asyncio
 import logging
 import time
 import pprint
-from lucit_licensing_python.manager import Manager
+from lucit_licensing_python.manager import LucitLicensingManager
 
 
 class LTC:
     def __init__(self, api_secret=None, license_token=None):
         self.api_secret = api_secret
         self.license_token = license_token
-        self.llm = Manager(api_secret=api_secret, license_token=license_token,
-                           program_used="unicorn-binance-websocket-api", start=False)
+        self.llm = LucitLicensingManager(api_secret=api_secret, license_token=license_token,
+                                         program_used="unicorn-binance-websocket-api", start=False)
         self.sigterm = False
 
     def close(self):

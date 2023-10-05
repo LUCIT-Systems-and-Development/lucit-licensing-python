@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 #
 # File: pypi/create_wheel.sh
@@ -13,7 +13,7 @@
 #
 # Author: LUCIT Systems and Development
 #
-# Copyright (c) 2023-2023, LUCIT Systems and Development (https://www.lucit.tech)
+# Copyright (c) 2019-2023, LUCIT Systems and Development (https://www.lucit.tech)
 # All rights reserved.
 
 security-check() {

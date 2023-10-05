@@ -13,7 +13,7 @@
 #
 # Author: LUCIT Systems and Development
 #
-# Copyright (c) 2023-2023, LUCIT Systems and Development (https://www.lucit.tech)
+# Copyright (c) 2019-2023, LUCIT Systems and Development (https://www.lucit.tech)
 # All rights reserved.
 
 from setuptools import setup
@@ -28,7 +28,7 @@ setup(
          'lucit_licensing_python/manager.py'],
         annotate=False),
     name='lucit-licensing-python',
-    version="1.0.32",
+    version="1.0.35",
     author="LUCIT Systems and Development",
     author_email='info@lucit.tech',
     url="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python",

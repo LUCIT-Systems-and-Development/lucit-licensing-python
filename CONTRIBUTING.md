@@ -3,6 +3,9 @@
 Contributions via GitHub pull requests are welcome. However, contributors should be aware that submitted code
 automatically becomes LUCIT IT-Management GmbH's property and copyright.
 
+Please read [our license terms](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/blob/master/LICENSE) 
+thoroughly!
+
 When contributing to this repository, please first discuss the change you wish to make via 
 [issue](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues/new/choose) 
 with the owners of this repository before making a change. 
