@@ -59,8 +59,8 @@ class LucitLicensingManager(threading.Thread):
             self.shop_product_url = "https://shop.lucit.services/software/unicorn-binance-suite"
         else:
             self.shop_product_url = "https://shop.lucit.services/software"
-        logger.info(f"New instance of lucit-licensing-python_{self.module_version}"
-                    f"{'_compiled' if cython.compiled else '_source'} on "
+        logger.info(f"New instance of lucit-licensing-python_{self.module_version}-python_"
+                    f"{str(platform.python_version())}-{'compiled' if cython.compiled else 'source'} on "
                     f"{str(platform.system())} {str(platform.release())} started ...")
         if start is True:
             self.start()
