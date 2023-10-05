@@ -25,6 +25,7 @@ with open("README.md", "r") as fh:
 setup(
     ext_modules=cythonize(
         ['lucit_licensing_python/__init__.py',
+         'lucit_licensing_python/exceptions.py',
          'lucit_licensing_python/manager.py'],
         annotate=False),
     name='lucit-licensing-python',
