@@ -28,7 +28,7 @@ setup(
          'lucit_licensing_python/manager.py'],
         annotate=False),
     name='lucit-licensing-python',
-    version="1.0.31",
+    version="1.0.32",
     author="LUCIT Systems and Development",
     author_email='info@lucit.tech',
     url="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python",
@@ -40,6 +40,7 @@ setup(
     keywords='',
     project_urls={
         'Howto': 'https://www.lucit.tech/lucit-licensing-python.html#howto',
+        'Documentation': 'https://lucit-licensing-python.docs.lucit.tech',
         'Wiki': 'https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/wiki',
         'Author': 'https://www.lucit.tech',
         'Changes': 'https://lucit-licensing-python.docs.lucit.tech//CHANGELOG.html',
