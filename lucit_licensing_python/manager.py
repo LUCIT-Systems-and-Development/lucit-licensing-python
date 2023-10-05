@@ -169,8 +169,14 @@ class LucitLicensingManager(threading.Thread):
         else:
             return False
 
-    def close(self, close_api_session=True, key_value: str = None) -> dict:
-        logger.debug(f"Stopping LUCIT Licensing Manager ...")
+    def close(self, close_api_session: bool = True, not_approved_message: str = None,
+              key_value: str = None) -> dict:
+        if not_approved_message is not None:
+            info = f"Stopping, you are not valid licensed! {not_approved_message}"
+            print(info)
+            logger.critical(info)
+        else:
+            logger.debug(f"Stopping LUCIT Licensing Manager ...")
         self.sigterm = True
         if self.parent_shutdown_function is not None:
             self.parent_shutdown_function(close_api_session=False)
@@ -198,9 +204,10 @@ class LucitLicensingManager(threading.Thread):
             license_result = self.verify()
             try:
                 if license_result['license']['licensed_product'] != self.needed_license_type:
-                    logger.critical(f"License not usable, its issued for product: "
-                                    f"{license_result['license']['licensed_product']}")
-                    self.close(close_api_session=False)
+                    info = f"License not usable, its issued for product " \
+                           f"'{license_result['license']['licensed_product']}'."
+                    logger.critical(info)
+                    self.close(close_api_session=False, not_approved_message=info)
                     break
                 else:
                     if license_result['license']['status'] == "VALID":
@@ -212,10 +219,12 @@ class LucitLicensingManager(threading.Thread):
                                 self.request_interval = request_interval-1
                         except KeyError:
                             pass
-                        logger.debug(f"License validated for product: {license_result['license']['licensed_product']}")
+                        logger.debug(f"LUCIT License validated for product: "
+                                     f"{license_result['license']['licensed_product']}")
                     else:
-                        logger.critical(f"License is invalid! License Status: {license_result['license']['status']}")
-                        self.close(close_api_session=False)
+                        info = f"The license is invalid! License Status: {license_result['license']['status']}"
+                        logger.critical(info)
+                        self.close(close_api_session=False, not_approved_message=info)
                         break
             except KeyError:
                 if "403 Forbidden" in license_result['error']:
@@ -223,16 +232,22 @@ class LucitLicensingManager(threading.Thread):
                         logger.error(f"Timestamp not valid - Syncing time ...")
                         self.sync_time()
                     elif "403 Forbidden - Access forbidden due to misuse of test licenses." in license_result['error']:
-                        logger.critical(f"License is invalid!")
-                        self.close(close_api_session=False)
+                        info = f"Access forbidden due to misuse of test licenses."
+                        logger.critical(info)
+                        self.close(close_api_session=False, not_approved_message=info)
                         break
                     elif "403 Forbidden - Insufficient access rights." in license_result['error']:
                         logger.critical(f"{license_result['error']}")
-                        self.close(close_api_session=False)
+                        self.close(close_api_session=False, not_approved_message=f"The license is invalid!")
                         break
                     else:
                         logger.critical(f"{license_result['error']}")
-                        self.close(close_api_session=True)
+                        self.close(close_api_session=True,
+                                   not_approved_message=f"Unknown error! Please submit an issue on GitHub: "
+                                                        f"https://github.com/LUCIT-Systems-and-Development/"
+                                                        f"lucit-licensing-python/issues/new?assignees="
+                                                        f"oliver-zehentleitner&labels=bug&projects=&"
+                                                        f"template=bug_report.yml")
                         break
                 elif "429 Too Many Requests" in license_result['error']:
                     logger.critical(f"{license_result['error']}")
@@ -242,7 +257,9 @@ class LucitLicensingManager(threading.Thread):
                     if connection_errors > 10:
                         logger.critical(f"Connection to LUCIT Licensing Backend could not be established. Please "
                                         f"try again later!")
-                        self.close(close_api_session=False)
+                        self.close(close_api_session=False,
+                                   not_approved_message=f"Connection to LUCIT Licensing Backend could not be "
+                                                        f"established. Please try again later!")
                         break
                     connection_errors += 1
                     time.sleep(1)
@@ -258,8 +275,10 @@ class LucitLicensingManager(threading.Thread):
                 else:
                     break
 
-    def stop(self, close_api_session=True, key_value: str = None) -> dict:
-        return self.close(close_api_session=close_api_session, key_value=key_value)
+    def stop(self, close_api_session: bool = True, not_approved_message: str = None, key_value: str = None) -> dict:
+        return self.close(close_api_session=close_api_session,
+                          not_approved_message=not_approved_message,
+                          key_value=key_value)
 
     def sync_time(self) -> bool:
         try:
