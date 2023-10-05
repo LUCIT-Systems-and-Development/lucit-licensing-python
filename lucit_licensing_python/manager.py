@@ -267,8 +267,9 @@ class LucitLicensingManager(threading.Thread):
                         break
                     too_many_requests_errors += 1
 
-                    # 600 * 9 = 90 minutes (API rate limits expire after 60 minutes, so running instances survive even
-                    # if the user unintentionally exceeds the LUCIT API rate limits continuously for 30 minutes.
+                    # 600 * 9 = 90 minutes
+                    # API rate limits expire after 60 minutes, so running instances survive even if the user
+                    # unintentionally exceeds the LUCIT API rate limits continuously for 30 minutes.
                     time.sleep(600)
 
                     continue
