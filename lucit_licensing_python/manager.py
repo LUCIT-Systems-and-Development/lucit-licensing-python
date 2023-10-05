@@ -22,7 +22,6 @@ import hmac
 import logging
 import platform
 import requests
-import sys
 import threading
 import time
 from typing import Callable
@@ -205,7 +204,8 @@ class LucitLicensingManager(threading.Thread):
             try:
                 if license_result['license']['licensed_product'] != self.needed_license_type:
                     info = f"License not usable, its issued for product " \
-                           f"'{license_result['license']['licensed_product']}'."
+                           f"'{license_result['license']['licensed_product']}'. Please contact our support: " \
+                           f"https://www.lucit.tech/get-support.html"
                     logger.critical(info)
                     self.close(close_api_session=False, not_approved_message=info)
                     break
@@ -222,7 +222,7 @@ class LucitLicensingManager(threading.Thread):
                         logger.debug(f"LUCIT License validated for product: "
                                      f"{license_result['license']['licensed_product']}")
                     else:
-                        info = f"The license is invalid! License Status: {license_result['license']['status']}"
+                        info = f"Unsuccessful verification! License Status: {license_result['license']['status']}"
                         logger.critical(info)
                         self.close(close_api_session=False, not_approved_message=info)
                         break
@@ -232,21 +232,23 @@ class LucitLicensingManager(threading.Thread):
                         logger.error(f"Timestamp not valid - Syncing time ...")
                         self.sync_time()
                     elif "403 Forbidden - Access forbidden due to misuse of test licenses." in license_result['error']:
-                        info = f"Access forbidden due to misuse of test licenses."
+                        info = f"Access forbidden due to misuse of test licenses. Please get a valid license from " \
+                               f"our store: https://shop.lucit.services/software"
                         logger.critical(info)
                         self.close(close_api_session=False, not_approved_message=info)
                         break
                     elif "403 Forbidden - Insufficient access rights." in license_result['error']:
                         logger.critical(f"{license_result['error']}")
-                        self.close(close_api_session=False, not_approved_message=f"The license is invalid!")
+                        self.close(close_api_session=False,
+                                   not_approved_message=f"The license is invalid! Please get a valid license from "
+                                                        f"our store: https://shop.lucit.services/software")
                         break
                     else:
                         logger.critical(f"{license_result['error']}")
                         self.close(close_api_session=True,
                                    not_approved_message=f"Unknown error! Please submit an issue on GitHub: "
                                                         f"https://github.com/LUCIT-Systems-and-Development/"
-                                                        f"lucit-licensing-python/issues/new?assignees="
-                                                        f"oliver-zehentleitner&labels=bug&projects=&"
+                                                        f"lucit-licensing-python/issues/new?labels=bug&projects=&"
                                                         f"template=bug_report.yml")
                         break
                 elif "429 Too Many Requests" in license_result['error']:
