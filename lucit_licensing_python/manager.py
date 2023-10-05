@@ -190,7 +190,7 @@ class Manager(threading.Thread):
             license_result = self.verify()
             try:
                 if license_result['license']['licensed_product'] != self.needed_license_type:
-                    logger.critical(f"License not useable, its issued for product: "
+                    logger.critical(f"License not usable, its issued for product: "
                                     f"{license_result['license']['licensed_product']}")
                     self.close()
                     break
