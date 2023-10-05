@@ -40,6 +40,19 @@ jobs:
           name: artifact
           path: dist
       - uses: pypa/gh-action-pypi-publish@release/v1
+      - name: Create list of .whl files
+        run: |
+          find ./dist/ -name "*.whl" -o -name "*.tar.gz" > filelist.txt
+          python -c "
+          with open('filelist.txt', 'r+') as f:
+              files = f.readlines()
+          formatted_files = ''.join([file.strip() + '\n' for file in files])
+          print(formatted_files)
+          with open('formatted_filelist.txt', 'w') as f:
+              f.write(formatted_files)
+          "
+      - name: Set FILE_LIST env variable
+        run: echo "FILE_LIST=$(cat formatted_filelist.txt)" >> $GITHUB_ENV
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
@@ -48,10 +61,9 @@ jobs:
           discussion_category_name: releases
           draft: false
           files: | 
-            dist/*.tar.gz
-            dist/*.whl
+            ${{ env.FILE_LIST }}
           generate_release_notes: true
           name: lucit-licensing-python
           prerelease: false
-          tag_name: 1.0.30
+          tag_name: 1.0.31
           token: ${{ secrets.RELEASE_TOKEN }}
