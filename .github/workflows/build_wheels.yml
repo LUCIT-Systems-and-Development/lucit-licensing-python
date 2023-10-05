@@ -41,7 +41,6 @@ jobs:
           path: dist
       - uses: pypa/gh-action-pypi-publish@release/v1
       - name: Create list of .whl files
-      - name: Format file list
         run: |
           python -c "
           with open('filelist.txt', 'r') as f:
