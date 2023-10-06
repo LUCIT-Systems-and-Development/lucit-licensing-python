@@ -46,7 +46,7 @@ class LucitLicensingManager(threading.Thread):
         self.last_verified_licensing_result = None
         self.license_token = license_token
         self.mac = str(hex(uuid.getnode()))
-        self.module_version: str = "1.1.6"
+        self.module_version: str = "1.1.7"
         self.needed_license_type = needed_license_type
         self.os = platform.system()
         self.parent_shutdown_function = parent_shutdown_function
