@@ -30,7 +30,7 @@ from copy import deepcopy
 from operator import itemgetter
 from requests.exceptions import ConnectionError, RequestException, HTTPError
 from simplejson.errors import JSONDecodeError
-from exceptions import NoValidLucitLicense
+from lucit_licensing_python.exceptions import NoValidLucitLicense
 
 logger = logging.getLogger("lucit-licensing-logger")
 
