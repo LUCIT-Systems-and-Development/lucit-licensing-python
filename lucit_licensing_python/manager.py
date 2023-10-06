@@ -46,7 +46,7 @@ class LucitLicensingManager(threading.Thread):
         self.last_verified_licensing_result = None
         self.license_token = license_token
         self.mac = str(hex(uuid.getnode()))
-        self.module_version: str = "1.1.3"
+        self.module_version: str = "1.1.4"
         self.needed_license_type = needed_license_type
         self.os = platform.system()
         self.parent_shutdown_function = parent_shutdown_function
@@ -256,9 +256,12 @@ class LucitLicensingManager(threading.Thread):
                         break
                     elif "403 Forbidden - Insufficient access rights." in license_result['error']:
                         logger.critical(f"{license_result['error']}")
-                        self.close(close_api_session=False,
-                                   not_approved_message=f"The license is invalid! Please get a valid license from "
-                                                        f"the LUCIT Online Shop: {self.shop_product_url}")
+                        info = f"The license is invalid! Please get a valid license from the LUCIT Online " \
+                               f"Shop: {self.shop_product_url}"
+                        if self.last_verified_licensing_result is None:
+                            self.close(close_api_session=False, not_approved_message=info)
+                        else:
+                            self.close(close_api_session=False, not_approved_message=info, raise_exception=True)
                         break
                     else:
                         logger.critical(f"{license_result['error']}")
@@ -300,8 +303,8 @@ class LucitLicensingManager(threading.Thread):
                 elif "Connection Error - Connection could not be established" in license_result['error']:
                     logger.critical(f"{license_result['error']}")
                     if self.last_verified_licensing_result is None:
-                        # If there never was a successful verification, we after 10 retries
-                        if connection_errors > 10:
+                        # If there never was a successful verification, we after 3 retries
+                        if connection_errors > 3:
                             logger.critical(f"Connection to LUCIT Licensing API could not be established. Please "
                                             f"try again later!")
                             self.close(close_api_session=False,
