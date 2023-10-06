@@ -17,7 +17,7 @@
 # All rights reserved.
 
 # define Python user-defined exceptions
-class NoValidLucitLicense(Exception):
+class NoValidatedLucitLicense(Exception):
     """
     No valid LUCIT license verification.
     """
