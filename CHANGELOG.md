@@ -9,7 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://lucit-licensing-python.docs.lucit.tech/README.html#installation-and-upgrade)
 
-## 1.1.8.dev (development stage/unreleased/unstable)
+## 1.1.9.dev (development stage/unreleased/unstable)
 
-## 1.1.8
+## 1.1.9
 - RELEASE!!! :)

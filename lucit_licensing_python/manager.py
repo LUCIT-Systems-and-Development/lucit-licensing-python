@@ -46,7 +46,7 @@ class LucitLicensingManager(threading.Thread):
         self.last_verified_licensing_result = None
         self.license_token = license_token
         self.mac = str(hex(uuid.getnode()))
-        self.module_version: str = "1.1.8"
+        self.module_version: str = "1.1.9"
         self.needed_license_type = needed_license_type
         self.os = platform.system()
         self.parent_shutdown_function = parent_shutdown_function
@@ -65,7 +65,7 @@ class LucitLicensingManager(threading.Thread):
                     f"{str(platform.system())} {str(platform.release())} started ...")
         if start is True:
             self.start()
-        while self.last_verified_licensing_result is None and self.sigterm is False:
+        while self.last_verified_licensing_result is None and self.sigterm is False and start is True:
             # Block the main process till a valid license is available
             time.sleep(0.1)
         if self.sigterm is False:
