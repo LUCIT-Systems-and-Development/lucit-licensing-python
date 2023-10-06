@@ -65,6 +65,11 @@ class LucitLicensingManager(threading.Thread):
                     f"{str(platform.system())} {str(platform.release())} started ...")
         if start is True:
             self.start()
+        while self.last_verified_licensing_result is None and self.sigterm is False:
+            # Block the main process till a valid license is available
+            time.sleep(0.1)
+        if self.sigterm is False:
+            logger.debug(f"LUCIT License Manager is ready!")
 
     def __generate_signature(self, api_secret: str = None, data: dict = None) -> str:
         if api_secret is None or data is None:
@@ -185,7 +190,9 @@ class LucitLicensingManager(threading.Thread):
             logger.debug(f"Stopping LUCIT Licensing Manager ...")
         self.sigterm = True
         if self.parent_shutdown_function is not None:
+            logger.debug(f"Triggering shutdown of parent class ...")
             self.parent_shutdown_function(close_api_session=False)
+            self.parent_shutdown_function = None
         if close_api_session is True:
             response = self.__private_request(api_secret=None, license_token=None,
                                               key_value=key_value, endpoint="close")
