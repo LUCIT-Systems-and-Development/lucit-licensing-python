@@ -45,7 +45,7 @@ class LucitLicensingManager(threading.Thread):
         self.last_verified_licensing_result = None
         self.license_token = license_token
         self.mac = str(hex(uuid.getnode()))
-        self.module_version: str = "1.1.0"
+        self.module_version: str = "1.1.1"
         self.needed_license_type = needed_license_type
         self.os = platform.system()
         self.parent_shutdown_function = parent_shutdown_function
@@ -202,6 +202,12 @@ class LucitLicensingManager(threading.Thread):
     def get_version(self) -> dict:
         return self.__public_request(endpoint="version")
 
+    def is_verified(self):
+        if self.last_verified_licensing_result is None:
+            return False
+        else:
+            return True
+
     def run(self):
         connection_errors = 0
         too_many_requests_errors = 0
@@ -259,19 +265,30 @@ class LucitLicensingManager(threading.Thread):
                         break
                 elif "429 Too Many Requests" in license_result['error']:
                     logger.critical(f"{license_result['error']}")
-                    if connection_errors > 9:
-                        logger.critical(f"Too many requests to the LUCIT Licensing API! Not able to verify the license"
-                                        f"for more than 90 minutes!")
+                    if self.last_verified_licensing_result is None:
+                        # If there never was a successful verification, we stop immediately
+                        logger.critical(f"Too many requests to the LUCIT Licensing API! Not able to verify the "
+                                        f"license!")
                         self.close(close_api_session=False,
-                                   not_approved_message=f"Connection to LUCIT Licensing API could not be "
-                                                        f"established. Please try again later!")
+                                   not_approved_message=f"Too many requests to the LUCIT Licensing API! Not able "
+                                                        f"to verify the license!")
                         break
-                    too_many_requests_errors += 1
+                    else:
+                        if connection_errors > 9:
+                            # This stopps an already running instance if the API rate limit gets hit for more
+                            # than 90 min
+                            logger.critical(f"Too many requests to the LUCIT Licensing API! Not able to verify the "
+                                            f"license for more than 90 minutes!")
+                            self.close(close_api_session=False,
+                                       not_approved_message=f"Too many requests to the LUCIT Licensing API! Not able "
+                                                            f"to verify the license for more than 90 minutes!")
+                            break
+                        too_many_requests_errors += 1
 
-                    # 600 * 9 = 90 minutes
-                    # API rate limits expire after 60 minutes, so running instances survive even if the user
-                    # unintentionally exceeds the LUCIT API rate limits continuously for 30 minutes.
-                    time.sleep(600)
+                        # 600 * 9 = 90 minutes
+                        # API rate limits expire after 60 minutes, so running instances survive even if the user
+                        # unintentionally exceeds the LUCIT API rate limits continuously for 30 minutes.
+                        time.sleep(600)
 
                     continue
                 elif "Connection Error - Connection could not be established" in license_result['error']:
