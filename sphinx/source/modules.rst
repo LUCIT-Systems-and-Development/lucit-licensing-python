@@ -1,5 +1,5 @@
 lucit_licensing_python
-=============================
+======================
 
 .. toctree::
    :maxdepth: 4

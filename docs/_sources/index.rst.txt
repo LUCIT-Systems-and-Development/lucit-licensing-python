@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to lucit-licensing-python's documentation!
-=========================================================
+==================================================
 
 .. toctree::
    :maxdepth: 3
