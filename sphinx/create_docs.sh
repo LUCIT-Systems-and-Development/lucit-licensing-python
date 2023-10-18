@@ -36,10 +36,10 @@
 # add 'recommonmark' to extentions in conf.py
 
 rm source/CHANGELOG.md
-rm source/copyright.rst
+rm source/LICENSE.rst
 rm source/README.md
 cp ../CHANGELOG.md source/
-cp ../LICENSE source/
+cp ../LICENSE source/LICENSE.rst
 cp ../README.md source/
 
 make html -d
