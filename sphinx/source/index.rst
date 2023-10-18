@@ -13,7 +13,7 @@ Welcome to lucit-licensing-python's documentation!
    Readme <readme.md>
    Modules <modules.rst>
    ChangeLog <changelog.md>
-   Copyright <copyright.rst>
+   License <license.rst>
 
 
 Indices and tables
