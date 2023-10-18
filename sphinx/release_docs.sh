@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 # -*- coding: utf-8 -*-
 #
 # File: sphinx/release_docs.sh
