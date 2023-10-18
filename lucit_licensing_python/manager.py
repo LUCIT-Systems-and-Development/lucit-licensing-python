@@ -13,7 +13,7 @@
 #
 # Author: LUCIT Systems and Development
 #
-# Copyright (c) 2019-2023, LUCIT Systems and Development (https://www.lucit.tech)
+# Copyright (c) 2023-2023, LUCIT Systems and Development (https://www.lucit.tech)
 # All rights reserved.
 
 import cython
@@ -73,12 +73,12 @@ class LucitLicensingManager(threading.Thread):
 
     def __generate_signature(self, api_secret: str = None, data: dict = None) -> str:
         if api_secret is None or data is None:
-            logger.error(f"The parameters 'api_key' and 'data' must not be None! ")
+            logger.error(f"The parameters 'api_secret' and 'data' must not be None! ")
             return ""
         ordered_data = self.__order_params(data)
         query_string = '&'.join(["{}={}".format(d[0], d[1]) for d in ordered_data])
-        m = hmac.new(api_secret.encode('utf-8'), query_string.encode('utf-8'), hashlib.sha256)
-        return str(m.hexdigest())
+        hmac_string = hmac.new(api_secret.encode('utf-8'), query_string.encode('utf-8'), hashlib.sha256)
+        return str(hmac_string.hexdigest())
 
     @staticmethod
     def __order_params(data: dict = None) -> list:
@@ -331,8 +331,7 @@ class LucitLicensingManager(threading.Thread):
                             break
                         connection_errors += 1
                         # 600 * 9 = 90 minutes
-                        # API rate limits expire after 60 minutes, so running instances survive even if the user
-                        # unintentionally exceeds the LUCIT API rate limits continuously for 30 minutes.
+                        # Running instances survive even if the LUCIT API is not connectable for 90 minutes
                         time.sleep(600)
                     continue
                 else:

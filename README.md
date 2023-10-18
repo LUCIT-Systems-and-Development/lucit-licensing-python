@@ -12,6 +12,7 @@
 [![Build and Publish](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml)
 [![CodeQL](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/codeql-analysis.yml)
 [![Unit Tests](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/unit-tests.yml)
+[![Read the Docs](https://img.shields.io/badge/read-%20docs-yellow)](https://lucit-licensing-python.docs.lucit.tech)
 [![Telegram](https://img.shields.io/badge/chat-telegram-41ab8c)](https://t.me/unicorndevs)
 [![Gitter](https://badges.gitter.im/lucit-licensing-python.svg)](https://app.gitter.im/#/room/#lucit-licensing-python:gitter.im)
 
@@ -21,7 +22,7 @@
 [Social](#social) | [Notifications](#receive-notifications) | [Bugs](#how-to-report-bugs-or-suggest-improvements) | 
 [Contributing](#contributing) | [Disclaimer](#disclaimer) | [Commercial Support](#commercial-support)
 
-Python client module of LUCIT Licensing Service.
+Python client module of the LUCIT Licensing Service.
 
 ## Installation and Upgrade
 The module requires Python 3.7 or above.

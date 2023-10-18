@@ -13,7 +13,7 @@
 #
 # Author: LUCIT Systems and Development
 #
-# Copyright (c) 2019-2023, LUCIT Systems and Development (https://www.lucit.tech)
+# Copyright (c) 2023-2023, LUCIT Systems and Development (https://www.lucit.tech)
 # All rights reserved.
 
 security-check() {

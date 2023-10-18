@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 #
-# File: pypi/upload_wheel.sh
+# File: sphinx/release_docs.sh
 #
 # Project website: https://www.lucit.tech/lucit-licensing-python.html
 # Github: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python
@@ -15,8 +15,6 @@
 #
 # Copyright (c) 2023-2023, LUCIT Systems and Development (https://www.lucit.tech)
 # All rights reserved.
-#
-# create this file:
-# ~/.pypirc
 
-python3 -m twine upload dist/*
+cp ./build/html/* ../docs -R
+rm ./build/html/ -r
