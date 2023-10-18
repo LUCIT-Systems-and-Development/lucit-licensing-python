@@ -17,8 +17,8 @@
 # All rights reserved.
 
 
-#from lucit_licensing_python.manager import LucitLicensingManager
-from manager import LucitLicensingManager
+from lucit_licensing_python.manager import LucitLicensingManager
+#from manager import LucitLicensingManager
 
 import asyncio
 from configparser import ConfigParser, ExtendedInterpolation
