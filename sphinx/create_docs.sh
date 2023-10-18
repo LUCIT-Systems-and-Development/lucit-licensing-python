@@ -35,12 +35,12 @@
 # pip install recommonmark
 # add 'recommonmark' to extentions in conf.py
 
-rm source/CHANGELOG.md
-rm source/LICENSE.rst
-rm source/README.md
-cp ../CHANGELOG.md source/
-cp ../LICENSE source/LICENSE.rst
-cp ../README.md source/
+rm source/changelog.md
+rm source/copyright.rst
+rm source/readme.md
+cp ../CHANGELOG.md source/changelog.md
+cp ../LICENSE source/copyright.rst
+cp ../README.md source/readme.md
 
 make html -d
 #python3 -m sphinx source ../docs
