@@ -25,11 +25,12 @@ with open("README.md", "r") as fh:
 setup(
     ext_modules=cythonize(
         ['lucit_licensing_python/__init__.py',
+         'lucit_licensing_python/cli.py',
          'lucit_licensing_python/exceptions.py',
          'lucit_licensing_python/manager.py'],
         annotate=False),
     name='lucit-licensing-python',
-    version="1.1.10",
+    version="1.2.0",
     author="LUCIT Systems and Development",
     author_email='info@lucit.tech',
     url="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python",
@@ -40,11 +41,11 @@ setup(
     install_requires=['Cython', 'requests', 'simplejson'],
     keywords='',
     project_urls={
-        'Howto': 'https://www.lucit.tech/lucit-licensing-python.html#howto',
         'Documentation': 'https://lucit-licensing-python.docs.lucit.tech',
         'Wiki': 'https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/wiki',
         'Author': 'https://www.lucit.tech',
-        'Changes': 'https://lucit-licensing-python.docs.lucit.tech//CHANGELOG.html',
+        'Changes': 'https://lucit-licensing-python.docs.lucit.tech//changelog.html',
+        'License': 'https://lucit-licensing-python.docs.lucit.tech//license.html',
         'Issue Tracker': 'https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues',
         'Chat': 'https://app.gitter.im/#/room/#lucit-licensing-python:gitter.im',
         'Get Support': 'https://www.lucit.tech/get-support.html',
@@ -54,7 +55,7 @@ setup(
                        'lucit_licensing_python/*.dll']},
     entry_points={
         "console_scripts": [
-            "lucitlicmgr  = lucit_licensing_python.__cli__:cli",
+            "lucitlicmgr  = lucit_licensing_python.cli:main",
         ]},
     classifiers=[
         "Development Status :: 5 - Production/Stable",

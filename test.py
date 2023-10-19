@@ -83,7 +83,7 @@ if __name__ == "__main__":
     lucit_api_secret = ""
     lucit_license_token = ""
 
-    logging.getLogger("lucit-licensing-logger")
+    logging.getLogger("lucit_licensing_python")
     logging.basicConfig(level=logging.INFO,
                         format="{asctime} [{levelname:8}] {process} {thread} {module}: {message}",
                         style="{")

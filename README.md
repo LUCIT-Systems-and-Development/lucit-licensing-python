@@ -30,14 +30,16 @@ This module is used to verify LUCIT software licenses and also provides the deve
 interact with the LUCIT Licensing API. 
 
 If you have already installed modules of LUCIT like the 
-[UNICORN Binance Suite](https://www.lucit.tech/unicorn-binance-suite.html), which use the lucit-licensing-python 
+[UNICORN Binance Suite](https://www.lucit.tech/unicorn-binance-suite.html), which use the `lucit-licensing-python` 
 library, you have already installed the commandline tool `lucitlicmgr` automatically.
 
 ### Query contingents of your license
 ```` 
 $ lucitlicmgr --quotas
 ````
+
 Example output: 
+
 ````
 {'quotas': {'ips': {'available': 1, 'used': 0, 'free': 1}, 'instances': {'available': 3, 'used': 0, 'free': 3}}, 'timestamp': '1697708406.008075', 'signature': 'bf1b1497119693a41b94351154610f2b83bb654adca7dc31a11a38c36e5d5fd1'}
 ````
@@ -65,10 +67,10 @@ Run in bash:
 `pip install https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/archive/$(curl -s https://api.github.com/repos/LUCIT-Systems-and-Development/lucit-licensing-python/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")').tar.gz --upgrade`
 
 #### Windows
-Use the below command with the version (such as 1.1.7) you determined 
+Use the below command with the version (such as 1.2.0) you determined 
 [here](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/releases/latest):
 
-`pip install https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/archive/1.1..tar.gz --upgrade`
+`pip install https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/archive/1.2.0.tar.gz --upgrade`
 ### From the latest source (dev-stage) with PIP from [GitHub](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
 This is not a release version and can not be considered to be stable!
 

@@ -32,7 +32,7 @@ from requests.exceptions import ConnectionError, RequestException, HTTPError
 from simplejson.errors import JSONDecodeError
 from lucit_licensing_python.exceptions import NoValidatedLucitLicense
 
-logger = logging.getLogger("lucit-licensing-logger")
+logger = logging.getLogger("lucit_licensing_python")
 
 
 class LucitLicensingManager(threading.Thread):
@@ -46,7 +46,7 @@ class LucitLicensingManager(threading.Thread):
         self.last_verified_licensing_result = None
         self.license_token = license_token
         self.mac = str(hex(uuid.getnode()))
-        self.module_version: str = "1.1.9"
+        self.module_version: str = "1.2.0"
         self.needed_license_type = needed_license_type
         self.os = platform.system()
         self.parent_shutdown_function = parent_shutdown_function

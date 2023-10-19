@@ -16,15 +16,18 @@
 # Copyright (c) 2023-2023, LUCIT Systems and Development (https://www.lucit.tech)
 # All rights reserved.
 
-import asyncio
 import argparse
+import asyncio
 import logging
 import os
 import sys
 import textwrap
 from configparser import ConfigParser, ExtendedInterpolation
 from pathlib import Path
-from lucit_licensing_python.manager import LucitLicensingManager
+try:
+    from manager import LucitLicensingManager
+except ModuleNotFoundError:
+    from lucit_licensing_python.manager import LucitLicensingManager
 
 
 async def cli(lucit_license_manager=None):
@@ -58,9 +61,10 @@ async def cli(lucit_license_manager=None):
              additional information:
                  Get a valid license in our store: https://shop.lucit.services/software
                  Author: https://www.lucit.tech
-                 Changes: https://lucit-licensing-python.docs.lucit.tech//CHANGELOG.html
+                 Changes: https://lucit-licensing-python.docs.lucit.tech/changelog.html
                  Documentation: https://lucit-systems-and-development.github.io/lucit-licensing-python
                  Issue Tracker: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues
+                 License: https://lucit-licensing-python.docs.lucit.tech/license.html
                  Source: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python
                  Wiki: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/wiki
              '''))
@@ -128,11 +132,13 @@ async def cli(lucit_license_manager=None):
     elif str(options.loglevel).upper() == "CRITICAL":
         input_loglevel = logging.CRITICAL
     else:
-        input_loglevel = logging.ERROR
+        input_loglevel = logging.WARNING
 
     parent_dir = Path(input_logfile).parent
     if not os.path.isdir(parent_dir):
         os.makedirs(parent_dir)
+
+    logger = logging.getLogger("lucit_licensing_python")
     try:
         logging.basicConfig(level=input_loglevel,
                             filename=input_logfile,
@@ -140,7 +146,6 @@ async def cli(lucit_license_manager=None):
                             style="{")
     except FileNotFoundError as error_msg:
         print(f"File not found: {error_msg}")
-    logger = logging.getLogger("lucit_licensing_python")
 
     if len(sys.argv) <= 1:
         # Exit if no args provided
@@ -186,8 +191,13 @@ async def cli(lucit_license_manager=None):
     if input_version is True:
         print(f"{llm.get_version()}")
 
-if __name__ == "__main__":
+
+def main():
     try:
         asyncio.run(cli())
     except KeyboardInterrupt:
         print("\r\nGracefully stopping ...")
+
+
+if __name__ == "__main__":
+    main()
