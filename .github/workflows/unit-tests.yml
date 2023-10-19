@@ -23,7 +23,7 @@ jobs:
         pip install -r requirements.txt
         pip install coveralls
     - name: Unit test
-      run: coverage run --source lucit_licensing_python test.py
+      run: coverage run --source lucit_licensing_python dev_test.py
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
