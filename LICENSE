@@ -101,8 +101,4 @@ its sole discretion. Users are encouraged to review the license terms regularly 
 Thank you for selecting the LUCIT Licensing Python and products from LUCIT IT-Management GmbH. We deeply value
 your trust in our technologies.
 
-LUCIT IT-Management GmbH
-
-Am Berg 391, 3970 Weitra, AUSTRIA
-
-https://www.lucit.tech
+LUCIT IT-Management GmbH - Am Berg 391, 3970 Weitra, AUSTRIA - https://www.lucit.tech
