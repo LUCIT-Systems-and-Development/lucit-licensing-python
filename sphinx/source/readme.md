@@ -5,6 +5,8 @@
 [![GitHub Downloads](https://img.shields.io/github/downloads/LUCIT-Systems-and-Development/lucit-licensing-python/total?color=blue)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/releases)
 [![Conda Release](https://img.shields.io/conda/vn/conda-forge/lucit-licensing-python.svg?color=blue)](https://anaconda.org/conda-forge/lucit-licensing-python)
 [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/lucit-licensing-python.svg?color=blue)](https://anaconda.org/conda-forge/lucit-licensing-python)
+[![PyPi Release](https://img.shields.io/pypi/v/lucit-licensing-python?color=blue)](https://pypi.org/project/lucit-licensing-python/)
+[![PyPi Downloads](https://pepy.tech/badge/lucit-licensing-python)](https://pepy.tech/project/lucit-licensing-python)
 [![License](https://img.shields.io/badge/license-LSOSL-blue)](https://lucit-licensing-python.docs.lucit.tech/license.html)
 [![Supported Python Version](https://img.shields.io/pypi/pyversions/lucit_licensing_python.svg)](https://www.python.org/downloads/)
 [![PyPI - Status](https://img.shields.io/pypi/status/lucit-licensing-python.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues)
