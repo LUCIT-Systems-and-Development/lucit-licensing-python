@@ -20,7 +20,9 @@
 
 [Description](#description) | [Installation](#installation-and-upgrade) | [Change Log](#change-log) | [Wiki](#wiki) | 
 [Social](#social) | [Notifications](#receive-notifications) | [Bugs](#how-to-report-bugs-or-suggest-improvements) | 
-[Contributing](#contributing) | [Disclaimer](#disclaimer) | [Commercial Support](#commercial-support)
+[Contributing](#contributing) | [Commercial Support](#commercial-support)
+
+## Description
 
 Python client module of the LUCIT Licensing Service.
 
@@ -75,6 +77,11 @@ or the [current master branch](https://github.com/LUCIT-Systems-and-Development/
 ## Wiki
 [https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/wiki](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/wiki)
 
+## Social
+- [Discussions](https://github.com/LUCIT-Systems-and-Development/lucit-licensing/discussions)
+- [Gitter](https://app.gitter.im/#/room/#lucit-licensing-python:gitter.im)
+- [https://t.me/unicorndevs](https://t.me/unicorndevs)
+- 
 ## Receive Notifications
 Follow us on [LinkedIn](https://www.linkedin.com/company/lucit-systems-and-development), 
 [X](https://twitter.com/LUCIT_SysDev) or [Facebook](https://www.facebook.com/lucit.systems.and.development)!

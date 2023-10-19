@@ -14,12 +14,13 @@ Version 1.0, October 2023
 9. DISCLAIMER OF WARRANTY AND LIABILITY
 10. CHANGES TO LICENSE TERMS
 
-
+------------------------------------------------------------------------------------------------------------------------
 
 1. INTRODUCTION
 
 The "LUCIT Synergetic Open Source License" oversees the utilization and distribution of LUCIT Licensing Python by
 LUCIT IT-Management GmbH.
+
 
 2. PROJECT INFORMATION
 
@@ -27,6 +28,7 @@ LUCIT IT-Management GmbH.
     - Project page: https://www.lucit.tech/lucit-licensing-python.html
     - GitHub repository: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python
     - PyPI repository: https://pypi.org/project/lucit-licensing-python
+
 
 3. LICENSE CONDITIONS AND VERIFICATION
 
@@ -41,21 +43,25 @@ especially traders.
 For transparency, our licensing client module is available on GitHub:
 https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python.
 
+
 4. LICENSE PURCHASE
 
 Usage of the our software necessitates obtaining a license from the LUCIT Online Shop.
 
 More details can be found at: https://shop.lucit.services/software
 
+
 5. CONTRIBUTING CODE
 
 Contributions via GitHub pull requests are welcome. However, contributors should be aware that submitted code
 automatically becomes LUCIT IT-Management GmbH's property and copyright.
 
+
 6. USAGE AND DISTRIBUTION
 
 LUCIT IT-Management GmbH's open-source projects, including the WebSocket API, can be integrated into various
 applications. Execution requires a valid license. For details on unique licenses, reach out to: sales@lucit.tech.
+
 
 7. DATA COLLECTION AND LICENSE CONTROL
 
@@ -72,15 +78,18 @@ For license adherence, test license misuse prevention, API rate monitoring, and 
 This data is stored only for its intended purpose and duration, except for anonymous statistics. We commit to
 confidentiality and non-disclosure. Details are in our privacy policy.
 
+
 8. THIRD-PARTY SOFTWARE
 
 The software may embed third-party code or libraries, each governed by their respective licenses. Ensure awareness and
 compliance when using the software.
 
+
 9. DISCLAIMER OF WARRANTY AND LIABILITY
 
 The software is rendered "as is", sans any assurances. LUCIT IT-Management GmbH disclaims liability for any potential
 repercussions arising from software usage.
+
 
 10. CHANGES TO LICENSE TERMS
 
@@ -93,7 +102,7 @@ Thank you for selecting the LUCIT Licensing Python and products from LUCIT IT-Ma
 your trust in our technologies.
 
 LUCIT IT-Management GmbH
-Am Berg 391
-3970 Weitra
-Austria
-www.lucit.tech
+
+Am Berg 391, 3970 Weitra, AUSTRIA
+
+https://www.lucit.tech
