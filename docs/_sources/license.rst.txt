@@ -24,10 +24,10 @@ LUCIT IT-Management GmbH.
 
 2. PROJECT INFORMATION
 
-    - Project name: LUCIT Licensing Python (Module)
-    - Project page: https://www.lucit.tech/lucit-licensing-python.html
-    - GitHub repository: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python
-    - PyPI repository: https://pypi.org/project/lucit-licensing-python
+- Project name: LUCIT Licensing Python (Module)
+- Project page: https://www.lucit.tech/lucit-licensing-python.html
+- GitHub repository: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python
+- PyPI repository: https://pypi.org/project/lucit-licensing-python
 
 
 3. LICENSE CONDITIONS AND VERIFICATION
@@ -67,13 +67,13 @@ applications. Execution requires a valid license. For details on unique licenses
 
 For license adherence, test license misuse prevention, API rate monitoring, and service improvement, we gather:
 
-    - User IP addresses
-    - Instance log data
-    - Used Python version
-    - Operating system type
-    - API usage rates
-    - MAC addresses (for misuse detection)
-    - Data volume processed (anonymously aggregated)
+- User IP addresses
+- Instance log data
+- Used Python version
+- Operating system type
+- API usage rates
+- MAC addresses (for misuse detection)
+- Data volume processed (anonymously aggregated)
 
 This data is stored only for its intended purpose and duration, except for anonymous statistics. We commit to
 confidentiality and non-disclosure. Details are in our privacy policy.
@@ -96,7 +96,7 @@ repercussions arising from software usage.
 LUCIT IT-Management GmbH reserves the right to modify, alter, or update the terms of this license at any time and at
 its sole discretion. Users are encouraged to review the license terms regularly to ensure compliance.
 
----
+------------------------------------------------------------------------------------------------------------------------
 
 Thank you for selecting the LUCIT Licensing Python and products from LUCIT IT-Management GmbH. We deeply value
 your trust in our technologies.
