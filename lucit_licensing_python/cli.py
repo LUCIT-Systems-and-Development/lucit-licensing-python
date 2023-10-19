@@ -41,7 +41,7 @@ async def cli(lucit_license_manager=None):
     log_format = "{asctime} [{levelname:8}] {process} {thread} {module}: {message}"
 
     parser = argparse.ArgumentParser(
-        description=f"LUCIT License Manager {module_version} by LUCIT Systems and Development. All Rights Reserved. ",
+        description=f"LUCIT License Manager {module_version} by LUCIT Systems and Development. All Rights Reserved.",
         prog=f"lucitlicmgr",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=textwrap.dedent('''\

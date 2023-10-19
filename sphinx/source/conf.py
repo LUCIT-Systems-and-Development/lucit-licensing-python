@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 # -- Project information -----------------------------------------------------
 
 project = 'lucit-licensing-python'
-copyright = 'Copyright (c) 2023-2023, LUCIT Systems and Development (https://www.lucit.tech)'
+copyright = '2023-2023, LUCIT Systems and Development. All Rights Reserved.'
 author = 'LUCIT Systems and Development'
 
 # The short X.Y version
@@ -43,13 +43,11 @@ html_last_updated_fmt = "%b %d %Y at %H:%M (CET)"
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.githubpages',
-    'recommonmark',
-    'sphinx_markdown_tables'
+    'myst_parser',
+    'sphinx_markdown_tables',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.viewcode',
 ]
-
-source_parsers = {
-    '.md': 'recommonmark.parser.CommonMarkParser',
-}
 
 
 # Add any paths that contain templates here, relative to this directory.
@@ -75,11 +73,10 @@ language = "en"
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = None
-
+pygments_style = 'sphinx'
 
 # -- Options for HTML output -------------------------------------------------
 

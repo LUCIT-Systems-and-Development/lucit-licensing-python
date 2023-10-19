@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 # -*- coding: utf-8 -*-
 #
 # File: sphinx/install_sphinx.sh
@@ -16,8 +16,8 @@
 # Copyright (c) 2023-2023, LUCIT Systems and Development (https://www.lucit.tech)
 # All rights reserved.
 
-#!/usr/bin/env bash
 python3 -m pip install sphinx --upgrade
 python3 -m pip install python-docs-theme-lucit --upgrade
-python3 -m pip install recommonmark --upgrade
+python3 -m pip install rich --upgrade
+python3 -m pip install myst-parser --upgrade
 python3 -m pip install sphinx-markdown-tables --upgrade
