@@ -65,7 +65,10 @@
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">LUCIT Licensing Python (Module)</a><ul>
-<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#description">Description</a><ul>
+<li><a class="reference internal" href="#query-contingents-of-your-license">Query contingents of your license</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#installation-and-upgrade">Installation and Upgrade</a><ul>
 <li><a class="reference internal" href="#a-binary-pypy-or-source-code-based-wheel-of-the-latest-version-with-pip-from-pypi">A binary, PyPy or source code based wheel of the latest version with <code class="docutils literal notranslate"><span class="pre">pip</span></code> from PyPI</a></li>
 <li><a class="reference internal" href="#a-conda-package-of-the-latest-release-with-conda-from-anaconda-via-conda-forge">A conda package of the latest release with <code class="docutils literal notranslate"><span class="pre">conda</span></code> from Anaconda via CONDA-FORGE.</a></li>
@@ -224,6 +227,21 @@
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>Python client module of the LUCIT Licensing Service.</p>
+<p>This module is used to verify LUCIT software licenses and also provides the developer with a command line interface to
+interact with the LUCIT Licensing API.</p>
+<p>If you have already installed modules of LUCIT like the
+<a class="reference external" href="https://www.lucit.tech/unicorn-binance-suite.html">UNICORN Binance Suite</a>, which use the lucit-licensing-python
+library, you have already installed the commandline tool <code class="docutils literal notranslate"><span class="pre">lucitlicmgr</span></code> automatically.</p>
+<section id="query-contingents-of-your-license">
+<h3>Query contingents of your license<a class="headerlink" href="#query-contingents-of-your-license" title="Link to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lucitlicmgr --quotas
+</pre></div>
+</div>
+<p>Example output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;quotas&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ips&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;available&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;used&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;free&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="s1">&#39;instances&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;available&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;used&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;free&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}},</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="s1">&#39;1697708406.008075&#39;</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;bf1b1497119693a41b94351154610f2b83bb654adca7dc31a11a38c36e5d5fd1&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="installation-and-upgrade">
 <h2>Installation and Upgrade<a class="headerlink" href="#installation-and-upgrade" title="Link to this heading">¶</a></h2>
@@ -274,7 +292,7 @@ and use:</p>
 </section>
 <section id="change-log">
 <h2>Change Log<a class="headerlink" href="#change-log" title="Link to this heading">¶</a></h2>
-<p><a class="reference external" href="https://lucit-licensing-python.docs.lucit.tech/CHANGELOG.html">https://lucit-licensing-python.docs.lucit.tech/CHANGELOG.html</a></p>
+<p><a class="reference external" href="https://lucit-licensing-python.docs.lucit.tech/changelog.html">https://lucit-licensing-python.docs.lucit.tech/changelog.html</a></p>
 </section>
 <section id="project-homepage">
 <h2>Project Homepage<a class="headerlink" href="#project-homepage" title="Link to this heading">¶</a></h2>
@@ -350,7 +368,10 @@ contribute follow
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">LUCIT Licensing Python (Module)</a><ul>
-<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#description">Description</a><ul>
+<li><a class="reference internal" href="#query-contingents-of-your-license">Query contingents of your license</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#installation-and-upgrade">Installation and Upgrade</a><ul>
 <li><a class="reference internal" href="#a-binary-pypy-or-source-code-based-wheel-of-the-latest-version-with-pip-from-pypi">A binary, PyPy or source code based wheel of the latest version with <code class="docutils literal notranslate"><span class="pre">pip</span></code> from PyPI</a></li>
 <li><a class="reference internal" href="#a-conda-package-of-the-latest-release-with-conda-from-anaconda-via-conda-forge">A conda package of the latest release with <code class="docutils literal notranslate"><span class="pre">conda</span></code> from Anaconda via CONDA-FORGE.</a></li>
@@ -482,7 +503,7 @@ contribute follow
     <div class="footer">
     &copy; <a href="license.html">Copyright</a> 2023-2023, LUCIT Systems and Development. All Rights Reserved..
     See <a href="license.html">License</a> for more information.<br />
-    Last updated on Oct 19 2023 at 11:29 (CET).
+    Last updated on Oct 19 2023 at 11:56 (CET).
     <a href="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/new/choose">Found a bug</a>?
     <br />
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.

@@ -16,18 +16,15 @@
 # Copyright (c) 2023-2023, LUCIT Systems and Development (https://www.lucit.tech)
 # All rights reserved.
 
-
-from lucit_licensing_python.manager import LucitLicensingManager
-#from manager import LucitLicensingManager
-
 import asyncio
-from configparser import ConfigParser, ExtendedInterpolation
-from pathlib import Path
 import argparse
 import logging
 import os
 import sys
 import textwrap
+from configparser import ConfigParser, ExtendedInterpolation
+from pathlib import Path
+from lucit_licensing_python.manager import LucitLicensingManager
 
 
 async def cli(lucit_license_manager=None):

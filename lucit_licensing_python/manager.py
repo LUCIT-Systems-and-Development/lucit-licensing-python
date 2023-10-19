@@ -214,7 +214,7 @@ class LucitLicensingManager(threading.Thread):
     def get_version(self) -> dict:
         return self.__public_request(endpoint="version")
 
-    def is_verified(self):
+    def is_verified(self) -> bool:
         if self.last_verified_licensing_result is None:
             return False
         else:
