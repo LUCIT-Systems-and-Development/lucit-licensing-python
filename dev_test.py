@@ -95,3 +95,8 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("\r\nGracefully stopping ...")
         ltc.close()
+    except Exception as error_msg:
+        print(f"\r\nERROR: {error_msg}")
+        print("Gracefully stopping ...")
+        ltc.close()
+

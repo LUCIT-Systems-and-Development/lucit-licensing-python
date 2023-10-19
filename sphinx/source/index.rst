@@ -10,10 +10,11 @@ Welcome to lucit-licensing-python's documentation!
    :maxdepth: 3
    :caption: Contents:
 
-   Readme <readme.md>
-   Modules <modules.rst>
-   ChangeLog <changelog.md>
+   ChangeLog <changelog.md>:
    License <license.rst>
+   Modules <modules.rst>
+   Readme <readme.md>
+   Security <security.md>
 
 
 Indices and tables
