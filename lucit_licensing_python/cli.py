@@ -33,6 +33,18 @@ except ModuleNotFoundError:
 async def cli(lucit_license_manager=None):
     """
         LUCIT License Manager Command Line Interface
+
+         | Query contingents of your license:
+         | $ lucitlicmgr --quotas
+
+         | Test the availability of the Licensing API:
+         | $ lucitlicmgr --test
+
+         | Query server timestamp of the Licensing API:
+         | $ lucitlicmgr --timestamp
+
+         | Query the version of the Licensing API:
+         | $ lucitlicmgr --version
     """
     llm = lucit_license_manager if lucit_license_manager is not None else LucitLicensingManager(start=False)
     module_version = llm.get_module_version()

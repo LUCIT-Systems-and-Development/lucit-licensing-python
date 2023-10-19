@@ -26,8 +26,8 @@
 
 Python client module of the LUCIT Licensing Service.
 
-This module is used to verify LUCIT software licenses and also provides the developer with a command line interface to 
-interact with the LUCIT Licensing API. 
+This module is used to verify [LUCIT software licenses](https://shop.lucit.services/software) and also provides the 
+developer with a command line interface to interact with the LUCIT Licensing API. 
 
 If you have already installed modules of LUCIT like the 
 [UNICORN Binance Suite](https://www.lucit.tech/unicorn-binance-suite.html), which use the `lucit-licensing-python` 
@@ -51,6 +51,23 @@ The `apisecret` and the `licensetoken` parameter can also be loaded from an INI 
 [LUCIT]
 api_secret = bf7df011327d09b70fb0c6bfbc8661x33fdb0c58d42629c94ab35188d8d011ba
 license_token = 5e84cbd7-acfa-489f-a84d-z7d1b615af40d
+````
+
+Then just use:
+
+```` 
+$ lucitlicmgr --quotas
+````
+
+Example output: 
+
+````
+{'quotas': {'ips': {'available': 1, 'used': 0, 'free': 1}, 'instances': {'available': 3, 'used': 0, 'free': 3}}, 'timestamp': '1697708406.008075', 'signature': 'bf1b1497119693a41b94351154610f2b83bb654adca7dc31a11a38c36e5d5fd1'}
+````
+
+### Detect more options
+```` 
+$ lucitlicmgr --help
 ````
 
 ## Installation and Upgrade

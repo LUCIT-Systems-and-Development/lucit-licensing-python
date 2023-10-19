@@ -67,6 +67,7 @@
 <li><a class="reference internal" href="#">LUCIT Licensing Python (Module)</a><ul>
 <li><a class="reference internal" href="#description">Description</a><ul>
 <li><a class="reference internal" href="#query-contingents-of-your-license">Query contingents of your license</a></li>
+<li><a class="reference internal" href="#detect-more-options">Detect more options</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#installation-and-upgrade">Installation and Upgrade</a><ul>
@@ -227,8 +228,8 @@
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>Python client module of the LUCIT Licensing Service.</p>
-<p>This module is used to verify LUCIT software licenses and also provides the developer with a command line interface to
-interact with the LUCIT Licensing API.</p>
+<p>This module is used to verify <a class="reference external" href="https://shop.lucit.services/software">LUCIT software licenses</a> and also provides the
+developer with a command line interface to interact with the LUCIT Licensing API.</p>
 <p>If you have already installed modules of LUCIT like the
 <a class="reference external" href="https://www.lucit.tech/unicorn-binance-suite.html">UNICORN Binance Suite</a>, which use the <code class="docutils literal notranslate"><span class="pre">lucit-licensing-python</span></code>
 library, you have already installed the commandline tool <code class="docutils literal notranslate"><span class="pre">lucitlicmgr</span></code> automatically.</p>
@@ -246,6 +247,20 @@ library, you have already installed the commandline tool <code class="docutils l
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">LUCIT</span><span class="p">]</span>
 <span class="n">api_secret</span> <span class="o">=</span> <span class="n">bf7df011327d09b70fb0c6bfbc8661x33fdb0c58d42629c94ab35188d8d011ba</span>
 <span class="n">license_token</span> <span class="o">=</span> <span class="mf">5e84</span><span class="n">cbd7</span><span class="o">-</span><span class="n">acfa</span><span class="o">-</span><span class="mi">489</span><span class="n">f</span><span class="o">-</span><span class="n">a84d</span><span class="o">-</span><span class="n">z7d1b615af40d</span>
+</pre></div>
+</div>
+<p>Then just use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lucitlicmgr --quotas
+</pre></div>
+</div>
+<p>Example output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;quotas&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ips&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;available&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;used&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;free&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="s1">&#39;instances&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;available&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;used&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;free&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}},</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="s1">&#39;1697708406.008075&#39;</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;bf1b1497119693a41b94351154610f2b83bb654adca7dc31a11a38c36e5d5fd1&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="detect-more-options">
+<h3>Detect more options<a class="headerlink" href="#detect-more-options" title="Link to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lucitlicmgr --help
 </pre></div>
 </div>
 </section>
@@ -377,6 +392,7 @@ contribute follow
 <li><a class="reference internal" href="#">LUCIT Licensing Python (Module)</a><ul>
 <li><a class="reference internal" href="#description">Description</a><ul>
 <li><a class="reference internal" href="#query-contingents-of-your-license">Query contingents of your license</a></li>
+<li><a class="reference internal" href="#detect-more-options">Detect more options</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#installation-and-upgrade">Installation and Upgrade</a><ul>
@@ -510,7 +526,7 @@ contribute follow
     <div class="footer">
     &copy; <a href="license.html">Copyright</a> 2023-2023, LUCIT Systems and Development. All Rights Reserved..
     See <a href="license.html">License</a> for more information.<br />
-    Last updated on Oct 19 2023 at 14:00 (CET).
+    Last updated on Oct 19 2023 at 14:11 (CET).
     <a href="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/new/choose">Found a bug</a>?
     <br />
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
