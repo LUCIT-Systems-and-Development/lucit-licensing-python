@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [Discussions about lucit-licensing-python releases!](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/discussions/categories/releases)
 
-[How to upgrade to the latest version!](https://lucit-licensing-python.docs.lucit.tech/README.html#installation-and-upgrade)
+[How to upgrade to the latest version!](https://lucit-licensing-python.docs.lucit.tech/readme.html#installation-and-upgrade)
 
 ## 1.2.0.dev (development stage/unreleased/unstable)
 

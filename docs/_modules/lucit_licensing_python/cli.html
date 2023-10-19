@@ -161,15 +161,18 @@
 <span class="c1"># Copyright (c) 2023-2023, LUCIT Systems and Development (https://www.lucit.tech)</span>
 <span class="c1"># All rights reserved.</span>
 
-<span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">textwrap</span>
 <span class="kn">from</span> <span class="nn">configparser</span> <span class="kn">import</span> <span class="n">ConfigParser</span><span class="p">,</span> <span class="n">ExtendedInterpolation</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">lucit_licensing_python.manager</span> <span class="kn">import</span> <span class="n">LucitLicensingManager</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">manager</span> <span class="kn">import</span> <span class="n">LucitLicensingManager</span>
+<span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">lucit_licensing_python.manager</span> <span class="kn">import</span> <span class="n">LucitLicensingManager</span>
 
 
 <div class="viewcode-block" id="cli">
@@ -205,9 +208,10 @@
 <span class="s1">             additional information:</span>
 <span class="s1">                 Get a valid license in our store: https://shop.lucit.services/software</span>
 <span class="s1">                 Author: https://www.lucit.tech</span>
-<span class="s1">                 Changes: https://lucit-licensing-python.docs.lucit.tech//CHANGELOG.html</span>
+<span class="s1">                 Changes: https://lucit-licensing-python.docs.lucit.tech/changelog.html</span>
 <span class="s1">                 Documentation: https://lucit-systems-and-development.github.io/lucit-licensing-python</span>
 <span class="s1">                 Issue Tracker: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues</span>
+<span class="s1">                 License: https://lucit-licensing-python.docs.lucit.tech/license.html</span>
 <span class="s1">                 Source: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python</span>
 <span class="s1">                 Wiki: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/wiki</span>
 <span class="s1">             &#39;&#39;&#39;</span><span class="p">))</span>
@@ -275,11 +279,13 @@
     <span class="k">elif</span> <span class="nb">str</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">loglevel</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;CRITICAL&quot;</span><span class="p">:</span>
         <span class="n">input_loglevel</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">CRITICAL</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">input_loglevel</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span>
+        <span class="n">input_loglevel</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span>
 
     <span class="n">parent_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">input_logfile</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">parent_dir</span><span class="p">):</span>
         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">parent_dir</span><span class="p">)</span>
+
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;lucit_licensing_python&quot;</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">input_loglevel</span><span class="p">,</span>
                             <span class="n">filename</span><span class="o">=</span><span class="n">input_logfile</span><span class="p">,</span>
@@ -287,7 +293,6 @@
                             <span class="n">style</span><span class="o">=</span><span class="s2">&quot;{&quot;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">error_msg</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File not found: </span><span class="si">{</span><span class="n">error_msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;lucit_licensing_python&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
         <span class="c1"># Exit if no args provided</span>
@@ -334,11 +339,19 @@
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">llm</span><span class="o">.</span><span class="n">get_version</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+<div class="viewcode-block" id="main">
+<a class="viewcode-back" href="../../lucit_licensing_python.html#lucit_licensing_python.cli.main">[docs]</a>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cli</span><span class="p">())</span>
     <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">Gracefully stopping ...&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">Gracefully stopping ...&quot;</span><span class="p">)</span></div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
 </pre></div>
 
             <div class="clearer"></div>
@@ -442,7 +455,7 @@
     <div class="footer">
     &copy; <a href="license.html">Copyright</a> 2023-2023, LUCIT Systems and Development. All Rights Reserved..
     See <a href="license.html">License</a> for more information.<br />
-    Last updated on Oct 19 2023 at 11:56 (CET).
+    Last updated on Oct 19 2023 at 14:00 (CET).
     <a href="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/new/choose">Found a bug</a>?
     <br />
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.

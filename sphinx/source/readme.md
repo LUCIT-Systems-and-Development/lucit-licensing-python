@@ -30,16 +30,27 @@ This module is used to verify LUCIT software licenses and also provides the deve
 interact with the LUCIT Licensing API. 
 
 If you have already installed modules of LUCIT like the 
-[UNICORN Binance Suite](https://www.lucit.tech/unicorn-binance-suite.html), which use the lucit-licensing-python 
+[UNICORN Binance Suite](https://www.lucit.tech/unicorn-binance-suite.html), which use the `lucit-licensing-python` 
 library, you have already installed the commandline tool `lucitlicmgr` automatically.
 
 ### Query contingents of your license
 ```` 
-$ lucitlicmgr --quotas
+$ lucitlicmgr --quotas --apisecret bf7df011327d09b70fb0c6bfbc8661x33fdb0c58d42629c94ab35188d8d011ba  --licensetoken 5e84cbd7-acfa-489f-a84d-z7d1b615af40d
 ````
+
 Example output: 
+
 ````
 {'quotas': {'ips': {'available': 1, 'used': 0, 'free': 1}, 'instances': {'available': 3, 'used': 0, 'free': 3}}, 'timestamp': '1697708406.008075', 'signature': 'bf1b1497119693a41b94351154610f2b83bb654adca7dc31a11a38c36e5d5fd1'}
+````
+
+The `apisecret` and the `licensetoken` parameter can also be loaded from an INI file. Simply create the file 
+`lucit_license.ini` in your home directory in the folder `.lucit` with the following content:
+
+````
+[LUCIT]
+api_secret = bf7df011327d09b70fb0c6bfbc8661x33fdb0c58d42629c94ab35188d8d011ba
+license_token = 5e84cbd7-acfa-489f-a84d-z7d1b615af40d
 ````
 
 ## Installation and Upgrade
@@ -65,10 +76,10 @@ Run in bash:
 `pip install https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/archive/$(curl -s https://api.github.com/repos/LUCIT-Systems-and-Development/lucit-licensing-python/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")').tar.gz --upgrade`
 
 #### Windows
-Use the below command with the version (such as 1.1.7) you determined 
+Use the below command with the version (such as 1.2.0) you determined 
 [here](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/releases/latest):
 
-`pip install https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/archive/1.1..tar.gz --upgrade`
+`pip install https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/archive/1.2.0.tar.gz --upgrade`
 ### From the latest source (dev-stage) with PIP from [GitHub](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
 This is not a release version and can not be considered to be stable!
 
