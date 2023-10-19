@@ -81,7 +81,7 @@ or the [current master branch](https://github.com/LUCIT-Systems-and-Development/
 - [Discussions](https://github.com/LUCIT-Systems-and-Development/lucit-licensing/discussions)
 - [Gitter](https://app.gitter.im/#/room/#lucit-licensing-python:gitter.im)
 - [https://t.me/unicorndevs](https://t.me/unicorndevs)
-- 
+
 ## Receive Notifications
 Follow us on [LinkedIn](https://www.linkedin.com/company/lucit-systems-and-development), 
 [X](https://twitter.com/LUCIT_SysDev) or [Facebook](https://www.facebook.com/lucit.systems.and.development)!
