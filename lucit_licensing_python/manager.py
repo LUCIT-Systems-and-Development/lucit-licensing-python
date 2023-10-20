@@ -46,7 +46,7 @@ class LucitLicensingManager(threading.Thread):
         self.last_verified_licensing_result = None
         self.license_token = license_token
         self.mac = str(hex(uuid.getnode()))
-        self.module_version: str = "1.2.0"
+        self.module_version: str = "1.3.0"
         self.needed_license_type = needed_license_type
         self.os = platform.system()
         self.parent_shutdown_function = parent_shutdown_function
@@ -55,7 +55,8 @@ class LucitLicensingManager(threading.Thread):
         self.request_interval = 20
         self.sigterm = False
         self.time_delta = 0.0
-        self.url: str = "https://private.api.lucit.services/licensing/v1/"
+        # self.url: str = "https://private.api.lucit.services/licensing/v1/"
+        self.url: str = "http://localhost:42001/licensing/v1/"
         if self.needed_license_type == "UNICORN-BINANCE-SUITE":
             self.shop_product_url = "https://shop.lucit.services/software/unicorn-binance-suite"
         else:
@@ -202,6 +203,9 @@ class LucitLicensingManager(threading.Thread):
             raise NoValidatedLucitLicense(info)
         return response
 
+    def get_info(self, api_secret: str = None, license_token: str = None) -> dict:
+        return self.__private_request(api_secret=api_secret, license_token=license_token, endpoint="info")
+
     def get_module_version(self):
         return self.module_version
 
@@ -219,6 +223,9 @@ class LucitLicensingManager(threading.Thread):
             return False
         else:
             return True
+
+    def reset(self, api_secret: str = None, license_token: str = None) -> dict:
+        return self.__private_request(api_secret=api_secret, license_token=license_token, endpoint="reset")
 
     def run(self):
         connection_errors = 0

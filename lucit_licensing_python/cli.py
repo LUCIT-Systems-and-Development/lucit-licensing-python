@@ -58,12 +58,18 @@ async def cli(lucit_license_manager=None):
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=textwrap.dedent('''\
              examples:
+                 Query information about your license:
+                 $ lucitlicmgr --info
+                 
                  Query contingents of your license:
                  $ lucitlicmgr --quotas
 
+                 Release the occupied slots of your quota. Please note, this will stop ALL active instances:
+                 $ lucitlicmgr --reset 
+                 
                  Test the availability of the Licensing API:
                  $ lucitlicmgr --test 
-                 
+
                  Query server timestamp of the Licensing API:
                  $ lucitlicmgr --timestamp 
                  
@@ -103,8 +109,17 @@ async def cli(lucit_license_manager=None):
                         type=str,
                         help='Choose a loglevel. Default: INFO; Options: DEBUG, INFO, WARNING, ERROR and CRITICAL',
                         required=False)
+    parser.add_argument('-i', '--info',
+                        help=f'Query information about your license.',
+                        required=False,
+                        action='store_true')
     parser.add_argument('-q', '--quotas',
                         help=f'Query contingents of your license.',
+                        required=False,
+                        action='store_true')
+    parser.add_argument('-r', '--reset',
+                        help=f'Release the occupied slots of your quota. Please note, this will stop ALL active '
+                             f'instances.',
                         required=False,
                         action='store_true')
     parser.add_argument('-t', '--test',
@@ -123,7 +138,9 @@ async def cli(lucit_license_manager=None):
 
     input_license_token = None
     input_api_secret = None
+    input_info = False
     input_quotas = False
+    input_reset = False
     input_test = False
     input_timestamp = False
     input_version = False
@@ -182,8 +199,12 @@ async def cli(lucit_license_manager=None):
         input_api_secret = options.apisecret
     if options.licensetoken is not None:
         input_license_token = options.licensetoken
+    if options.info is not None:
+        input_info = options.info
     if options.quotas is not None:
         input_quotas = options.quotas
+    if options.reset is not None:
+        input_reset = options.reset
     if options.test is not None:
         input_test = options.test
     if options.timestamp is not None:
@@ -191,8 +212,23 @@ async def cli(lucit_license_manager=None):
     if options.version is not None:
         input_version = options.version
 
+    if input_info is True:
+        if input_api_secret is not None and input_license_token is not None:
+            print(f"{llm.get_info(api_secret=input_api_secret, license_token=input_license_token)}")
+        else:
+            print(f"Please provide an API Secret and a License Token!")
+
     if input_quotas is True:
-        print(f"{llm.get_quotas(api_secret=input_api_secret, license_token=input_license_token)}")
+        if input_api_secret is not None and input_license_token is not None:
+            print(f"{llm.get_quotas(api_secret=input_api_secret, license_token=input_license_token)}")
+        else:
+            print(f"Please provide an API Secret and a License Token!")
+
+    if input_reset is True:
+        if input_api_secret is not None and input_license_token is not None:
+            print(f"{llm.reset(api_secret=input_api_secret, license_token=input_license_token)}")
+        else:
+            print(f"Please provide an API Secret and a License Token!")
 
     if input_test is True:
         print(f"{llm.test()}")
