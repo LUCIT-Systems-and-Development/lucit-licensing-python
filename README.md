@@ -121,7 +121,7 @@ Example output:
 ### Release the occupied slots of your quota. 
 
 **Please note:** 
-*This will stop ALL active instances*
+*This will stop ALL active instances. This command can be executed only 3 times every 24 hours.*
 
 ```` 
 $ lucitlicmgr --reset --apisecret bf7df011327d09b70fb0c6bfbc8661x33fdb0c58d42629c94ab35188d8d011ba  --licensetoken 5e84cbd7-acfa-489f-a84d-z7d1b615af40d
