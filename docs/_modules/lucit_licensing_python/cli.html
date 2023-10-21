@@ -165,6 +165,7 @@
 <span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">textwrap</span>
 <span class="kn">from</span> <span class="nn">configparser</span> <span class="kn">import</span> <span class="n">ConfigParser</span><span class="p">,</span> <span class="n">ExtendedInterpolation</span>
@@ -205,12 +206,18 @@
         <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawDescriptionHelpFormatter</span><span class="p">,</span>
         <span class="n">epilog</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\</span>
 <span class="s1">             examples:</span>
+<span class="s1">                 Query information about your license:</span>
+<span class="s1">                 $ lucitlicmgr --info</span>
+<span class="s1">                 </span>
 <span class="s1">                 Query contingents of your license:</span>
 <span class="s1">                 $ lucitlicmgr --quotas</span>
 
+<span class="s1">                 Release the occupied slots of your quota. Please note, this will stop ALL active instances:</span>
+<span class="s1">                 $ lucitlicmgr --reset </span>
+<span class="s1">                 </span>
 <span class="s1">                 Test the availability of the Licensing API:</span>
 <span class="s1">                 $ lucitlicmgr --test </span>
-<span class="s1">                 </span>
+
 <span class="s1">                 Query server timestamp of the Licensing API:</span>
 <span class="s1">                 $ lucitlicmgr --timestamp </span>
 <span class="s1">                 </span>
@@ -250,8 +257,17 @@
                         <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Choose a loglevel. Default: INFO; Options: DEBUG, INFO, WARNING, ERROR and CRITICAL&#39;</span><span class="p">,</span>
                         <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-i&#39;</span><span class="p">,</span> <span class="s1">&#39;--info&#39;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Query information about your license.&#39;</span><span class="p">,</span>
+                        <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-q&#39;</span><span class="p">,</span> <span class="s1">&#39;--quotas&#39;</span><span class="p">,</span>
                         <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Query contingents of your license.&#39;</span><span class="p">,</span>
+                        <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="s1">&#39;--reset&#39;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Release the occupied slots of your quota. Please note, this will stop ALL active &#39;</span>
+                             <span class="sa">f</span><span class="s1">&#39;instances.&#39;</span><span class="p">,</span>
                         <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                         <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="s1">&#39;--test&#39;</span><span class="p">,</span>
@@ -270,7 +286,9 @@
 
     <span class="n">input_license_token</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">input_api_secret</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">input_info</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">input_quotas</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">input_reset</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">input_test</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">input_timestamp</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">input_version</span> <span class="o">=</span> <span class="kc">False</span>
@@ -329,8 +347,12 @@
         <span class="n">input_api_secret</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">apisecret</span>
     <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">licensetoken</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">input_license_token</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">licensetoken</span>
+    <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">info</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">input_info</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">info</span>
     <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">quotas</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">input_quotas</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">quotas</span>
+    <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">reset</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">input_reset</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">reset</span>
     <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">test</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">input_test</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">test</span>
     <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">timestamp</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -338,17 +360,32 @@
     <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">version</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">input_version</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">version</span>
 
+    <span class="k">if</span> <span class="n">input_info</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">input_api_secret</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">input_license_token</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">pprint</span><span class="p">(</span><span class="n">llm</span><span class="o">.</span><span class="n">get_info</span><span class="p">(</span><span class="n">api_secret</span><span class="o">=</span><span class="n">input_api_secret</span><span class="p">,</span> <span class="n">license_token</span><span class="o">=</span><span class="n">input_license_token</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Please provide an API Secret and a License Token!&quot;</span><span class="p">)</span>
+
     <span class="k">if</span> <span class="n">input_quotas</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">llm</span><span class="o">.</span><span class="n">get_quotas</span><span class="p">(</span><span class="n">api_secret</span><span class="o">=</span><span class="n">input_api_secret</span><span class="p">,</span><span class="w"> </span><span class="n">license_token</span><span class="o">=</span><span class="n">input_license_token</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">input_api_secret</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">input_license_token</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">pprint</span><span class="p">(</span><span class="n">llm</span><span class="o">.</span><span class="n">get_quotas</span><span class="p">(</span><span class="n">api_secret</span><span class="o">=</span><span class="n">input_api_secret</span><span class="p">,</span> <span class="n">license_token</span><span class="o">=</span><span class="n">input_license_token</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Please provide an API Secret and a License Token!&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">input_reset</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">input_api_secret</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">input_license_token</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">pprint</span><span class="p">(</span><span class="n">llm</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">api_secret</span><span class="o">=</span><span class="n">input_api_secret</span><span class="p">,</span> <span class="n">license_token</span><span class="o">=</span><span class="n">input_license_token</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Please provide an API Secret and a License Token!&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">input_test</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">llm</span><span class="o">.</span><span class="n">test</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">pprint</span><span class="p">(</span><span class="n">llm</span><span class="o">.</span><span class="n">test</span><span class="p">())</span>
 
     <span class="k">if</span> <span class="n">input_timestamp</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">llm</span><span class="o">.</span><span class="n">get_timestamp</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">pprint</span><span class="p">(</span><span class="n">llm</span><span class="o">.</span><span class="n">get_timestamp</span><span class="p">())</span>
 
     <span class="k">if</span> <span class="n">input_version</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">llm</span><span class="o">.</span><span class="n">get_version</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+        <span class="n">pprint</span><span class="p">(</span><span class="n">llm</span><span class="o">.</span><span class="n">get_version</span><span class="p">())</span></div>
 
 
 
@@ -467,7 +504,7 @@
     <div class="footer">
     &copy; <a href="/license.html">Copyright</a> 2023-2023, LUCIT Systems and Development. All Rights Reserved..
     See <a href="/license.html">License</a> for more information.<br />
-    Last updated on Oct 19 2023 at 14:31 (CET).
+    Last updated on Oct 21 2023 at 11:46 (CET).
     <a href="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues/new/choose">Found a bug</a>?
     <br />
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.

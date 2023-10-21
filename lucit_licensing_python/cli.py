@@ -20,6 +20,7 @@ import argparse
 import asyncio
 import logging
 import os
+from pprint import pprint
 import sys
 import textwrap
 from configparser import ConfigParser, ExtendedInterpolation
@@ -214,30 +215,30 @@ async def cli(lucit_license_manager=None):
 
     if input_info is True:
         if input_api_secret is not None and input_license_token is not None:
-            print(f"{llm.get_info(api_secret=input_api_secret, license_token=input_license_token)}")
+            pprint(llm.get_info(api_secret=input_api_secret, license_token=input_license_token))
         else:
             print(f"Please provide an API Secret and a License Token!")
 
     if input_quotas is True:
         if input_api_secret is not None and input_license_token is not None:
-            print(f"{llm.get_quotas(api_secret=input_api_secret, license_token=input_license_token)}")
+            pprint(llm.get_quotas(api_secret=input_api_secret, license_token=input_license_token))
         else:
             print(f"Please provide an API Secret and a License Token!")
 
     if input_reset is True:
         if input_api_secret is not None and input_license_token is not None:
-            print(f"{llm.reset(api_secret=input_api_secret, license_token=input_license_token)}")
+            pprint(llm.reset(api_secret=input_api_secret, license_token=input_license_token))
         else:
             print(f"Please provide an API Secret and a License Token!")
 
     if input_test is True:
-        print(f"{llm.test()}")
+        pprint(llm.test())
 
     if input_timestamp is True:
-        print(f"{llm.get_timestamp()}")
+        pprint(llm.get_timestamp())
 
     if input_version is True:
-        print(f"{llm.get_version()}")
+        pprint(llm.get_version())
 
 
 def main():

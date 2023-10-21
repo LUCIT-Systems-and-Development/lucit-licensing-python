@@ -9,7 +9,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://lucit-licensing-python.docs.lucit.tech/readme.html#installation-and-upgrade)
 
-## 1.2.0.dev (development stage/unreleased/unstable)
+## 1.3.0.dev (development stage/unreleased/unstable)
+## 1.3.0
+### Added
+- `--info` and `--reset` parameter to `lucitlicmgr`
 
 ## 1.2.0
 ### Added

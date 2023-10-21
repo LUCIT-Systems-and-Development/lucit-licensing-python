@@ -80,8 +80,8 @@ class LTC:
 
 
 if __name__ == "__main__":
-    lucit_api_secret = ""
-    lucit_license_token = ""
+    lucit_api_secret = "b2625dc5bd842f824d42c2cc2901303130c4e2c68e44b2eb12b14bcfd45962f9"
+    lucit_license_token = "11fdc555-c07a-4bf0-9b76-t7f1ad1551799"
 
     logging.getLogger("lucit_licensing_python")
     logging.basicConfig(level=logging.INFO,

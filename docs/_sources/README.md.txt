@@ -43,7 +43,11 @@ $ lucitlicmgr --quotas --apisecret bf7df011327d09b70fb0c6bfbc8661x33fdb0c58d4262
 Example output: 
 
 ````
-{'quotas': {'ips': {'available': 1, 'used': 0, 'free': 1}, 'instances': {'available': 3, 'used': 0, 'free': 3}}, 'timestamp': '1697708406.008075', 'signature': 'bf1b1497119693a41b94351154610f2b83bb654adca7dc31a11a38c36e5d5fd1'}
+{'quotas': {'instances': {'available': 10, 'free': 10, 'used': 0},
+            'ips': {'available': 3, 'free': 2, 'used': 1},
+            'resets': {'available': 3, 'free': 3, 'used': 0}},
+ 'signature': 'e762a949cb0987d6b6e11260a203752c1b2cbf1f8315f3eb6873100e528f8258',
+ 'timestamp': '1697880811.9013143'}
 ````
 
 The `apisecret` and the `licensetoken` parameter can also be loaded from an INI file. Simply create the file 
@@ -64,7 +68,106 @@ $ lucitlicmgr --quotas
 Example output: 
 
 ````
-{'quotas': {'ips': {'available': 1, 'used': 0, 'free': 1}, 'instances': {'available': 3, 'used': 0, 'free': 3}}, 'timestamp': '1697708406.008075', 'signature': 'bf1b1497119693a41b94351154610f2b83bb654adca7dc31a11a38c36e5d5fd1'}
+{'quotas': {'instances': {'available': 10, 'free': 10, 'used': 0},
+            'ips': {'available': 3, 'free': 2, 'used': 1},
+            'resets': {'available': 3, 'free': 3, 'used': 0}},
+ 'signature': 'e762a949cb0987d6b6e11260a203752c1b2cbf1f8315f3eb6873100e528f8258',
+ 'timestamp': '1697880811.9013143'}
+ ````
+
+### Query information of your license
+```` 
+$ lucitlicmgr --info --apisecret bf7df011327d09b70fb0c6bfbc8661x33fdb0c58d42629c94ab35188d8d011ba  --licensetoken 5e84cbd7-acfa-489f-a84d-z7d1b615af40d
+````
+
+Example output: 
+
+````
+{'license': {'license_holder_email': 'johndoe82@gmail.com',
+             'license_holder_name': 'John Doe',
+             'licensed_product': 'UNICORN-BINANCE-SUITE',
+             'paid_till': '2023-10-24 18:39:03.681745+00:00'},
+ 'signature': 'e0f7b631006c3480477f81e127729f2ee1489e2dd5dc0ffd7504fb590c4d515a',
+ 'timestamp': '1697881034.4675057'}
+````
+
+The `apisecret` and the `licensetoken` parameter can also be loaded from an INI file. Simply create the file 
+`lucit_license.ini` in your home directory in the folder `.lucit` with the following content:
+
+````
+[LUCIT]
+api_secret = bf7df011327d09b70fb0c6bfbc8661x33fdb0c58d42629c94ab35188d8d011ba
+license_token = 5e84cbd7-acfa-489f-a84d-z7d1b615af40d
+````
+
+Then just use:
+
+```` 
+$ lucitlicmgr --info
+````
+
+Example output: 
+
+````
+{'license': {'license_holder_email': 'johndoe82@gmail.com',
+             'license_holder_name': 'John Doe',
+             'licensed_product': 'UNICORN-BINANCE-SUITE',
+             'paid_till': '2023-10-24 18:39:03.681745+00:00'},
+ 'signature': 'e0f7b631006c3480477f81e127729f2ee1489e2dd5dc0ffd7504fb590c4d515a',
+ 'timestamp': '1697881034.4675057'}
+````
+
+
+### Release the occupied slots of your quota. 
+
+**Please note:** 
+*This will stop ALL active instances*
+
+```` 
+$ lucitlicmgr --reset --apisecret bf7df011327d09b70fb0c6bfbc8661x33fdb0c58d42629c94ab35188d8d011ba  --licensetoken 5e84cbd7-acfa-489f-a84d-z7d1b615af40d
+````
+
+Example output: 
+
+````
+{'reset': {'status': 'SUCCESSFUL'},
+ 'signature': '25e8868f963f583f451c0ce1d7bf8daeaaeae4a17db0265adace034232e6f925',
+ 'timestamp': '1697881249.771824'}
+````
+
+The `apisecret` and the `licensetoken` parameter can also be loaded from an INI file. Simply create the file 
+`lucit_license.ini` in your home directory in the folder `.lucit` with the following content:
+
+````
+[LUCIT]
+api_secret = bf7df011327d09b70fb0c6bfbc8661x33fdb0c58d42629c94ab35188d8d011ba
+license_token = 5e84cbd7-acfa-489f-a84d-z7d1b615af40d
+````
+
+Then just use:
+
+```` 
+$ lucitlicmgr --reset
+````
+
+Example output: 
+
+````
+{'reset': {'status': 'SUCCESSFUL'},
+ 'signature': '25e8868f963f583f451c0ce1d7bf8daeaaeae4a17db0265adace034232e6f925',
+ 'timestamp': '1697881249.771824'}
+````
+
+### Test the availability of the Licensing API.
+
+```` 
+$ lucitlicmgr --test
+````
+
+Example output: 
+
+````
+{'message': 'Hello World!'}
 ````
 
 ### Detect more options

@@ -10,7 +10,9 @@ Welcome to lucit-licensing-python's documentation!
    :maxdepth: 3
    :caption: Contents:
 
-   ChangeLog <changelog.md>:
+   ChangeLog <changelog.md>
+   Code of Conduct <code_of_conduct.md>
+   Contributing <contributing.md>
    License <license.rst>
    Modules <modules.rst>
    Readme <readme.md>
