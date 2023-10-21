@@ -24,9 +24,9 @@
 [Social](#social) | [Notifications](#receive-notifications) | [Bugs](#how-to-report-bugs-or-suggest-improvements) | 
 [Contributing](#contributing) | [Commercial Support](#commercial-support)
 
-## Description
-
 Python client module of the LUCIT Licensing Service.
+
+## Description
 
 This module is used to verify [LUCIT software licenses](https://shop.lucit.services/software) and also provides the 
 developer with a command line interface to interact with the LUCIT Licensing API. 
@@ -158,7 +158,7 @@ Example output:
  'timestamp': '1697881249.771824'}
 ````
 
-### Test the availability of the Licensing API.
+### Test the availability of the Licensing API
 
 ```` 
 $ lucitlicmgr --test
@@ -170,7 +170,7 @@ Example output:
 {'message': 'Hello World!'}
 ````
 
-### Detect more options
+### Discover more options
 ```` 
 $ lucitlicmgr --help
 ````
