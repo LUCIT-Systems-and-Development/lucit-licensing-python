@@ -23,7 +23,10 @@ jobs:
         pip install -r requirements.txt
         pip install coveralls
     - name: Unit test
-      run: coverage run --source lucit_licensing_python dev_test.py
+      env:
+        LUCIT_API_SECRET: ${{ secrets.LUCIT_API_SECRET }}
+        LUCIT_LICENSE_TOKEN: ${{ secrets.LUCIT_LICENSE_TOKEN }}
+      run: coverage run --source lucit_licensing_python unittest_lucit_licensing_python.py
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
