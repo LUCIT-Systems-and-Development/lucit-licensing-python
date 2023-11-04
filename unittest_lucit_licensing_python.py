@@ -75,7 +75,7 @@ class LTC:
             pprint.pprint(quotas)
 
             print(f"Runtime: {(time.time()-start_time)}")
-            time.sleep(5)
+            self.sigterm = True
         self.close()
 
 
