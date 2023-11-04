@@ -23,7 +23,6 @@ import os
 from pprint import pprint
 import sys
 import textwrap
-from configparser import ConfigParser, ExtendedInterpolation
 from pathlib import Path
 try:
     from manager import LucitLicensingManager
@@ -31,7 +30,7 @@ except ModuleNotFoundError:
     from lucit_licensing_python.manager import LucitLicensingManager
 
 
-async def cli(lucit_license_manager=None):
+async def cli():
     """
         LUCIT License Manager Command Line Interface
 
@@ -47,7 +46,7 @@ async def cli(lucit_license_manager=None):
          | Query the version of the Licensing API:
          | $ lucitlicmgr --version
     """
-    llm = lucit_license_manager if lucit_license_manager is not None else LucitLicensingManager(start=False)
+    llm = LucitLicensingManager(start=False)
     module_version = llm.get_module_version()
     home_path = f"{Path.home()}{os.sep}"
     config_path = f"{home_path}.lucit{os.sep}"
@@ -96,7 +95,11 @@ async def cli(lucit_license_manager=None):
                         type=str,
                         help="The LUCIT `license_token`.",
                         required=False)
-    parser.add_argument('-cf', '--configfile',
+    parser.add_argument('-lp', '--licenseprofile',
+                        type=str,
+                        help="The license profile to use. Default is 'LUCIT'.",
+                        required=False)
+    parser.add_argument('-li', '--licenseini',
                         type=str,
                         help=f"Specify path including filename to the config file (ex: `~/license_a.ini`). If not "
                              f"provided lucitlicmgr tries to load a `lucit_license.ini` from `{config_path}`.",
@@ -137,9 +140,11 @@ async def cli(lucit_license_manager=None):
                         action='store_true')
     options = parser.parse_args()
 
-    input_license_token = None
     input_api_secret = None
     input_info = False
+    input_license_ini = None
+    input_license_profile = None
+    input_license_token = None
     input_quotas = False
     input_reset = False
     input_test = False
@@ -168,7 +173,6 @@ async def cli(lucit_license_manager=None):
     if not os.path.isdir(parent_dir):
         os.makedirs(parent_dir)
 
-    logger = logging.getLogger("lucit_licensing_python")
     try:
         logging.basicConfig(level=input_loglevel,
                             filename=input_logfile,
@@ -177,27 +181,20 @@ async def cli(lucit_license_manager=None):
     except FileNotFoundError as error_msg:
         print(f"File not found: {error_msg}")
 
+    logger = logging.getLogger("lucit_licensing_python")
+    logger.debug(f"Loglevel: {str(input_loglevel).upper()}")
+
     if len(sys.argv) <= 1:
         # Exit if no args provided
         parser.print_help()
         sys.exit(1)
 
-    if options.configfile is not None:
-        input_config_file = str(options.configfile)
-    else:
-        input_config_file = f"{config_path}lucit_license.ini"
-
-    if os.path.isfile(input_config_file):
-        if input_config_file:
-            logger.info(f"Loading configuration file `{input_config_file}`")
-            config = ConfigParser(interpolation=ExtendedInterpolation())
-            config.read(input_config_file)
-            input_api_secret = config['LUCIT']['api_secret']
-            input_license_token = config['LUCIT']['license_token']
-
-    # cli args overwrite profile settings
     if options.apisecret is not None:
         input_api_secret = options.apisecret
+    if options.licenseini is not None:
+        input_license_ini = options.licenseini
+    if options.licenseprofile is not None:
+        input_license_profile = options.licenseprofile
     if options.licensetoken is not None:
         input_license_token = options.licensetoken
     if options.info is not None:
@@ -213,32 +210,23 @@ async def cli(lucit_license_manager=None):
     if options.version is not None:
         input_version = options.version
 
-    if input_info is True:
-        if input_api_secret is not None and input_license_token is not None:
-            pprint(llm.get_info(api_secret=input_api_secret, license_token=input_license_token))
-        else:
-            print(f"Please provide an API Secret and a License Token!")
-
-    if input_quotas is True:
-        if input_api_secret is not None and input_license_token is not None:
-            pprint(llm.get_quotas(api_secret=input_api_secret, license_token=input_license_token))
-        else:
-            print(f"Please provide an API Secret and a License Token!")
-
-    if input_reset is True:
-        if input_api_secret is not None and input_license_token is not None:
-            pprint(llm.reset(api_secret=input_api_secret, license_token=input_license_token))
-        else:
-            print(f"Please provide an API Secret and a License Token!")
-
-    if input_test is True:
-        pprint(llm.test())
-
-    if input_timestamp is True:
-        pprint(llm.get_timestamp())
-
-    if input_version is True:
-        pprint(llm.get_version())
+    with LucitLicensingManager(start=False,
+                               api_secret=input_api_secret,
+                               license_ini=input_license_ini,
+                               license_profile=input_license_profile,
+                               license_token=input_license_token) as llm:
+        if input_info is True:
+            pprint(llm.get_info())
+        if input_quotas is True:
+            pprint(llm.get_quotas())
+        if input_reset is True:
+            pprint(llm.reset())
+        if input_test is True:
+            pprint(llm.test())
+        if input_timestamp is True:
+            pprint(llm.get_timestamp())
+        if input_version is True:
+            pprint(llm.get_version())
 
 
 def main():

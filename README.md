@@ -51,7 +51,7 @@ Example output:
 ````
 
 The `apisecret` and the `licensetoken` parameter can also be loaded from an INI file. Simply create the file 
-[`lucit_license.ini`](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/lucit-licensing-python/main/lucit_license.ini) 
+[`lucit_license.ini`](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/lucit-licensing-python/main/example_lucit_license.ini) 
 in your home directory in the folder `.lucit` with the following content:
 
 ````
@@ -93,7 +93,7 @@ Example output:
 ````
 
 The `apisecret` and the `licensetoken` parameter can also be loaded from an INI file. Simply create the file 
-[`lucit_license.ini`](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/lucit-licensing-python/main/lucit_license.ini) 
+[`lucit_license.ini`](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/lucit-licensing-python/main/example_lucit_license.ini) 
 in your home directory in the folder `.lucit` with the following content:
 
 ````
@@ -138,7 +138,7 @@ Example output:
 ````
 
 The `apisecret` and the `licensetoken` parameter can also be loaded from an INI file. Simply create the file 
-[`lucit_license.ini`](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/lucit-licensing-python/main/lucit_license.ini) 
+[`lucit_license.ini`](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/lucit-licensing-python/main/example_lucit_license.ini) 
 in your home directory in the folder `.lucit` with the following content:
 
 ````

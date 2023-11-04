@@ -1,20 +1,8 @@
-#!/usr/bin/env python3
+#! /usr/bin/python3
 # -*- coding: utf-8 -*-
 #
 # File: dev_test.py
 #
-# Project website: https://www.lucit.tech/lucit-licensing-python.html
-# Github: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python
-# Documentation: https://lucit-licensing-python.docs.lucit.tech
-# PyPI: https://pypi.org/project/lucit-licensing-python/
-#
-# License: LSOSL - LUCIT Synergetic Open Source License
-# https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/blob/main/LICENSE
-#
-# Author: LUCIT Systems and Development
-#
-# Copyright (c) 2023-2023, LUCIT Systems and Development (https://www.lucit.tech)
-# All rights reserved.
 
 import asyncio
 import logging
@@ -66,13 +54,31 @@ class LTC:
                 elif "429 Too Many Requests" in str(status['error']):
                     print(f"{status['error']}")
                     time.sleep(20)
-
             print(f"\r\n/verify:")
             pprint.pprint(status)
 
-            quotas = self.llm.get_quotas(api_secret=self.api_secret, license_token=self.license_token)
-            print(f"\r\n/quotas:")
-            pprint.pprint(quotas)
+            close = self.llm.close()
+            print(f"\r\n/close:")
+            pprint.pprint(close)
+
+            status = self.llm.verify()
+            if "error" in str(status):
+                if "404 Not Found" in str(status['error']) \
+                        or "403 Forbidden" in str(status['error']):
+                    if "Forbidden - Timestamp not valid" in status['error']:
+                        print(f"Timestamp not valid - Syncing time ...")
+                        self.llm.sync_time()
+                    print(f"Negative License Verification: {status}")
+                    break
+                elif "429 Too Many Requests" in str(status['error']):
+                    print(f"{status['error']}")
+                    time.sleep(20)
+            print(f"\r\n/verify:")
+            pprint.pprint(status)
+
+            info = self.llm.get_info(api_secret=self.api_secret, license_token=self.license_token)
+            print(f"\r\n/info:")
+            pprint.pprint(info)
 
             print(f"Runtime: {(time.time()-start_time)}")
             time.sleep(5)
@@ -90,8 +96,3 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("\r\nGracefully stopping ...")
         ltc.close()
-    except Exception as error_msg:
-        print(f"\r\nERROR: {error_msg}")
-        print("Gracefully stopping ...")
-        ltc.close()
-

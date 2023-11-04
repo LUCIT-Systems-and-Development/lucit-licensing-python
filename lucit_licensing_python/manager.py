@@ -20,16 +20,20 @@ import cython
 import hashlib
 import hmac
 import logging
+import os
 import platform
 import requests
+import sys
 import threading
 import time
-from typing import Callable
 import uuid
+from configparser import ConfigParser, ExtendedInterpolation
 from copy import deepcopy
 from operator import itemgetter
+from pathlib import Path
 from requests.exceptions import ConnectionError, RequestException, HTTPError
 from simplejson.errors import JSONDecodeError
+from typing import Callable
 from lucit_licensing_python.exceptions import NoValidatedLucitLicense
 
 logger = logging.getLogger("lucit_licensing_python")
@@ -37,16 +41,68 @@ logger = logging.getLogger("lucit_licensing_python")
 
 class LucitLicensingManager(threading.Thread):
     def __init__(self, api_secret: str = None, license_token: str = None,
+                 license_ini: str = None, license_profile: str = None,
                  program_used: str = None, start: bool = True,
                  parent_shutdown_function: Callable[[bool], bool] = None,
                  needed_license_type: str = None):
         super().__init__()
-        self.api_secret = api_secret
+        self.module_version: str = "1.4.0"
+        if license_ini is None:
+            license_ini = f"lucit_license.ini"
+            license_ini_search = False
+        else:
+            license_ini_search = True
+        if license_profile is None:
+            license_profile = f"LUCIT"
+
+        if api_secret is not None or license_token is not None:
+            logger.debug(f"Loading LUCIT license from parameters.")
+            self.api_secret = api_secret
+            self.license_token = license_token
+        elif os.path.isfile(f"{license_ini}"):
+            logger.info(f"Loading license file `{license_ini}`")
+            config = ConfigParser(interpolation=ExtendedInterpolation())
+            config.read(license_ini)
+            try:
+                self.api_secret = config[license_profile]['api_secret']
+                self.license_token = config[license_profile]['license_token']
+            except KeyError:
+                print(f"Unknown license profile: {license_profile}")
+                logger.critical(f"Unknown license profile: {license_profile}")
+                sys.exit(1)
+        elif os.path.isfile(f"{Path.home()}/.lucit/{license_ini}"):
+            logger.info(f"Loading license file `{Path.home()}/.lucit/{license_ini}`")
+            config = ConfigParser(interpolation=ExtendedInterpolation())
+            config.read(f"{Path.home()}/.lucit/{license_ini}")
+            try:
+                self.api_secret = config[license_profile]['api_secret']
+                self.license_token = config[license_profile]['license_token']
+            except KeyError:
+                print(f"Unknown license profile: {license_profile}")
+                logger.critical(f"Unknown license profile: {license_profile}")
+                sys.exit(1)
+        elif license_ini_search is True:
+            print(f"License file not found: {license_ini}")
+            logger.critical(f"License file not found: {license_ini}")
+            sys.exit(1)
+        else:
+            logger.debug(f"Loading LUCIT license from environment: '{license_profile}_API_SECRET' and "
+                         f"'{license_profile}_LICENSE_TOKEN'")
+            try:
+                self.api_secret = os.environ[f'{license_profile}_API_SECRET']
+                self.license_token = os.environ[f'{license_profile}_LICENSE_TOKEN']
+                logger.debug(f"Loaded LUCIT license from environment: '{license_profile}_API_SECRET' and "
+                             f"'{license_profile}_LICENSE_TOKEN'")
+            except KeyError:
+                logger.debug(f'Can not load environment variables {license_profile}_API_SECRET and '
+                             f'{license_profile}_LICENSE_TOKEN')
+                self.api_secret = None
+                self.license_token = None
+
+        self.is_started = start
         self.id = str(uuid.uuid4())
         self.last_verified_licensing_result = None
-        self.license_token = license_token
         self.mac = str(hex(uuid.getnode()))
-        self.module_version: str = "1.3.0"
         self.needed_license_type = needed_license_type
         self.os = platform.system()
         self.parent_shutdown_function = parent_shutdown_function
@@ -70,6 +126,17 @@ class LucitLicensingManager(threading.Thread):
             time.sleep(0.1)
         if self.sigterm is False:
             logger.debug(f"LUCIT License Manager is ready!")
+
+    def __enter__(self):
+        logger.debug(f"Entering 'with-context' ...")
+        return self
+
+    def __exit__(self, exc_type, exc_value, error_traceback):
+        logger.debug(f"Leaving 'with-context' ...")
+        if self.is_started:
+            self.stop()
+        if exc_type:
+            logger.critical(f"An exception occurred: {exc_type} - {exc_value} - {error_traceback}")
 
     def __generate_signature(self, api_secret: str = None, data: dict = None) -> str:
         if api_secret is None or data is None:
@@ -98,6 +165,10 @@ class LucitLicensingManager(threading.Thread):
                           key_value: str = None, endpoint: str = None) -> dict:
         api_secret = api_secret if api_secret is not None else self.api_secret
         license_token = license_token if license_token is not None else self.license_token
+        if api_secret is None or license_token is None:
+            print(f"Please provide the api secret and license token of your lucit license! "
+                  f"Get a license in the LUCIT Online Shop: {self.shop_product_url}")
+            sys.exit(1)
         params = {
             "license_token": license_token,
             "id": self.id,

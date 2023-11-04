@@ -9,7 +9,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://lucit-licensing-python.docs.lucit.tech/readme.html#installation-and-upgrade)
 
-## 1.3.0.dev (development stage/unreleased/unstable)
+## 1.4.0.dev (development stage/unreleased/unstable)
+### Added
+- Parameter `license_ini` and `license_profile` to `LucitLicensingManager()`
+- Parameter `--licenseini` and `--licenseprofile` to CLI
+- Load license from file by default if no license provided via parameter.
+
 ## 1.3.0
 ### Added
 - `--info` and `--reset` parameter to `lucitlicmgr`
