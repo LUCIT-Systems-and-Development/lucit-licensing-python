@@ -5,6 +5,7 @@ assignees:
   - oliver-zehentleitner
 body:
   - type: markdown
+    id: Info
     attributes:
       value: | 
         Please post here only issues concerning this repository and follow the [Issue-Guidelines](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/wiki/Issue-Guidelines). 
