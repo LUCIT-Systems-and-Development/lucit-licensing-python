@@ -20,14 +20,6 @@ body:
       options:
         - label: I checked the documentation and other Issues. I am using the latest version of this library.
           required: true
-  - type: textarea
-    id: Version
-    attributes:
-      label: Version of this library.
-      description: |
-        Please control what version you are using with `lucitlicmgr --versionlib` and post the output:
-    validations:
-      required: true
   - type: dropdown
     id: Hardware
     attributes:
@@ -66,6 +58,14 @@ body:
         - Python3.10
         - Python3.11
         - Python3.12
+    validations:
+      required: true
+  - type: textarea
+    id: Version
+    attributes:
+      label: Version of this library.
+      description: |
+        Please control what version you are using with `lucitlicmgr --versionlib` and post the output:
     validations:
       required: true
   - type: textarea
