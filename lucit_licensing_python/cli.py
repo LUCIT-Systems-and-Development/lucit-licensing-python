@@ -74,7 +74,10 @@ async def cli():
                  $ lucitlicmgr --timestamp 
                  
                  Query the version of the Licensing API:
-                 $ lucitlicmgr --version
+                 $ lucitlicmgr --versionapi
+
+                 Query the version of this Module:
+                 $ lucitlicmgr --versionlib
 
              additional information:
                  Get a valid license in our store: https://shop.lucit.services/software
@@ -134,8 +137,12 @@ async def cli():
                         help=f'Query server timestamp of the Licensing API.',
                         required=False,
                         action='store_true')
-    parser.add_argument('-v', '--version',
+    parser.add_argument('-v', '--versionapi',
                         help=f'Query the version of the Licensing API.',
+                        required=False,
+                        action='store_true')
+    parser.add_argument('-V', '--versionlib',
+                        help=f'Query the version of this Module.',
                         required=False,
                         action='store_true')
     options = parser.parse_args()
@@ -149,7 +156,8 @@ async def cli():
     input_reset = False
     input_test = False
     input_timestamp = False
-    input_version = False
+    input_versionapi = False
+    input_versionlib = False
 
     if options.logfile is True:
         input_logfile = options.logfile
@@ -207,8 +215,10 @@ async def cli():
         input_test = options.test
     if options.timestamp is not None:
         input_timestamp = options.timestamp
-    if options.version is not None:
-        input_version = options.version
+    if options.versionapi is not None:
+        input_versionapi = options.versionapi
+    if options.versionlib is not None:
+        input_versionlib = options.versionlib
 
     with LucitLicensingManager(start=False,
                                api_secret=input_api_secret,
@@ -225,8 +235,10 @@ async def cli():
             pprint(llm.test())
         if input_timestamp is True:
             pprint(llm.get_timestamp())
-        if input_version is True:
+        if input_versionapi is True:
             pprint(llm.get_version())
+        if input_versionlib is True:
+            pprint({"version_lib": llm.get_module_version()})
 
 
 def main():
