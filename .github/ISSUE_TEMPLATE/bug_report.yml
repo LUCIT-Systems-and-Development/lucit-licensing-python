@@ -91,7 +91,6 @@ body:
       render: shell
     validations:
       required: false
-
   - type: textarea
     id: Log
     attributes:
@@ -111,4 +110,3 @@ body:
         Please describe the issue you are experiencing:
     validations:
       required: true
-      
