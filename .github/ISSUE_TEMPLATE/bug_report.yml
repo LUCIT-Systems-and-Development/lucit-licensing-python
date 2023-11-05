@@ -79,8 +79,8 @@ body:
       description: |
         Please share your installed package files of this library.
       placeholder: | 
-        `pip show unicorn-binance-websocket-api --files | grep \"  \"` or 
-        `conda list -f unicorn-binance-websocket-api  | grep \"  \"`
+        `pip show unicorn-binance-websocket-api --files | grep '  '` or 
+        `conda list -f unicorn-binance-websocket-api  | grep '  '`
       render: shell
     validations:
       required: false
