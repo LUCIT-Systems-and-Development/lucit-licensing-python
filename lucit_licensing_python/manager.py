@@ -47,13 +47,13 @@ class LucitLicensingManager(threading.Thread):
                  needed_license_type: str = None):
         super().__init__()
         self.module_version: str = "1.4.0"
+        license_ini_search: bool = False
         if license_ini is None:
-            license_ini = f"lucit_license.ini"
-            license_ini_search = False
+            license_ini = "lucit_license.ini"
         else:
             license_ini_search = True
         if license_profile is None:
-            license_profile = f"LUCIT"
+            license_profile = "LUCIT"
 
         if api_secret is not None or license_token is not None:
             logger.debug(f"Loading LUCIT license from parameters.")
