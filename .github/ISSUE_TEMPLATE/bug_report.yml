@@ -19,7 +19,6 @@ body:
         Please control what version you are using with `lucitlicmgr --versionlib` and post the output:
     validations:
       required: true
-
   - type: checkboxes
     id: Confirmation
     attributes:
@@ -29,7 +28,6 @@ body:
       options:
         - label: I checked the documentation and other Issues. I am using the latest version of this library.
           required: true
-
   - type: dropdown
     id: Hardware
     attributes:
@@ -42,7 +40,6 @@ body:
         - VPS or other cloud hosting
     validations:
       required: true
-
   - type: dropdown
     id: OS
     attributes:
@@ -56,7 +53,6 @@ body:
         - Other (please explain)
     validations:
       required: true
-
   - type: dropdown
     id: Python
     attributes:
@@ -72,7 +68,6 @@ body:
         - Python3.12
     validations:
       required: true
-
   - type: textarea
     id: WheelInfo
     attributes:
@@ -85,7 +80,6 @@ body:
       render: shell
     validations:
       required: false
-      
   - type: textarea
     id: Packages
     attributes:
@@ -109,7 +103,6 @@ body:
       render: shell
     validations:
       required: false
-
   - type: textarea
     id: Issue
     attributes:
