@@ -52,7 +52,8 @@ Example output:
 
 The `apisecret` and the `licensetoken` parameter can also be loaded from an INI file. Simply create the file 
 [`lucit_license.ini`](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/lucit-licensing-python/main/example_lucit_license.ini) 
-in the app root path or in your home directory in the folder `.lucit` with the following content:
+in the app root path or in your home directory in the folder `.lucit` e.g. `C:\Users\Name\.lucit` or 
+`/home/Name/.lucit`. with the following content:
 
 ````
 [LUCIT]
@@ -94,7 +95,8 @@ Example output:
 
 The `apisecret` and the `licensetoken` parameter can also be loaded from an INI file. Simply create the file 
 [`lucit_license.ini`](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/lucit-licensing-python/main/example_lucit_license.ini) 
-in the app root path or in your home directory in the folder `.lucit` with the following content:
+in the app root path or in your home directory in the folder `.lucit` e.g. `C:\Users\Name\.lucit` or 
+`/home/Name/.lucit`. with the following content:
 
 ````
 [LUCIT]
@@ -139,7 +141,8 @@ Example output:
 
 The `apisecret` and the `licensetoken` parameter can also be loaded from an INI file. Simply create the file 
 [`lucit_license.ini`](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/lucit-licensing-python/main/example_lucit_license.ini) 
-in the app root path or in your home directory in the folder `.lucit` with the following content:
+in the app root path or in your home directory in the folder `.lucit` e.g. `C:\Users\Name\.lucit` or 
+`/home/Name/.lucit`. with the following content:
 
 ````
 [LUCIT]
@@ -176,7 +179,8 @@ Example output:
 ### Use multiple licenses (multi tenant) with profiles
 Simply create the file 
 [`lucit_license.ini`](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/lucit-licensing-python/main/example_lucit_license.ini) 
-in the app root path or in your home directory in the folder `.lucit` with the following content:
+in the app root path or in your home directory in the folder `.lucit` e.g. `C:\Users\Name\.lucit` or 
+`/home/Name/.lucit`. with the following content:
 
 ````
 [LUCIT]
