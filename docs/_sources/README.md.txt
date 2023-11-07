@@ -174,6 +174,10 @@ Example output:
 ````
 
 ### Use multiple licenses (multi tenant) with profiles
+Simply create the file 
+[`lucit_license.ini`](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/lucit-licensing-python/main/example_lucit_license.ini) 
+in the app root path or in your home directory in the folder `.lucit` with the following content:
+
 ````
 [LUCIT]
 api_secret = bf7df011327d09b70fb0c6bfbc8661x33fdb0c58d42629c94ab35188d8d011ba
