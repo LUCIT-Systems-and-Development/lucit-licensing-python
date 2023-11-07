@@ -188,6 +188,8 @@ api_secret = 62a9efe20be3d038d3be15ea339495629c096ad22762fa7b72ee2df607f194d3
 license_token = f829d452-651b-4c6a-89a0-t742a16d0010e
 ````
 
+Then just use:
+
 ```` 
 $ lucitlicmgr --info --licenseprofile TENANT_A
 ````
