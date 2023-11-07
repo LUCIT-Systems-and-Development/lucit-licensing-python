@@ -46,7 +46,7 @@ class LucitLicensingManager(threading.Thread):
                  parent_shutdown_function: Callable[[bool], bool] = None,
                  needed_license_type: str = None):
         super().__init__()
-        self.module_version: str = "1.4.0"
+        self.module_version: str = "1.4.1"
         license_ini_search: bool = False
         if license_ini is None:
             license_ini = "lucit_license.ini"
@@ -167,7 +167,9 @@ class LucitLicensingManager(threading.Thread):
         license_token = license_token if license_token is not None else self.license_token
         if api_secret is None or license_token is None:
             print(f"Please provide the api secret and license token of your lucit license! "
-                  f"Get a license in the LUCIT Online Shop: {self.shop_product_url}")
+                  f"Read this article for more information: \r\n"
+                  f"https://medium.lucit.tech/how-to-obtain-and-use-a-unicorn-binance-suite-license-key-and-run-the-"
+                  f"ubs-module-according-to-best-87b0088124a8")
             sys.exit(1)
         params = {
             "license_token": license_token,
