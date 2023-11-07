@@ -205,6 +205,10 @@ Example output:
  'timestamp': '1697881034.4675057'}
 ````
 
+***Note:***
+All UNICORN Binance Suite modules also support the use of profiles. Please read the documentation of the respective 
+module regarding the parameter `license_profile`. 
+
 ### Discover more options
 ```` 
 $ lucitlicmgr --help
