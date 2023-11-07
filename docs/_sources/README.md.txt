@@ -52,7 +52,7 @@ Example output:
 
 The `apisecret` and the `licensetoken` parameter can also be loaded from an INI file. Simply create the file 
 [`lucit_license.ini`](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/lucit-licensing-python/main/example_lucit_license.ini) 
-in your home directory in the folder `.lucit` with the following content:
+in the app root path or in your home directory in the folder `.lucit` with the following content:
 
 ````
 [LUCIT]
@@ -94,7 +94,7 @@ Example output:
 
 The `apisecret` and the `licensetoken` parameter can also be loaded from an INI file. Simply create the file 
 [`lucit_license.ini`](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/lucit-licensing-python/main/example_lucit_license.ini) 
-in your home directory in the folder `.lucit` with the following content:
+in the app root path or in your home directory in the folder `.lucit` with the following content:
 
 ````
 [LUCIT]
@@ -139,7 +139,7 @@ Example output:
 
 The `apisecret` and the `licensetoken` parameter can also be loaded from an INI file. Simply create the file 
 [`lucit_license.ini`](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/lucit-licensing-python/main/example_lucit_license.ini) 
-in your home directory in the folder `.lucit` with the following content:
+in the app root path or in your home directory in the folder `.lucit` with the following content:
 
 ````
 [LUCIT]
@@ -171,6 +171,32 @@ Example output:
 
 ````
 {'message': 'Hello World!'}
+````
+
+### Use multiple licenses (multi tenant) with profiles
+````
+[LUCIT]
+api_secret = bf7df011327d09b70fb0c6bfbc8661x33fdb0c58d42629c94ab35188d8d011ba
+license_token = 5e84cbd7-acfa-489f-a84d-z7d1b615af40d
+
+[TENANT_A]
+api_secret = 62a9efe20be3d038d3be15ea339495629c096ad22762fa7b72ee2df607f194d3
+license_token = f829d452-651b-4c6a-89a0-t742a16d0010e
+````
+
+```` 
+$ lucitlicmgr --info --licenseprofile TENANT_A
+````
+
+Example output: 
+
+````
+{'license': {'license_holder_email': 'tenant_a@gmail.com',
+             'license_holder_name': 'Tenant A',
+             'licensed_product': 'UNICORN-BINANCE-SUITE',
+             'paid_till': '2023-11-02 13:43:22.723258+00:00'},
+ 'signature': 'e0f7b631006c3480477f81e127729f2ee1489e2dd5dc0ffd7504fb590c4d515a',
+ 'timestamp': '1697881034.4675057'}
 ````
 
 ### Discover more options
