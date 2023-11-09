@@ -73,8 +73,8 @@ body:
     attributes:
       label: Installed wheel files
       description: |
-        Please share your installed wheel files of this library. Run `pip show unicorn-binance-websocket-api --files | 
-        grep '  '` or `conda list -f unicorn-binance-websocket-api | grep '  '` and post the result:
+        Please share your installed wheel files of this library. Run `pip show lucit-licensing-python --files | 
+        grep '  '` or `conda list -f lucit-licensing-python | grep '  '` and post the result:
       render: shell
     validations:
       required: false
