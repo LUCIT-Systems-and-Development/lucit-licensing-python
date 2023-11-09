@@ -65,6 +65,7 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
+        "License :: Other/Proprietary License",
         'Intended Audience :: Developers',
         "Operating System :: OS Independent",
         'Topic :: Software Development :: Libraries :: Python Modules',
