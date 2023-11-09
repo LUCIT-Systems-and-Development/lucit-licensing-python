@@ -92,7 +92,7 @@ body:
     attributes:
       label: Logging output
       description: |
-        Please share the logging output here (REMOVE API_KEY, API_SECRET, LISTEN_KEY!!):
+        Please share the logging output here (REMOVE LICENSE_TOKEN, API_SECRET):
       render: shell
     validations:
       required: false
