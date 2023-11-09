@@ -104,7 +104,7 @@ async def cli():
                         required=False)
     parser.add_argument('-li', '--licenseini',
                         type=str,
-                        help=f"Specify path including filename to the config file (ex: `~/license_a.ini`). If not "
+                        help=f"Specify the path including filename to the license file (ex: `~/license_a.ini`). If not "
                              f"provided lucitlicmgr tries to load a `lucit_license.ini` from `{config_path}`.",
                         required=False)
     parser.add_argument('-lf', '--logfile',
