@@ -11,17 +11,19 @@
 [![Supported Python Version](https://img.shields.io/pypi/pyversions/lucit_licensing_python.svg)](https://www.python.org/downloads/)
 [![PyPI - Status](https://img.shields.io/pypi/status/lucit-licensing-python.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues)
 [![codecov](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python/graph/badge.svg?token=Y95LLP231L)](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python)
-[![Build and Publish](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml)
 [![CodeQL](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/codeql-analysis.yml)
 [![Unit Tests](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/unit-tests.yml)
+[![Build and Publish](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml)
+[![Azure Pipelines](https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/lucit-licensing-python-feedstock?branchName=main)](https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=15698&branchName=main)
 [![Read the Docs](https://img.shields.io/badge/read-%20docs-yellow)](https://lucit-licensing-python.docs.lucit.tech)
 [![Telegram](https://img.shields.io/badge/chat-telegram-41ab8c)](https://t.me/unicorndevs)
 [![Gitter](https://badges.gitter.im/lucit-licensing-python.svg)](https://app.gitter.im/#/room/#lucit-licensing-python:gitter.im)
 
 # LUCIT Licensing Python (Module)
 
-[Description](#description) | [Installation](#installation-and-upgrade) | [Change Log](#change-log) | [Wiki](#wiki) | 
-[Social](#social) | [Notifications](#receive-notifications) | [Bugs](#how-to-report-bugs-or-suggest-improvements) | 
+[Description](#description) | [Installation](#installation-and-upgrade) | [Change Log](#change-log) | [How To](#howto) | 
+[Wiki](#wiki) | [Social](#social) | [Notifications](#receive-notifications) | 
+[Bugs](#how-to-report-bugs-or-suggest-improvements) | 
 [Contributing](#contributing) | [Commercial Support](#commercial-support)
 
 Python client module of the LUCIT Licensing Service.
@@ -262,6 +264,9 @@ or the [current master branch](https://github.com/LUCIT-Systems-and-Development/
 
 ## Change Log
 [https://lucit-licensing-python.docs.lucit.tech/changelog.html](https://lucit-licensing-python.docs.lucit.tech/changelog.html)
+
+## Howto
+- [How to Obtain and Use a Unicorn Binance Suite License Key and Run the UBS Module According to Best Practice](https://medium.lucit.tech/how-to-obtain-and-use-a-unicorn-binance-suite-license-key-and-run-the-ubs-module-according-to-best-87b0088124a8)
 
 ## Project Homepage
 [https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
