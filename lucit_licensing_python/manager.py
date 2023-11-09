@@ -167,9 +167,7 @@ class LucitLicensingManager(threading.Thread):
         license_token = license_token if license_token is not None else self.license_token
         if api_secret is None or license_token is None:
             print(f"Please provide the api secret and license token of your lucit license! "
-                  f"Read this article for more information: \r\n"
-                  f"https://medium.lucit.tech/how-to-obtain-and-use-a-unicorn-binance-suite-license-key-and-run-the-"
-                  f"ubs-module-according-to-best-87b0088124a8")
+                  f"Read this article for more information: https://medium.lucit.tech/87b0088124a8")
             sys.exit(1)
         params = {
             "license_token": license_token,
