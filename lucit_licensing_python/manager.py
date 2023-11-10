@@ -46,7 +46,7 @@ class LucitLicensingManager(threading.Thread):
                  parent_shutdown_function: Callable[[bool], bool] = None,
                  needed_license_type: str = None):
         super().__init__()
-        self.module_version: str = "1.5.0"
+        self.module_version: str = "1.5.1"
         license_ini_search: bool = False
         if license_ini is None:
             license_ini = "lucit_license.ini"
@@ -303,7 +303,9 @@ class LucitLicensingManager(threading.Thread):
         too_many_requests_errors = 0
         while self.sigterm is False:
             license_result = self.verify()
-            try:
+            print(f"license_result.get('license') = {license_result.get('license')}")
+            print(f"license_result.get('error') = {license_result.get('error')}")
+            if license_result.get('license') is not None:
                 if license_result['license']['licensed_product'] != self.needed_license_type:
                     info = f"License not usable, its issued for product " \
                            f"'{license_result['license']['licensed_product']}'. Please contact our support: " \
@@ -328,7 +330,7 @@ class LucitLicensingManager(threading.Thread):
                         logger.critical(info)
                         self.close(close_api_session=False, not_approved_message=info, raise_exception=True)
                         break
-            except KeyError:
+            else:
                 if "403 Forbidden" in license_result['error']:
                     if "Forbidden - Timestamp not valid" in license_result['error']:
                         logger.error(f"Timestamp not valid - Syncing time ...")

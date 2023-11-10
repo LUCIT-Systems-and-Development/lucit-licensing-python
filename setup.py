@@ -30,7 +30,7 @@ setup(
          'lucit_licensing_python/manager.py'],
         annotate=False),
     name='lucit-licensing-python',
-    version="1.5.0",
+    version="1.5.1",
     author="LUCIT Systems and Development",
     author_email='info@lucit.tech',
     url="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python",
