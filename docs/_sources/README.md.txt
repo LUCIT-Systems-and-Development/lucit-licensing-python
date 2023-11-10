@@ -228,7 +228,7 @@ The current dependencies are listed
 
 If you run into errors during the installation take a look [here](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/wiki/Installation).
 
-### A binary, PyPy or source code based wheel of the latest version with `pip` from [PyPI](https://pypi.org/project/lucit-licensing-python/)
+### A Cython binary, PyPy or source code based CPython wheel of the latest version with `pip` from [PyPI](https://pypi.org/project/lucit-licensing-python/)
 `pip install lucit-licensing-python --upgrade`
 
 ### A conda package of the latest release with `conda` from [Anaconda](https://anaconda.org/conda-forge/lucit-licensing-python) via [CONDA-FORGE](https://conda-forge.org).

@@ -28,20 +28,21 @@ LUCIT IT-Management GmbH.
 - Project page: https://www.lucit.tech/lucit-licensing-python.html
 - GitHub repository: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python
 - PyPI repository: https://pypi.org/project/lucit-licensing-python
+- Get a license: https://shop.lucit.services/software
 
 
 3. LICENSE CONDITIONS AND VERIFICATION
 
-Utilization of the LUCIT Licensing Python demands authentication through a license key and an API secret.
+The use of LUCIT Licensing Python requires a license key and an API secret.
 
-Licenses are available at: https://shop.lucit.services/software.
+Licenses are available at: https://shop.lucit.services/software
 
-Verification is achieved via a client-side module, which forwards the license details to our backend for validation.
-Only those with a verified license operate as intended. This open-source procedure is integral to foster user trust,
-especially traders.
+Verification is done via a client-side module that forwards the license details to our backend for validation.
+The software may be used and distributed without restriction, the only condition is that the execution requires a valid
+license from LUCIT (https://shop.lucit.services/software) and must be operated with such a license.
 
 For transparency, our licensing client module is available on GitHub:
-https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python.
+https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python
 
 
 4. LICENSE PURCHASE
@@ -59,8 +60,17 @@ automatically becomes LUCIT IT-Management GmbH's property and copyright.
 
 6. USAGE AND DISTRIBUTION
 
-LUCIT IT-Management GmbH's open-source projects, including the WebSocket API, can be integrated into various
-applications. Execution requires a valid license. For details on unique licenses, reach out to: sales@lucit.tech.
+The LSOSL licensed projects of LUCIT IT-Management GmbH can be used and integrated into any application without
+restriction and distributed as desired. The only condition is that the execution of our software requires a valid
+license from LUCIT (https://shop.lucit.services/software) and must be operated with such a license.
+
+Furthermore, this license explicitly permits Conda-Forge, an open-source community-driven platform for package
+management and distribution operated by NumFOCUS, to test the software package following its creation to ensure
+functionality, compatibility, and security standards are met. This permission is granted to support the community's
+efforts in maintaining a robust ecosystem for software distribution and to guarantee the quality and performance of the
+software for end users.
+
+For information on library versions that do not contain a license requirement, please contact: sales@lucit.tech
 
 
 7. DATA COLLECTION AND LICENSE CONTROL

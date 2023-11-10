@@ -9,7 +9,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://lucit-licensing-python.docs.lucit.tech/readme.html#installation-and-upgrade)
 
-## 1.4.1.dev (development stage/unreleased/unstable)
+## 1.5.0.dev (development stage/unreleased/unstable)
+
+## 1.5.0
+## Added
+- Logging the used license profile with debug level `INFO`.
+- `pyproject.toml` now ready for poetry
+- Support for `with`-context
+### Fixed
+- Raising exceptions in specific situations
 
 ## 1.4.1
 ### Changed
