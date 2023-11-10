@@ -46,7 +46,7 @@ class LucitLicensingManager(threading.Thread):
                  parent_shutdown_function: Callable[[bool], bool] = None,
                  needed_license_type: str = None):
         super().__init__()
-        self.module_version: str = "1.4.1.dev"
+        self.module_version: str = "1.5.0"
         license_ini_search: bool = False
         if license_ini is None:
             license_ini = "lucit_license.ini"
@@ -66,6 +66,7 @@ class LucitLicensingManager(threading.Thread):
             try:
                 self.api_secret = config[license_profile]['api_secret']
                 self.license_token = config[license_profile]['license_token']
+                logger.info(f"Loading profile `{license_profile}`")
             except KeyError:
                 print(f"Unknown license profile: {license_profile}")
                 logger.critical(f"Unknown license profile: {license_profile}")
@@ -336,14 +337,14 @@ class LucitLicensingManager(threading.Thread):
                         info = f"Access forbidden due to misuse of test licenses. Please get a valid license from " \
                                f"the LUCIT Online Shop: {self.shop_product_url}"
                         logger.critical(info)
-                        self.close(close_api_session=False, not_approved_message=info)
+                        self.close(close_api_session=False, not_approved_message=info, raise_exception=True)
                         break
                     elif "403 Forbidden - Insufficient access rights." in license_result['error']:
                         logger.critical(f"{license_result['error']}")
                         info = f"The license is invalid! Please get a valid license from the LUCIT Online " \
                                f"Shop: {self.shop_product_url}"
                         if self.last_verified_licensing_result is None:
-                            self.close(close_api_session=False, not_approved_message=info)
+                            self.close(close_api_session=False, not_approved_message=info, raise_exception=True)
                         else:
                             self.close(close_api_session=False, not_approved_message=info, raise_exception=True)
                         break
