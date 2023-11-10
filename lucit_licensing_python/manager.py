@@ -46,7 +46,7 @@ class LucitLicensingManager(threading.Thread):
                  parent_shutdown_function: Callable[[bool], bool] = None,
                  needed_license_type: str = None):
         super().__init__()
-        self.module_version: str = "1.5.2"
+        self.module_version: str = "1.5.2.dev"
         license_ini_search: bool = False
         if license_ini is None:
             license_ini = "lucit_license.ini"
