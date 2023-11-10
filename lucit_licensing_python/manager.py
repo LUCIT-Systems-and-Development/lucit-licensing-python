@@ -46,7 +46,7 @@ class LucitLicensingManager(threading.Thread):
                  parent_shutdown_function: Callable[[bool], bool] = None,
                  needed_license_type: str = None):
         super().__init__()
-        self.module_version: str = "1.5.1"
+        self.module_version: str = "1.5.2"
         license_ini_search: bool = False
         if license_ini is None:
             license_ini = "lucit_license.ini"
@@ -78,6 +78,7 @@ class LucitLicensingManager(threading.Thread):
             try:
                 self.api_secret = config[license_profile]['api_secret']
                 self.license_token = config[license_profile]['license_token']
+                logger.info(f"Loading profile `{license_profile}`")
             except KeyError:
                 print(f"Unknown license profile: {license_profile}")
                 logger.critical(f"Unknown license profile: {license_profile}")
@@ -256,7 +257,6 @@ class LucitLicensingManager(threading.Thread):
         info = None
         if not_approved_message is not None:
             info = f"Stopping, no valid {self.needed_license_type} license verification! {not_approved_message}"
-            print(info)
             logger.critical(info)
         else:
             logger.debug(f"Stopping LUCIT Licensing Manager ...")
@@ -303,8 +303,6 @@ class LucitLicensingManager(threading.Thread):
         too_many_requests_errors = 0
         while self.sigterm is False:
             license_result = self.verify()
-            print(f"license_result.get('license') = {license_result.get('license')}")
-            print(f"license_result.get('error') = {license_result.get('error')}")
             if license_result.get('license') is not None:
                 if license_result['license']['licensed_product'] != self.needed_license_type:
                     info = f"License not usable, its issued for product " \
@@ -330,7 +328,7 @@ class LucitLicensingManager(threading.Thread):
                         logger.critical(info)
                         self.close(close_api_session=False, not_approved_message=info, raise_exception=True)
                         break
-            else:
+            elif license_result.get('error') is not None:
                 if "403 Forbidden" in license_result['error']:
                     if "Forbidden - Timestamp not valid" in license_result['error']:
                         logger.error(f"Timestamp not valid - Syncing time ...")
@@ -419,7 +417,11 @@ class LucitLicensingManager(threading.Thread):
                                     f"https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues/"
                                     f"new?labels=bug&projects=&template=bug_report.yml")
                     break
-
+            else:
+                logger.critical(f"Unknown error: {license_result} - Please submit an issue on GitHub: "
+                                f"https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues/"
+                                f"new?labels=bug&projects=&template=bug_report.yml")
+                break
             connection_errors = 0
             too_many_requests_errors = 0
             for _ in range(self.request_interval * 60):

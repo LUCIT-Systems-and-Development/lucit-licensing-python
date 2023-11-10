@@ -9,7 +9,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://lucit-licensing-python.docs.lucit.tech/readme.html#installation-and-upgrade)
 
-## 1.5.0.dev (development stage/unreleased/unstable)
+## 1.5.2.dev (development stage/unreleased/unstable)
+
+## 1.5.2
+### Changed
+- Handling of unexpected license result in `manager.run()`.
+
+## 1.5.1
+### Changed 
+- Using `dict.get()` instead of `try` in `manager.run()`.
 
 ## 1.5.0
 ## Added
