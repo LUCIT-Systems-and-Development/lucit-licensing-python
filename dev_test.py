@@ -27,7 +27,7 @@ class LTC:
     def __init__(self, api_secret=None, license_token=None):
         self.api_secret = api_secret
         self.license_token = license_token
-        self.llm = LucitLicensingManager(api_secret=api_secret, license_token=license_token, license_profile="LUCIT",
+        self.llm = LucitLicensingManager(api_secret=api_secret, license_token=license_token, license_profile="BAD",
                                          program_used="unicorn-binance-websocket-api", start=False)
         self.sigterm = False
 

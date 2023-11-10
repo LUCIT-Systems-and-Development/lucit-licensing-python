@@ -44,9 +44,10 @@ class LucitLicensingManager(threading.Thread):
                  license_ini: str = None, license_profile: str = None,
                  program_used: str = None, start: bool = True,
                  parent_shutdown_function: Callable[[bool], bool] = None,
-                 needed_license_type: str = None):
+                 needed_license_type: str = None, cli: bool = False):
         super().__init__()
-        self.module_version: str = "1.5.2.dev"
+        self.module_version: str = "1.5.3"
+        self.cli = cli
         license_ini_search: bool = False
         if license_ini is None:
             license_ini = "lucit_license.ini"
@@ -68,9 +69,13 @@ class LucitLicensingManager(threading.Thread):
                 self.license_token = config[license_profile]['license_token']
                 logger.info(f"Loading profile `{license_profile}`")
             except KeyError:
-                print(f"Unknown license profile: {license_profile}")
-                logger.critical(f"Unknown license profile: {license_profile}")
-                sys.exit(1)
+                info = f"Unknown license profile: {license_profile}"
+                logger.critical(info)
+                if self.cli is True:
+                    print(f"{info}")
+                    sys.exit(1)
+                else:
+                    raise NoValidatedLucitLicense(info)
         elif os.path.isfile(f"{Path.home()}/.lucit/{license_ini}"):
             logger.info(f"Loading license file `{Path.home()}/.lucit/{license_ini}`")
             config = ConfigParser(interpolation=ExtendedInterpolation())
@@ -80,13 +85,21 @@ class LucitLicensingManager(threading.Thread):
                 self.license_token = config[license_profile]['license_token']
                 logger.info(f"Loading profile `{license_profile}`")
             except KeyError:
-                print(f"Unknown license profile: {license_profile}")
-                logger.critical(f"Unknown license profile: {license_profile}")
-                sys.exit(1)
+                info = f"Unknown license profile: {license_profile}"
+                logger.critical(info)
+                if self.cli is True:
+                    print(f"{info}")
+                    sys.exit(1)
+                else:
+                    raise NoValidatedLucitLicense(info)
         elif license_ini_search is True:
-            print(f"License file not found: {license_ini}")
-            logger.critical(f"License file not found: {license_ini}")
-            sys.exit(1)
+            info = f"License file not found: {license_ini}"
+            logger.critical(info)
+            if self.cli is True:
+                print(f"{info}")
+                sys.exit(1)
+            else:
+                raise NoValidatedLucitLicense(info)
         else:
             logger.debug(f"Loading LUCIT license from environment: '{license_profile}_API_SECRET' and "
                          f"'{license_profile}_LICENSE_TOKEN'")
@@ -137,7 +150,7 @@ class LucitLicensingManager(threading.Thread):
         logger.debug(f"Leaving 'with-context' ...")
         if self.is_started:
             self.stop()
-        if exc_type:
+        if exc_type is not None:
             logger.critical(f"An exception occurred: {exc_type} - {exc_value} - {error_traceback}")
 
     def __generate_signature(self, api_secret: str = None, data: dict = None) -> str:
@@ -168,9 +181,13 @@ class LucitLicensingManager(threading.Thread):
         api_secret = api_secret if api_secret is not None else self.api_secret
         license_token = license_token if license_token is not None else self.license_token
         if api_secret is None or license_token is None:
-            print(f"Please provide the api secret and license token of your lucit license! "
-                  f"Read this article for more information: https://medium.lucit.tech/87b0088124a8")
-            sys.exit(1)
+            info = f"Please provide the api secret and license token of your lucit license! Read this article for " \
+                   f"more information: https://medium.lucit.tech/87b0088124a8"
+            if self.cli is True:
+                print(f"{info}")
+                sys.exit(1)
+            else:
+                raise NoValidatedLucitLicense(info)
         params = {
             "license_token": license_token,
             "id": self.id,

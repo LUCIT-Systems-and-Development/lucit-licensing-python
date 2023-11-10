@@ -22,5 +22,3 @@ class NoValidatedLucitLicense(Exception):
     No valid LUCIT license verification.
     """
     pass
-
-

@@ -9,7 +9,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://lucit-licensing-python.docs.lucit.tech/readme.html#installation-and-upgrade)
 
-## 1.5.2.dev (development stage/unreleased/unstable)
+## 1.5.3.dev (development stage/unreleased/unstable)
+
+## 1.5.3
+### Fixed
+- Using `sys.exit()` for cli and exception `NoValidatedLucitLicense` for non cli calls.
 
 ## 1.5.2
 ### Changed

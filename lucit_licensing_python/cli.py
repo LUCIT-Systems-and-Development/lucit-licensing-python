@@ -26,8 +26,10 @@ import textwrap
 from pathlib import Path
 try:
     from manager import LucitLicensingManager
+    from exceptions import NoValidatedLucitLicense
 except ModuleNotFoundError:
     from lucit_licensing_python.manager import LucitLicensingManager
+    from lucit_licensing_python.exceptions import NoValidatedLucitLicense
 
 
 async def cli():
@@ -220,7 +222,8 @@ async def cli():
     if options.versionlib is not None:
         input_versionlib = options.versionlib
 
-    with LucitLicensingManager(start=False,
+    with LucitLicensingManager(cli=True,
+                               start=False,
                                api_secret=input_api_secret,
                                license_ini=input_license_ini,
                                license_profile=input_license_profile,

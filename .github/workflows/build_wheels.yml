@@ -53,5 +53,5 @@ jobs:
           generate_release_notes: true
           name: lucit-licensing-python
           prerelease: false
-          tag_name: 1.5.2
+          tag_name: 1.5.3
           token: ${{ secrets.RELEASE_TOKEN }}
