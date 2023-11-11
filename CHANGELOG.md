@@ -9,7 +9,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 [How to upgrade to the latest version!](https://lucit-licensing-python.docs.lucit.tech/readme.html#installation-and-upgrade)
 
-## 1.5.3.dev (development stage/unreleased/unstable)
+## 1.6.0.dev (development stage/unreleased/unstable)
+## 1.6.0
+### Changed
+- Exceptions are now forwarded to the parent class and be raised there to be catchable in spite of threads and asyncio.
+
+## 1.5.4
+### Fixed
+- Raising `NoValidatedLucitLicense` moved to main thread 
 
 ## 1.5.3
 ### Fixed

@@ -34,7 +34,6 @@ from pathlib import Path
 from requests.exceptions import ConnectionError, RequestException, HTTPError
 from simplejson.errors import JSONDecodeError
 from typing import Callable
-from lucit_licensing_python.exceptions import NoValidatedLucitLicense
 
 logger = logging.getLogger("lucit_licensing_python")
 
@@ -44,10 +43,27 @@ class LucitLicensingManager(threading.Thread):
                  license_ini: str = None, license_profile: str = None,
                  program_used: str = None, start: bool = True,
                  parent_shutdown_function: Callable[[bool], bool] = None,
-                 needed_license_type: str = None, cli: bool = False):
+                 needed_license_type: str = None):
         super().__init__()
-        self.module_version: str = "1.5.3"
-        self.cli = cli
+        self.module_version: str = "1.6.0"
+        self.parent_shutdown_function = parent_shutdown_function
+        self.is_started = start
+        self.sigterm = False
+        self.id = str(uuid.uuid4())
+        self.last_verified_licensing_result = None
+        self.mac = str(hex(uuid.getnode()))
+        self.needed_license_type = needed_license_type
+        self.os = platform.system()
+        self.program_used = program_used
+        self.python_version = platform.python_version()
+        self.raised_license_exception = None
+        self.request_interval = 20
+        self.time_delta = 0.0
+        self.url: str = "https://private.api.lucit.services/licensing/v1/"
+        if self.needed_license_type == "UNICORN-BINANCE-SUITE":
+            self.shop_product_url = "https://shop.lucit.services/software/unicorn-binance-suite"
+        else:
+            self.shop_product_url = "https://shop.lucit.services/software"
         license_ini_search: bool = False
         if license_ini is None:
             license_ini = "lucit_license.ini"
@@ -71,11 +87,13 @@ class LucitLicensingManager(threading.Thread):
             except KeyError:
                 info = f"Unknown license profile: {license_profile}"
                 logger.critical(info)
-                if self.cli is True:
+                if self.is_started is True:
+                    self.set_license_exception(info)
+                    self.sigterm = True
+                    self.parent_shutdown_function(close_api_session=False)
+                else:
                     print(f"{info}")
                     sys.exit(1)
-                else:
-                    raise NoValidatedLucitLicense(info)
         elif os.path.isfile(f"{Path.home()}/.lucit/{license_ini}"):
             logger.info(f"Loading license file `{Path.home()}/.lucit/{license_ini}`")
             config = ConfigParser(interpolation=ExtendedInterpolation())
@@ -87,19 +105,23 @@ class LucitLicensingManager(threading.Thread):
             except KeyError:
                 info = f"Unknown license profile: {license_profile}"
                 logger.critical(info)
-                if self.cli is True:
+                if self.is_started is True:
+                    self.set_license_exception(info)
+                    self.sigterm = True
+                    self.parent_shutdown_function(close_api_session=False)
+                else:
                     print(f"{info}")
                     sys.exit(1)
-                else:
-                    raise NoValidatedLucitLicense(info)
         elif license_ini_search is True:
             info = f"License file not found: {license_ini}"
             logger.critical(info)
-            if self.cli is True:
+            if self.is_started is True:
+                self.set_license_exception(info)
+                self.sigterm = True
+                self.parent_shutdown_function(close_api_session=False)
+            else:
                 print(f"{info}")
                 sys.exit(1)
-            else:
-                raise NoValidatedLucitLicense(info)
         else:
             logger.debug(f"Loading LUCIT license from environment: '{license_profile}_API_SECRET' and "
                          f"'{license_profile}_LICENSE_TOKEN'")
@@ -113,33 +135,18 @@ class LucitLicensingManager(threading.Thread):
                              f'{license_profile}_LICENSE_TOKEN')
                 self.api_secret = None
                 self.license_token = None
-
-        self.is_started = start
-        self.id = str(uuid.uuid4())
-        self.last_verified_licensing_result = None
-        self.mac = str(hex(uuid.getnode()))
-        self.needed_license_type = needed_license_type
-        self.os = platform.system()
-        self.parent_shutdown_function = parent_shutdown_function
-        self.program_used = program_used
-        self.python_version = platform.python_version()
-        self.request_interval = 20
-        self.sigterm = False
-        self.time_delta = 0.0
-        self.url: str = "https://private.api.lucit.services/licensing/v1/"
-        if self.needed_license_type == "UNICORN-BINANCE-SUITE":
-            self.shop_product_url = "https://shop.lucit.services/software/unicorn-binance-suite"
-        else:
-            self.shop_product_url = "https://shop.lucit.services/software"
-        logger.info(f"New instance of lucit-licensing-python_{self.module_version}-python_"
-                    f"{str(platform.python_version())}-{'compiled' if cython.compiled else 'source'} on "
-                    f"{str(platform.system())} {str(platform.release())} started ...")
-        if start is True:
+        if self.sigterm is False:
+            logger.info(f"New instance of lucit-licensing-python_{self.module_version}-python_"
+                        f"{str(platform.python_version())}-{'compiled' if cython.compiled else 'source'} on "
+                        f"{str(platform.system())} {str(platform.release())} started ...")
+        if start is True and self.sigterm is False:
             self.start()
         while self.last_verified_licensing_result is None and self.sigterm is False and start is True:
             # Block the main process till a valid license is available
             time.sleep(0.1)
-        if self.sigterm is False:
+        if self.sigterm is True:
+            logger.warning(f"LUCIT License Manager is shutting down!")
+        else:
             logger.debug(f"LUCIT License Manager is ready!")
 
     def __enter__(self):
@@ -183,11 +190,13 @@ class LucitLicensingManager(threading.Thread):
         if api_secret is None or license_token is None:
             info = f"Please provide the api secret and license token of your lucit license! Read this article for " \
                    f"more information: https://medium.lucit.tech/87b0088124a8"
-            if self.cli is True:
+            if self.is_started is True:
+                self.set_license_exception(info)
+                self.sigterm = True
+                self.parent_shutdown_function(close_api_session=False)
+            else:
                 print(f"{info}")
                 sys.exit(1)
-            else:
-                raise NoValidatedLucitLicense(info)
         params = {
             "license_token": license_token,
             "id": self.id,
@@ -278,18 +287,24 @@ class LucitLicensingManager(threading.Thread):
         else:
             logger.debug(f"Stopping LUCIT Licensing Manager ...")
         self.sigterm = True
-        if self.parent_shutdown_function is not None:
-            logger.debug(f"Triggering shutdown of parent class ...")
-            self.parent_shutdown_function(close_api_session=False)
-            self.parent_shutdown_function = None
-        if close_api_session is True:
+        if close_api_session is True and self.last_verified_licensing_result is not None:
             response = self.__private_request(api_secret=None, license_token=None,
                                               key_value=key_value, endpoint="close")
         else:
             response = {"close": {"status": "NOT_EXECUTED"}}
-        if raise_exception is True:
-            raise NoValidatedLucitLicense(info)
+        if raise_exception is True and info is not None:
+            self.set_license_exception(info)
+        if self.parent_shutdown_function is not None:
+            logger.debug(f"Triggering shutdown of parent class ...")
+            self.parent_shutdown_function(close_api_session=False)
+            self.parent_shutdown_function = None
         return response
+
+    def get_license_exception(self):
+        return self.raised_license_exception
+
+    def set_license_exception(self, error):
+        self.raised_license_exception = error
 
     def get_info(self, api_secret: str = None, license_token: str = None) -> dict:
         return self.__private_request(api_secret=api_secret, license_token=license_token, endpoint="info")

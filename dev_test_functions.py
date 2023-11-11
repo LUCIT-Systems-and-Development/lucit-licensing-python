@@ -6,22 +6,31 @@
 
 import asyncio
 import logging
+import sys
 import time
 import pprint
 from lucit_licensing_python.manager import LucitLicensingManager
+from lucit_licensing_python.exceptions import NoValidatedLucitLicense
 
 
 class LTC:
-    def __init__(self, api_secret=None, license_token=None):
-        self.api_secret = api_secret
-        self.license_token = license_token
-        self.llm = LucitLicensingManager(api_secret=api_secret, license_token=license_token,
-                                         program_used="unicorn-binance-websocket-api", start=False)
+    def __init__(self):
         self.sigterm = False
+        self.llm = LucitLicensingManager(parent_shutdown_function=self.close,
+                                         program_used="unicorn-binance-websocket-api",
+                                         needed_license_type="UNICORN-BINANCE-SUITE",
+                                         license_profile="OLIVER2",
+                                         start=True)
+        licensing_exception = self.llm.get_license_exception()
+        if licensing_exception is not None:
+            raise NoValidatedLucitLicense(licensing_exception)
 
-    def close(self):
+    def close(self, close_api_session: bool = True):
+        print(f"Shutting down parent class")
         self.sigterm = True
-        return self.llm.close()
+        if close_api_session is True:
+            self.llm.close()
+        return True
 
     async def test_licensing(self):
         while self.sigterm is False:
@@ -38,7 +47,7 @@ class LTC:
             if "Connection Error - Connection could not be established." not in str(version):
                 print(f"\r\n/version:\r\n{version}")
 
-            quotas = self.llm.get_quotas(api_secret=self.api_secret, license_token=self.license_token)
+            quotas = self.llm.get_quotas()
             print(f"\r\n/quotas:")
             pprint.pprint(quotas)
 
@@ -76,7 +85,7 @@ class LTC:
             print(f"\r\n/verify:")
             pprint.pprint(status)
 
-            info = self.llm.get_info(api_secret=self.api_secret, license_token=self.license_token)
+            info = self.llm.get_info()
             print(f"\r\n/info:")
             pprint.pprint(info)
 
@@ -87,10 +96,14 @@ class LTC:
 
 if __name__ == "__main__":
     logging.getLogger("lucit_licensing_python")
-    logging.basicConfig(level=logging.INFO,
+    logging.basicConfig(level=logging.DEBUG,
                         format="{asctime} [{levelname:8}] {process} {thread} {module}: {message}",
                         style="{")
-    ltc = LTC()
+    try:
+        ltc = LTC()
+    except NoValidatedLucitLicense as error_msg:
+        print(f"ERROR LEVEL 1: {error_msg}")
+        sys.exit(1)
     try:
         asyncio.run(ltc.test_licensing())
     except KeyboardInterrupt:

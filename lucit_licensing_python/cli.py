@@ -222,8 +222,7 @@ async def cli():
     if options.versionlib is not None:
         input_versionlib = options.versionlib
 
-    with LucitLicensingManager(cli=True,
-                               start=False,
+    with LucitLicensingManager(start=False,
                                api_secret=input_api_secret,
                                license_ini=input_license_ini,
                                license_profile=input_license_profile,
