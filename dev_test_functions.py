@@ -19,14 +19,14 @@ class LTC:
         self.llm = LucitLicensingManager(parent_shutdown_function=self.close,
                                          program_used="unicorn-binance-websocket-api",
                                          needed_license_type="UNICORN-BINANCE-SUITE",
-                                         license_profile="OLIVER2",
+                                         license_profile="LUCIT",
                                          start=True)
         licensing_exception = self.llm.get_license_exception()
         if licensing_exception is not None:
             raise NoValidatedLucitLicense(licensing_exception)
 
     def close(self, close_api_session: bool = True):
-        print(f"Shutting down parent class")
+        print(f"Info: Received Shutdown Signal!")
         self.sigterm = True
         if close_api_session is True:
             self.llm.close()
@@ -102,7 +102,7 @@ if __name__ == "__main__":
     try:
         ltc = LTC()
     except NoValidatedLucitLicense as error_msg:
-        print(f"ERROR LEVEL 1: {error_msg}")
+        print(f"ERROR Thread-Main: {error_msg}")
         sys.exit(1)
     try:
         asyncio.run(ltc.test_licensing())

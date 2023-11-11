@@ -221,26 +221,29 @@ async def cli():
         input_versionapi = options.versionapi
     if options.versionlib is not None:
         input_versionlib = options.versionlib
-
-    with LucitLicensingManager(start=False,
-                               api_secret=input_api_secret,
-                               license_ini=input_license_ini,
-                               license_profile=input_license_profile,
-                               license_token=input_license_token) as llm:
-        if input_info is True:
-            pprint(llm.get_info())
-        if input_quotas is True:
-            pprint(llm.get_quotas())
-        if input_reset is True:
-            pprint(llm.reset())
-        if input_test is True:
-            pprint(llm.test())
-        if input_timestamp is True:
-            pprint(llm.get_timestamp())
-        if input_versionapi is True:
-            pprint(llm.get_version())
-        if input_versionlib is True:
-            pprint({"version_lib": llm.get_module_version()})
+    try:
+        with LucitLicensingManager(start=False,
+                                   api_secret=input_api_secret,
+                                   license_ini=input_license_ini,
+                                   license_profile=input_license_profile,
+                                   license_token=input_license_token) as llm:
+            if input_info is True:
+                pprint(llm.get_info())
+            if input_quotas is True:
+                pprint(llm.get_quotas())
+            if input_reset is True:
+                pprint(llm.reset())
+            if input_test is True:
+                pprint(llm.test())
+            if input_timestamp is True:
+                pprint(llm.get_timestamp())
+            if input_versionapi is True:
+                pprint(llm.get_version())
+            if input_versionlib is True:
+                pprint({"version_lib": llm.get_module_version()})
+    except NoValidatedLucitLicense as error_msg:
+        print(f"ERROR: {error_msg}")
+        sys.exit(1)
 
 
 def main():

@@ -23,7 +23,6 @@ import logging
 import os
 import platform
 import requests
-import sys
 import threading
 import time
 import uuid
@@ -34,6 +33,10 @@ from pathlib import Path
 from requests.exceptions import ConnectionError, RequestException, HTTPError
 from simplejson.errors import JSONDecodeError
 from typing import Callable
+try:
+    from exceptions import NoValidatedLucitLicense
+except ModuleNotFoundError:
+    from lucit_licensing_python.exceptions import NoValidatedLucitLicense
 
 logger = logging.getLogger("lucit_licensing_python")
 
@@ -45,7 +48,7 @@ class LucitLicensingManager(threading.Thread):
                  parent_shutdown_function: Callable[[bool], bool] = None,
                  needed_license_type: str = None):
         super().__init__()
-        self.module_version: str = "1.6.0"
+        self.module_version: str = "1.7.0"
         self.parent_shutdown_function = parent_shutdown_function
         self.is_started = start
         self.sigterm = False
@@ -86,14 +89,7 @@ class LucitLicensingManager(threading.Thread):
                 logger.info(f"Loading profile `{license_profile}`")
             except KeyError:
                 info = f"Unknown license profile: {license_profile}"
-                logger.critical(info)
-                if self.is_started is True:
-                    self.set_license_exception(info)
-                    self.sigterm = True
-                    self.parent_shutdown_function(close_api_session=False)
-                else:
-                    print(f"{info}")
-                    sys.exit(1)
+                self.process_licensing_error(info)
         elif os.path.isfile(f"{Path.home()}/.lucit/{license_ini}"):
             logger.info(f"Loading license file `{Path.home()}/.lucit/{license_ini}`")
             config = ConfigParser(interpolation=ExtendedInterpolation())
@@ -104,24 +100,10 @@ class LucitLicensingManager(threading.Thread):
                 logger.info(f"Loading profile `{license_profile}`")
             except KeyError:
                 info = f"Unknown license profile: {license_profile}"
-                logger.critical(info)
-                if self.is_started is True:
-                    self.set_license_exception(info)
-                    self.sigterm = True
-                    self.parent_shutdown_function(close_api_session=False)
-                else:
-                    print(f"{info}")
-                    sys.exit(1)
+                self.process_licensing_error(info)
         elif license_ini_search is True:
             info = f"License file not found: {license_ini}"
-            logger.critical(info)
-            if self.is_started is True:
-                self.set_license_exception(info)
-                self.sigterm = True
-                self.parent_shutdown_function(close_api_session=False)
-            else:
-                print(f"{info}")
-                sys.exit(1)
+            self.process_licensing_error(info)
         else:
             logger.debug(f"Loading LUCIT license from environment: '{license_profile}_API_SECRET' and "
                          f"'{license_profile}_LICENSE_TOKEN'")
@@ -144,6 +126,9 @@ class LucitLicensingManager(threading.Thread):
         while self.last_verified_licensing_result is None and self.sigterm is False and start is True:
             # Block the main process till a valid license is available
             time.sleep(0.1)
+        licensing_exception = self.get_license_exception()
+        if licensing_exception is not None:
+            raise NoValidatedLucitLicense(licensing_exception)
         if self.sigterm is True:
             logger.warning(f"LUCIT License Manager is shutting down!")
         else:
@@ -190,13 +175,8 @@ class LucitLicensingManager(threading.Thread):
         if api_secret is None or license_token is None:
             info = f"Please provide the api secret and license token of your lucit license! Read this article for " \
                    f"more information: https://medium.lucit.tech/87b0088124a8"
-            if self.is_started is True:
-                self.set_license_exception(info)
-                self.sigterm = True
-                self.parent_shutdown_function(close_api_session=False)
-            else:
-                print(f"{info}")
-                sys.exit(1)
+            self.process_licensing_error(info)
+            return {"error": f"License Not Found - {info}"}
         params = {
             "license_token": license_token,
             "id": self.id,
@@ -278,24 +258,16 @@ class LucitLicensingManager(threading.Thread):
         else:
             return False
 
-    def close(self, close_api_session: bool = True, not_approved_message: str = None,
-              key_value: str = None, raise_exception: bool = False) -> dict:
-        info = None
-        if not_approved_message is not None:
-            info = f"Stopping, no valid {self.needed_license_type} license verification! {not_approved_message}"
-            logger.critical(info)
-        else:
-            logger.debug(f"Stopping LUCIT Licensing Manager ...")
+    def close(self, close_api_session: bool = True, key_value: str = None) -> dict:
+        logger.debug(f"Stopping LUCIT Licensing Manager ...")
         self.sigterm = True
         if close_api_session is True and self.last_verified_licensing_result is not None:
             response = self.__private_request(api_secret=None, license_token=None,
                                               key_value=key_value, endpoint="close")
         else:
             response = {"close": {"status": "NOT_EXECUTED"}}
-        if raise_exception is True and info is not None:
-            self.set_license_exception(info)
         if self.parent_shutdown_function is not None:
-            logger.debug(f"Triggering shutdown of parent class ...")
+            logger.debug(f"Triggering shutdown of parent instance ...")
             self.parent_shutdown_function(close_api_session=False)
             self.parent_shutdown_function = None
         return response
@@ -327,6 +299,13 @@ class LucitLicensingManager(threading.Thread):
         else:
             return True
 
+    def process_licensing_error(self, info: str = None):
+        logger.critical(info)
+        self.set_license_exception(info)
+        self.sigterm = True
+        if self.is_started is True:
+            self.parent_shutdown_function(close_api_session=False)
+
     def reset(self, api_secret: str = None, license_token: str = None) -> dict:
         return self.__private_request(api_secret=api_secret, license_token=license_token, endpoint="reset")
 
@@ -340,8 +319,7 @@ class LucitLicensingManager(threading.Thread):
                     info = f"License not usable, its issued for product " \
                            f"'{license_result['license']['licensed_product']}'. Please contact our support: " \
                            f"https://www.lucit.tech/get-support.html"
-                    logger.critical(info)
-                    self.close(close_api_session=False, not_approved_message=info)
+                    self.process_licensing_error(info)
                     break
                 else:
                     if license_result['license']['status'] == "VALID":
@@ -357,8 +335,7 @@ class LucitLicensingManager(threading.Thread):
                                      f"{license_result['license']['licensed_product']}")
                     else:
                         info = f"Unsuccessful verification! License Status: {license_result['license']['status']}"
-                        logger.critical(info)
-                        self.close(close_api_session=False, not_approved_message=info, raise_exception=True)
+                        self.process_licensing_error(info)
                         break
             elif license_result.get('error') is not None:
                 if "403 Forbidden" in license_result['error']:
@@ -369,46 +346,38 @@ class LucitLicensingManager(threading.Thread):
                         info = f"Access forbidden due to misuse of test licenses. Please get a valid license from " \
                                f"the LUCIT Online Shop: {self.shop_product_url}"
                         logger.critical(info)
-                        self.close(close_api_session=False, not_approved_message=info, raise_exception=True)
+                        self.process_licensing_error(info)
                         break
                     elif "403 Forbidden - Insufficient access rights." in license_result['error']:
                         logger.critical(f"{license_result['error']}")
                         info = f"The license is invalid! Please get a valid license from the LUCIT Online " \
                                f"Shop: {self.shop_product_url}"
                         if self.last_verified_licensing_result is None:
-                            self.close(close_api_session=False, not_approved_message=info, raise_exception=True)
+                            self.process_licensing_error(info)
                         else:
-                            self.close(close_api_session=False, not_approved_message=info, raise_exception=True)
+                            self.process_licensing_error(info)
                         break
                     else:
-                        logger.critical(f"{license_result['error']}")
-                        self.close(close_api_session=True,
-                                   not_approved_message=f"Unknown error! Please submit an issue on GitHub: "
-                                                        f"https://github.com/LUCIT-Systems-and-Development/"
-                                                        f"lucit-licensing-python/issues/new?labels=bug&projects=&"
-                                                        f"template=bug_report.yml",
-                                   raise_exception=True)
+                        logger.critical(f"Caught unknown license error: {license_result['error']}")
+                        info = f"Unknown error! Please submit an issue on GitHub: https://github.com/LUCIT-Systems-" \
+                               f"and-Development/lucit-licensing-python/issues/new?labels=bug&projects=&template=" \
+                               f"bug_report.yml"
+                        self.process_licensing_error(info)
                         break
                 elif "429 Too Many Requests" in license_result['error']:
                     logger.critical(f"{license_result['error']}")
                     if self.last_verified_licensing_result is None:
                         # If there never was a successful verification, we stop immediately
-                        logger.critical(f"Too many requests to the LUCIT Licensing API! Not able to verify the "
-                                        f"license!")
-                        self.close(close_api_session=False,
-                                   not_approved_message=f"Too many requests to the LUCIT Licensing API! Not able "
-                                                        f"to verify the license!")
+                        info = f"Too many requests to the LUCIT Licensing API! Not able to verify the license!"
+                        self.process_licensing_error(info)
                         break
                     else:
                         if connection_errors > 9:
                             # This stopps an already running instance if the API rate limit gets hit for more
                             # than 90 min
-                            logger.critical(f"Too many requests to the LUCIT Licensing API! Not able to verify the "
-                                            f"license for more than 90 minutes!")
-                            self.close(close_api_session=False,
-                                       not_approved_message=f"Too many requests to the LUCIT Licensing API! Not able "
-                                                            f"to verify the license for more than 90 minutes!",
-                                       raise_exception=True)
+                            info = f"Too many requests to the LUCIT Licensing API! Not able to verify the license " \
+                                   f"for more than 90 minutes!"
+                            self.process_licensing_error(info)
                             break
                         too_many_requests_errors += 1
 
@@ -422,28 +391,25 @@ class LucitLicensingManager(threading.Thread):
                     if self.last_verified_licensing_result is None:
                         # If there never was a successful verification, we after 3 retries
                         if connection_errors > 3:
-                            logger.critical(f"Connection to LUCIT Licensing API could not be established. Please "
-                                            f"try again later!")
-                            self.close(close_api_session=False,
-                                       not_approved_message=f"Connection to LUCIT Licensing API could not be "
-                                                            f"established. Please try again later!",
-                                       raise_exception=True)
+                            info = f"Connection to LUCIT Licensing API could not be established. Please try " \
+                                   f"again later!"
+                            self.process_licensing_error(info)
                             break
                     else:
                         # This stopps an already running instance if the Connection is down for more than 90 minutes
                         if connection_errors > 9:
-                            logger.critical(f"Connection to LUCIT Licensing API could not be established. Please "
-                                            f"try again later!")
-                            self.close(close_api_session=False,
-                                       not_approved_message=f"Connection to LUCIT Licensing API could not be "
-                                                            f"established. Please try again later!",
-                                       raise_exception=True)
+                            info = f"Connection to LUCIT Licensing API could not be established. Please try " \
+                                   f"again later!"
+                            self.process_licensing_error(info)
                             break
                         connection_errors += 1
                         # 600 * 9 = 90 minutes
                         # Running instances survive even if the LUCIT API is not connectable for 90 minutes
                         time.sleep(600)
                     continue
+                elif "License Not Found" in license_result['error']:
+                    logger.warning(f"LUCIT License Manager is shutting down!")
+                    break
                 else:
                     logger.critical(f"Unknown error: {license_result['error']} - Please submit an issue on GitHub: "
                                     f"https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues/"
