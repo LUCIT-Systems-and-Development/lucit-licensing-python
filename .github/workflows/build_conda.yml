@@ -29,6 +29,10 @@ jobs:
         python-version: ${{ matrix.python-version }}
         auto-activate-base: false
 
+    - name: Install Conda Build
+      run: |
+        conda install -c conda-forge conda-build
+
     - name: Build Conda Package
       run: |
         conda build . --output-folder conda-bld
