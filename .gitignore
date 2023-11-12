@@ -1,5 +1,7 @@
 .idea
 
+dev/lucit_licensing_python
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
