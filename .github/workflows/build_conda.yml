@@ -7,20 +7,14 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
-        arch: 
-          - x86_64
-          - aarch64
-        exclude:
-          - os: macos-latest
-            arch: aarch64
-          - os: windows-latest
-            arch: aarch64
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Set up Conda
       uses: conda-incubator/setup-miniconda@v2
       with:
@@ -29,20 +23,14 @@ jobs:
         python-version: ${{ matrix.python-version }}
         auto-activate-base: false
 
-    - name: Install Conda Build
+    - name: Install Conda Build and Conda Verify
       run: |
         conda install -c conda-forge conda-build
         conda install conda-verify
-        conda config --set anaconda_upload yes
 
     - name: Build Conda Package
       run: |
-        conda build . --output-folder conda-bld
-
-    - name: Convert Conda Package (Only for Linux with aarch64)
-      if: matrix.os == 'ubuntu-latest' && matrix.arch == 'aarch64'
-      run: |
-        conda convert --platform linux-aarch64 conda-bld/linux-64/*.tar.bz2 -o conda-bld/
+        conda build . --output-folder conda-bld --python ${{ matrix.python-version }}
 
     - name: Upload Conda Package
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
