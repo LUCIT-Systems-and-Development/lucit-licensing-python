@@ -9,8 +9,6 @@ source:
   path: .
 
 build:
-  entry_points:
-    - lucitlicmgr = lucit_licensing_python.cli:main
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
@@ -28,6 +26,10 @@ requirements:
     - cython
     - requests
     - simplejson
+
+channels:
+  - conda-forge
+  - lucit
 
 test:
   imports:
