@@ -35,6 +35,12 @@ jobs:
         run: |
           pip install setuptools wheel --upgrade       
 
+      - name: Set up Xcode (only on macOS)
+        if: runner.os == 'macOS'
+        run: |
+          sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+          xcodebuild -version
+
       - name: Build and upload the conda packages
         uses: uibcdf/action-build-and-upload-conda-packages@v1.2.0
         with:
