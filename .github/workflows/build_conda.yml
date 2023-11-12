@@ -29,15 +29,21 @@ jobs:
         conda config --set anaconda_upload yes
         conda install conda-verify
 
-    - name: Build Conda Package
+    - name: Install Anaconda Client
       run: |
-        conda build . --output-folder conda-bld --python ${{ matrix.python-version }}
+        conda install -c anaconda anaconda-client
+        - name: Build Conda Package
+          run: |
+            conda build . --output-folder conda-bld --python ${{ matrix.python-version }}
 
-    - name: Upload Conda Package
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    - name: Update PATH
       run: |
-        export ANACONDA_API_TOKEN=${{ secrets.ANACONDA_API_TOKEN }}
-        anaconda upload conda-bld/**/*.tar.bz2
+        echo "$CONDA/bin" >> $GITHUB_PATH
+        - name: Upload Conda Package
+          if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+          run: |
+            export ANACONDA_API_TOKEN=${{ secrets.ANACONDA_API_TOKEN }}
+            anaconda upload conda-bld/**/*.tar.bz2
 
     - name: Clean up
       run: |
