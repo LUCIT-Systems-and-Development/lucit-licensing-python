@@ -16,18 +16,21 @@
 # Copyright (c) 2023-2023, LUCIT Systems and Development (https://www.lucit.tech)
 # All rights reserved.
 
-rm source/changelog.md
-rm source/code_of_conduct.md
-rm source/contributing.md
-rm source/license.rst
-rm source/readme.md
-rm source/security.md
+rm dev/sphinx/source/changelog.md
+rm dev/sphinx/source/code_of_conduct.md
+rm dev/sphinx/source/contributing.md
+rm dev/sphinx/source/license.rst
+rm dev/sphinx/source/readme.md
+rm dev/sphinx/source/security.md
 
-cp ../CHANGELOG.md source/changelog.md
-cp ../CODE_OF_CONDUCT.md source/code_of_conduct.md
-cp ../CONTRIBUTING.md source/contributing.md
-cp ../LICENSE source/license.rst
-cp ../README.md source/readme.md
-cp ../SECURITY.md source/security.md
+cp CHANGELOG.md dev/sphinx/source/changelog.md
+cp CODE_OF_CONDUCT.md dev/sphinx/source/code_of_conduct.md
+cp CONTRIBUTING.md dev/sphinx/source/contributing.md
+cp LICENSE dev/sphinx/source/license.rst
+cp README.md dev/sphinx/source/readme.md
+cp SECURITY.md dev/sphinx/source/security.md
+
+mkdir -vp dev/sphinx/build
+ln -s docs dev/sphinx/build/html
 
 make html -d

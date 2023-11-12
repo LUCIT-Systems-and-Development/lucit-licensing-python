@@ -243,10 +243,10 @@ Run in bash:
 `pip install https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/archive/$(curl -s https://api.github.com/repos/LUCIT-Systems-and-Development/lucit-licensing-python/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")').tar.gz --upgrade`
 
 #### Windows
-Use the below command with the version (such as 1.7.0) you determined 
+Use the below command with the version (such as 1.7.2) you determined 
 [here](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/releases/latest):
 
-`pip install https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/archive/1.7.0.tar.gz --upgrade`
+`pip install https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/archive/1.7.2.tar.gz --upgrade`
 ### From the latest source (dev-stage) with PIP from [GitHub](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
 This is not a release version and can not be considered to be stable!
 

@@ -1,2 +1,2 @@
-1.7.0
-meta.yaml,pyproject.toml,setup.py,.github/workflows/build_wheels.yml,dev/sphinx/source/conf.py, lucit_licensing_python/manager.py
+1.7.2
+meta.yaml,pyproject.toml,setup.py,README.md,.github/workflows/build_wheels.yml,dev/sphinx/source/conf.py,lucit_licensing_python/manager.py
