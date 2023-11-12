@@ -28,8 +28,8 @@ requirements:
     - simplejson
 
 channels:
-  - conda-forge
   - lucit
+  - conda-forge
   - default
 
 dependencies:
