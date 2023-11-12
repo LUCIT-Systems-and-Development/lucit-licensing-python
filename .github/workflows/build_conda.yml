@@ -13,7 +13,7 @@ jobs:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Conda environment creation and activation
         uses: conda-incubator/setup-miniconda@v2
         with:
@@ -25,7 +25,7 @@ jobs:
       - name: Build and upload the conda packages
         uses: uibcdf/action-build-and-upload-conda-packages@v1.2.0
         with:
-          meta_yaml_dir: devtools/conda-build
+          meta_yaml_dir: .
           python-version: ${{ matrix.python-version }}
           user: lucit
           label: auto
