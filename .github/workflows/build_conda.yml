@@ -5,7 +5,7 @@ on:
 
 jobs:
   conda_deployment_with_new_tag:
-    name: Build conda on ${{ matrix.os }}_${{ matrix.python-version }}
+    name: Build conda on ${{ matrix.os }} with Python ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -22,10 +22,12 @@ jobs:
           auto-update-conda: false
           auto-activate-base: false
           show-channel-urls: true
-      - name: Install Conda Build and Conda Verify
+      - name: Install Conda Tools
         run: |
           conda install -c conda-forge conda-build
           conda install conda-verify
+          conda install -c anaconda anaconda-client
+
       - name: Configure PATH
         run: echo "$CONDA/bin" >> $GITHUB_PATH
 
