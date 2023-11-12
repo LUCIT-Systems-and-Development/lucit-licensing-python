@@ -26,6 +26,7 @@ jobs:
     - name: Install Conda Build and Conda Verify
       run: |
         conda install -c conda-forge conda-build
+        conda config --set anaconda_upload yes
         conda install conda-verify
 
     - name: Build Conda Package
