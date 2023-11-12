@@ -9,7 +9,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macOS-11, ubuntu-latest, windows-latest]
+        os: [macOS-latest, ubuntu-latest, windows-latest]
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
 
     steps:
@@ -22,6 +22,7 @@ jobs:
           auto-update-conda: false
           auto-activate-base: false
           show-channel-urls: true
+
       - name: Install Conda Tools
         run: |
           conda install -c conda-forge conda-build
@@ -38,6 +39,7 @@ jobs:
       - name: Set up Xcode (only on macOS)
         if: runner.os == 'macOS'
         run: |
+          xcode-select --install
           sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
           xcodebuild -version
 
