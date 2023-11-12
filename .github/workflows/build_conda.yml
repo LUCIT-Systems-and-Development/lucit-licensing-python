@@ -30,9 +30,6 @@ jobs:
           conda install conda-verify
           conda install -c anaconda anaconda-client
 
-      - name: Configure PATH
-        run: echo "$CONDA/bin" >> $GITHUB_PATH
-
       - name: Install Python Tools
         run: |
           pip install setuptools wheel --upgrade       
@@ -50,7 +47,7 @@ jobs:
           meta_yaml_dir: .
           python-version: ${{ matrix.python-version }}
           platform_linux-64: true
-          platform_osx-64: false
+          platform_osx-64: true
           platform_win-64: true
           user: lucit
           label: main
