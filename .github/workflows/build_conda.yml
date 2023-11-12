@@ -5,7 +5,7 @@ on:
 
 jobs:
   conda_deployment_with_new_tag:
-    name: Conda deployment of package for platform ${{ matrix.os }} with Python ${{ matrix.python-version }}
+    name: Build conda on ${{ matrix.os }}_${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
