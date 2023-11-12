@@ -32,5 +32,4 @@ jobs:
           meta_yaml_dir: .
           python-version: ${{ matrix.python-version }}
           user: lucit
-          label: auto
           token: ${{ secrets.ANACONDA_API_TOKEN }}
