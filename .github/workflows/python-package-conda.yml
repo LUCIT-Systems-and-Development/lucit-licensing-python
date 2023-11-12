@@ -1,0 +1,51 @@
+name: Build and Publish Anaconda
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: [3.7, 3.8, 3.9, 3.10, 3.11, 3.12]
+        # Für Linux: x86_64, Für macOS: x86_64 und arm64, Für Windows: x86_64
+        arch: 
+          - x86_64
+          - aarch64
+        exclude:
+          - os: macos-latest
+            arch: aarch64
+          - os: windows-latest
+            arch: aarch64
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Conda
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        activate-environment: conda-env
+        environment-file: environment.yml
+        python-version: ${{ matrix.python-version }}
+        auto-activate-base: false
+
+    - name: Build Conda Package
+      run: |
+        conda build . --output-folder conda-bld
+
+    - name: Convert Conda Package (Only for Linux with aarch64)
+      if: matrix.os == 'ubuntu-latest' && matrix.arch == 'aarch64'
+      run: |
+        conda convert --platform linux-aarch64 conda-bld/linux-64/*.tar.bz2 -o conda-bld/
+
+    - name: Upload Conda Package
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: |
+        export ANACONDA_API_TOKEN=${{ secrets.ANACONDA_API_TOKEN }}
+        anaconda upload conda-bld/**/*.tar.bz2
+
+    - name: Clean up
+      run: |
+        anaconda logout
