@@ -26,6 +26,9 @@ jobs:
         run: |
           conda install -c conda-forge conda-build
           conda install conda-verify
+      - name: Configure PATH
+        run: echo "$CONDA/bin" >> $GITHUB_PATH
+
       - name: Build and upload the conda packages
         uses: uibcdf/action-build-and-upload-conda-packages@v1.2.0
         with:
