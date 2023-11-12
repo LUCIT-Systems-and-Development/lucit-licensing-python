@@ -31,7 +31,8 @@ cp README.md dev/sphinx/source/readme.md
 cp SECURITY.md dev/sphinx/source/security.md
 
 mkdir -vp dev/sphinx/build
-ln -s ../../../docs dev/sphinx/build/html
 
 cd dev/sphinx
+rm build/html
+ln -s ../../../docs build/html
 make html -d

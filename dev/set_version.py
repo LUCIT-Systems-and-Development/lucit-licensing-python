@@ -6,7 +6,7 @@ import sys
 
 def replace_string_in_files(replace_string,
                             config_file_path="./dev/set_version_config.txt",
-                            log_file_path="set_version.log"):
+                            log_file_path="./dev/set_version.log"):
     with open(config_file_path, 'r', encoding='utf-8') as config_file:
         lines = config_file.readlines()
         search_string = lines[0].strip()
