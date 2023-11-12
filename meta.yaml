@@ -30,6 +30,11 @@ requirements:
 channels:
   - conda-forge
   - lucit
+  - default
+
+dependencies:
+  - anaconda-client
+  - conda-build
 
 test:
   imports:

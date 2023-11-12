@@ -22,10 +22,7 @@ jobs:
           auto-update-conda: false
           auto-activate-base: false
           show-channel-urls: true
-      - name: Install Conda Build and Conda Verify
-        run: |
-          conda install -c conda-forge conda-build
-          conda install conda-verify
+
       - name: Build and upload the conda packages
         uses: uibcdf/action-build-and-upload-conda-packages@v1.2.0
         with:
