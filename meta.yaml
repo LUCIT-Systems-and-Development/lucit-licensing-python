@@ -1,5 +1,5 @@
 {% set name = "lucit-licensing-python" %}
-{% set version = "1.7.5" %}
+{% set version = "1.7.6" %}
 
 package:
   name: {{ name|lower }}
@@ -48,7 +48,44 @@ test:
 about:
   summary: LUCIT Licensing Client Module
   description: |
-    {{ include_file('README.md') | indent(4) }}
+    [![Get a UNICORN Binance Suite License](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/unicorn-binance-suite/master/images/logo/LUCIT-UBS-License-Offer.png)](https://shop.lucit.services)
+    
+    [![Github](https://img.shields.io/badge/source-github-cbc2c8)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
+    [![GitHub Release](https://img.shields.io/github/release/LUCIT-Systems-and-Development/lucit-licensing-python.svg?label=github)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/releases)
+    [![GitHub Downloads](https://img.shields.io/github/downloads/LUCIT-Systems-and-Development/lucit-licensing-python/total?color=blue)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/releases)
+    [![Anaconda Release](https://anaconda.org/lucit/lucit-licensing-python/badges/version.svg)](https://anaconda.org/lucit/lucit-licensing-python)
+    [![Anaconda Downloads](https://anaconda.org/lucit/lucit-licensing-python/badges/downloads.svg)](https://anaconda.org/lucit/lucit-licensing-python)
+    [![PyPi Release](https://img.shields.io/pypi/v/lucit-licensing-python?color=blue)](https://pypi.org/project/lucit-licensing-python/)
+    [![PyPi Downloads](https://pepy.tech/badge/lucit-licensing-python)](https://pepy.tech/project/lucit-licensing-python)
+    [![License](https://img.shields.io/badge/license-LSOSL-blue)](https://lucit-licensing-python.docs.lucit.tech/license.html)
+    [![Supported Python Version](https://img.shields.io/pypi/pyversions/lucit_licensing_python.svg)](https://www.python.org/downloads/)
+    [![PyPI - Status](https://img.shields.io/pypi/status/lucit-licensing-python.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues)
+    [![codecov](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python/graph/badge.svg?token=Y95LLP231L)](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python)
+    [![Unit Tests](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/unit-tests.yml)
+    [![CodeQL](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/codeql-analysis.yml)
+    [![Build and Publish GH+PyPi](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml)
+    [![Build and Publish Anaconda](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_conda.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_conda.yml)
+    [![Read the Docs](https://img.shields.io/badge/read-%20docs-yellow)](https://lucit-licensing-python.docs.lucit.tech)
+    [![Telegram](https://img.shields.io/badge/chat-telegram-41ab8c)](https://t.me/unicorndevs)
+    [![Gitter](https://badges.gitter.im/lucit-licensing-python.svg)](https://app.gitter.im/#/room/#lucit-licensing-python:gitter.im)
+    
+    # LUCIT Licensing Python (Module)
+    
+    [Description](#description) | [Installation](#installation-and-upgrade) | [Change Log](#change-log) | [How To](#howto) | 
+    [Wiki](#wiki) | [Social](#social) | [Notifications](#receive-notifications) | 
+    [Bugs](#how-to-report-bugs-or-suggest-improvements) | 
+    [Contributing](#contributing) | [Commercial Support](#commercial-support)
+    
+    Python client module of the LUCIT Licensing Service.
+    
+    ## Description
+    
+    This module is used to verify [LUCIT software licenses](https://shop.lucit.services/software) and also provides the 
+    developer with a command line interface to interact with the LUCIT Licensing API. 
+    
+    If you have already installed modules of LUCIT like the 
+    [UNICORN Binance Suite](https://www.lucit.tech/unicorn-binance-suite.html), which use the `lucit-licensing-python` 
+    library, you have already installed the commandline tool `lucitlicmgr` automatically.
   dev_url: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python
   doc_url: https://lucit-licensing-python.docs.lucit.tech
   home: https://www.lucit.tech/lucit-licensing-python.html
