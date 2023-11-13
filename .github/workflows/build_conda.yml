@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         # os: [ubuntu-20.04, windows-2019, macos-11]
-        os: [macos-12]
+        os: [macos-11]
         python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
         exclude:
           - os: windows-2019
@@ -34,30 +34,18 @@ jobs:
           conda install conda-verify
           conda install -c anaconda anaconda-client
 
-#      - name: Configure PATH
-#        run: echo "$CONDA/bin" >> $GITHUB_PATH
-
       - name: Install Python Tools
         run: |
           pip install setuptools wheel --upgrade       
 
-      - name: Set up MacPort (only on macOS)
-        if: runner.os == 'macOS'
-        uses: melusina-org/setup-macports@v1
-
-      - name: Set up Xcode (only on macOS)
+      - name: Set CONDA_BUILD_SYSROOT for macOS
         if: runner.os == 'macOS'
         run: |
-          echo "port version"
-          port version
-          echo "sudo port install clang-12"
-          sudo port install clang-12
-          echo "sudo port select --set clang mp-clang-12"
-          sudo port select --set clang mp-clang-12
-          echo "export PATH=\"/opt/local/bin:\$PATH\""
-          export PATH="/opt/local/bin:$PATH"
-          echo $PATH
-          echo "######################################################################################################"
+          echo "CONDA_BUILD_SYSROOT: /opt/MacOSX10.10.sdk # [osx]" > conda_build_config.yaml
+
+      - name: Overview Build Tools (only on macOS)
+        if: runner.os == 'macOS'
+        run: |
           echo "xcodebuild -version"
           xcodebuild -version
           echo "clang --version"
@@ -68,8 +56,6 @@ jobs:
           xcrun --sdk macosx --show-sdk-path
           echo "xcrun --sdk macosx --show-sdk-version"
           xcrun --sdk macosx --show-sdk-version
-          echo "which -a ld"
-          which -a ld
           echo "which -a ld"
           which -a ld
 
