@@ -48,7 +48,7 @@ test:
 about:
   summary: LUCIT Licensing Client Module
   description: |
-    {{ read_file('README.md') | indent(4) }}
+    {{ include_file('README.md') | indent(4) }}
   dev_url: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python
   doc_url: https://lucit-licensing-python.docs.lucit.tech
   home: https://www.lucit.tech/lucit-licensing-python.html
