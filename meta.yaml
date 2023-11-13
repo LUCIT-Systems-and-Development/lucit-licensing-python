@@ -10,6 +10,8 @@ source:
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  entry_points:
+    - lucitlicmgr=lucit_licensing_python.cli:main
   number: 0
 
 requirements:
