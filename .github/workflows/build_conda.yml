@@ -43,8 +43,8 @@ jobs:
       - name: Set up Xcode (only on macOS)
         if: runner.os == 'macOS'
         run: |
-          echo "xcode-select -s /Applications/Xcode.app/Contents/Developer"
-          xcode-select -s /Applications/Xcode.app/Contents/Developer
+          echo "sudo xcode-select -s /Applications/Xcode.app/Contents/Developer"
+          sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
           echo "xcodebuild -version"
           xcodebuild -version
           echo "clang --version
