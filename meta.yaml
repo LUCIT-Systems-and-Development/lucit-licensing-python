@@ -1,5 +1,5 @@
 {% set name = "lucit-licensing-python" %}
-{% set version = "1.7.3" %}
+{% set version = "1.7.4" %}
 
 package:
   name: {{ name|lower }}
@@ -16,7 +16,6 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - cython
   host:
     - python
     - setuptools
@@ -49,8 +48,9 @@ test:
 about:
   summary: LUCIT Licensing Client Module
   description: |
-    {% set readme = load_setup_py_data().get('long_description', '') %}
-    {{ readme|indent(8) }}
+    {% block description %}
+    {% include 'README.md' %}
+    {% endblock %}
   dev_url: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python
   doc_url: https://lucit-licensing-python.docs.lucit.tech
   home: https://www.lucit.tech/lucit-licensing-python.html
