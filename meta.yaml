@@ -1,5 +1,5 @@
 {% set name = "lucit-licensing-python" %}
-{% set version = "1.7.6" %}
+{% set version = "1.7.7" %}
 
 package:
   name: {{ name|lower }}
@@ -9,7 +9,6 @@ source:
   path: .
 
 build:
-  noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 

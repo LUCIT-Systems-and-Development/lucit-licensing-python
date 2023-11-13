@@ -1,2 +1,2 @@
-1.7.6
+1.7.7
 meta.yaml,pyproject.toml,setup.py,README.md,.github/workflows/build_wheels.yml,dev/sphinx/source/conf.py,lucit_licensing_python/manager.py
