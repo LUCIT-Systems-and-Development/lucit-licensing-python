@@ -42,7 +42,7 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           sudo mkdir -p /opt/MacOSX10.10.sdk
-          sudo curl -L https://objects.githubusercontent.com/github-production-release-asset-2e65be/13597203/4880c500-ac28-11eb-82cd-b7931076ec6d?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231113%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231113T182547Z&X-Amz-Expires=300&X-Amz-Signature=ab9ffcee7b102953170f53b28c44268ce3f847577318f6b26a361ca542948340&X-Amz-SignedHeaders=host&actor_id=47597331&key_id=0&repo_id=13597203&response-content-disposition=attachment%3B%20filename%3DMacOSX10.10.sdk.tar.xz&response-content-type=application%2Foctet-stream | sudo tar -xzf - -C /opt/MacOSX10.10.sdk
+          sudo curl -L https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.10.sdk.tar.xz | sudo tar -xzf /opt/MacOSX10.10.sdk -C /opt/
 
       - name: Set CONDA_BUILD_SYSROOT (only on macOS)
         if: runner.os == 'macOS'
