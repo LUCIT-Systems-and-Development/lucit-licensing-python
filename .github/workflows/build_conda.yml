@@ -34,8 +34,8 @@ jobs:
           conda install conda-verify
           conda install -c anaconda anaconda-client
 
-      - name: Configure PATH
-        run: echo "$CONDA/bin" >> $GITHUB_PATH
+#      - name: Configure PATH
+#        run: echo "$CONDA/bin" >> $GITHUB_PATH
 
       - name: Install Python Tools
         run: |
