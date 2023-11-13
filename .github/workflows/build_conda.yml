@@ -41,12 +41,14 @@ jobs:
         run: |
           pip install setuptools wheel --upgrade       
 
+      - name: Set up MacPort
+        if: runner.os == 'macOS'
+        uses: melusina-org/setup-macports@v1
+
       - name: Set up Xcode (only on macOS)
-      - uses: melusina-org/setup-macports@v1
-        with:
-          parameters: 'testsuite/run-testsuite-on-macos-12.yaml'
         if: runner.os == 'macOS'
         run: |
+          port version
           echo "xcodebuild -version"
           xcodebuild -version
           echo "clang --version"
@@ -65,7 +67,7 @@ jobs:
           echo "which -a ld"
           which -a ld
           echo "port version"
-          port version
+
 
       - name: Build and upload the conda packages
         uses: uibcdf/action-build-and-upload-conda-packages@v1.2.0
