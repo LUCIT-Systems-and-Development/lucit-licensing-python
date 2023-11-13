@@ -46,14 +46,15 @@ test:
     - pip
 
 about:
-  home: https://www.lucit.tech/lucit-licensing-python.html
   summary: LUCIT Licensing Client Module
   description: |
-    {{ '%r'|format(read_file('README.md'))|indent(8) }}
-  license: LSOSL
-  license_file: LICENSE
+    {% set readme = load_setup_py_data().get('long_description', '') %}
+    {{ readme|indent(8) }}
   dev_url: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python
   doc_url: https://lucit-licensing-python.docs.lucit.tech
+  home: https://www.lucit.tech/lucit-licensing-python.html
+  license: LSOSL
+  license_file: LICENSE
 
 extra:
   recipe-maintainers:
