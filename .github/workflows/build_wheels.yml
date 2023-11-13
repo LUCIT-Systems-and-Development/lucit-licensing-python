@@ -1,6 +1,8 @@
 name: Build and Publish GitHub PyPi
 on:
   workflow_dispatch:
+    branches:
+      - main
 jobs:
   build_wheels:
     name: Build wheels on ${{ matrix.os }}

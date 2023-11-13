@@ -2,6 +2,8 @@ name: Build and Publish Anaconda
 
 on:
   workflow_dispatch:
+    branches:
+      - main
 
 jobs:
   conda_deployment_with_new_tag:
