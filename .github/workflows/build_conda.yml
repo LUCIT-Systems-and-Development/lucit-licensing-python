@@ -42,7 +42,8 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           sudo mkdir -p /opt/MacOSX10.10.sdk
-          sudo curl -L https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.10.sdk.tar.xz | sudo tar -xzf /opt/MacOSX10.10.sdk -C /opt/
+          sudo curl -L -o MacOSX10.10.sdk.tar.xz https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.10.sdk.tar.xz
+          sudo tar -xJf MacOSX10.10.sdk.tar.xz -C /opt/
 
       - name: Set CONDA_BUILD_SYSROOT (only on macOS)
         if: runner.os == 'macOS'
