@@ -23,7 +23,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           environment-file: environment.yml
-          auto-update-conda: false
+          auto-update-conda: true
           auto-activate-base: false
           show-channel-urls: true
 
@@ -57,9 +57,11 @@ jobs:
           xcrun --sdk macosx --show-sdk-version
           echo "which -a ld"
           which -a ld
-          echo "export PATH=\"/usr/bin:\$PATH\":"
+          echo "export PATH=\"/usr/bin:\$PATH\""
           export PATH="/usr/bin:$PATH"
-
+          echo $PATH
+          echo "which -a ld"
+          which -a ld
 
       - name: Build and upload the conda packages
         uses: uibcdf/action-build-and-upload-conda-packages@v1.2.0
