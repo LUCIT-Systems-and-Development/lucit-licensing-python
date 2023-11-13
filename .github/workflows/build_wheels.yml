@@ -1,4 +1,4 @@
-name: Build and Publish GitHub + PyPi
+name: Build and Publish GitHub+PyPi
 
 on:
   workflow_dispatch:

@@ -13,7 +13,8 @@
 [![codecov](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python/graph/badge.svg?token=Y95LLP231L)](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python)
 [![CodeQL](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/codeql-analysis.yml)
 [![Unit Tests](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/unit-tests.yml)
-[![Build and Publish](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml)
+[![Build and Publish GitHub+PyPi](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml)
+[![Build and Publish Anaconda](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_conda.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_conda.yml)
 [![Azure Pipelines](https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/lucit-licensing-python-feedstock?branchName=main)](https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=15698&branchName=main)
 [![Read the Docs](https://img.shields.io/badge/read-%20docs-yellow)](https://lucit-licensing-python.docs.lucit.tech)
 [![Telegram](https://img.shields.io/badge/chat-telegram-41ab8c)](https://t.me/unicorndevs)
@@ -231,10 +232,10 @@ If you run into errors during the installation take a look [here](https://github
 ### A Cython binary, PyPy or source code based CPython wheel of the latest version with `pip` from [PyPI](https://pypi.org/project/lucit-licensing-python/)
 `pip install lucit-licensing-python --upgrade`
 
-### A conda package of the latest release with `conda` from [Anaconda](https://anaconda.org/conda-forge/lucit-licensing-python) via [CONDA-FORGE](https://conda-forge.org).
-`conda install -c conda-forge lucit-licensing-python`
+### A Conda Package of the latest version with `conda` from [Anaconda](https://anaconda.org/lucit)
+`conda install -c lucit lucit-licensing-python`
 
-`conda update -c conda-forge lucit-licensing-python`
+`conda update -c lucit lucit-licensing-python`
 
 ### From source of the latest release with PIP from [GitHub](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
 #### Linux, macOS, ...
