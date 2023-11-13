@@ -68,6 +68,7 @@ jobs:
           echo $PATH
           echo "which -a ld"
           which -a ld
+          brew install llvm@12
 
       - name: Build and upload the conda packages
         uses: uibcdf/action-build-and-upload-conda-packages@v1.2.0
