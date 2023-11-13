@@ -46,7 +46,7 @@ test:
     - pip
 
 about:
-  home: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python
+  home: https://www.lucit.tech/lucit-licensing-python.html
   summary: LUCIT Licensing Client Module
   description: |
     {{ '%r'|format(read_file('README.md'))|indent(8) }}
