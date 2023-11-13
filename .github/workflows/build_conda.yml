@@ -57,8 +57,9 @@ jobs:
           xcrun --sdk macosx --show-sdk-version
           echo "which -a ld"
           which -a ld
-          echo "Adjust PATH for macOS build:"
-          echo "/usr/bin:$PATH" >> $GITHUB_ENV
+          echo "export PATH=\"/usr/bin:\$PATH\":"
+          export PATH="/usr/bin:$PATH"
+
 
       - name: Build and upload the conda packages
         uses: uibcdf/action-build-and-upload-conda-packages@v1.2.0
