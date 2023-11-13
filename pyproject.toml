@@ -5,7 +5,7 @@ description = "LUCIT Licensing Client Module"
 authors = ["LUCIT Systems and Development <info@lucit.tech>"]
 license = "LSOSL - LUCIT Synergetic Open Source License"
 readme = "README.md"
-homepage = "https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python"
+homepage = "https://www.lucit.tech/lucit-licensing-python.html"
 documentation = "https://lucit-licensing-python.docs.lucit.tech"
 repository = "https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python"
 

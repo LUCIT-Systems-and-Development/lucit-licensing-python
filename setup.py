@@ -17,7 +17,12 @@
 # All rights reserved.
 
 from setuptools import setup
-from Cython.Build import cythonize
+try:
+    from Cython.Build import cythonize
+except ImportError:
+    cythonize = None
+    print("setup.py loaded without Cython!")
+
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
