@@ -41,21 +41,16 @@ jobs:
         run: |
           pip install setuptools wheel --upgrade       
 
-      - name: Set up Homebrew
-        id: set-up-homebrew
-        if: runner.os == 'macOS'
-        uses: Homebrew/actions/setup-homebrew@master
+      - name: 'Run testsuite'
+        run: development/testsuite
+      - uses: melusina-org/setup-macports@v1
+        with:
+          parameters: 'testsuite/run-testsuite-on-macos-12.yaml'
+      - run: port version
 
       - name: Set up Xcode (only on macOS)
         if: runner.os == 'macOS'
         run: |
-          brew install llvm@12
-
-      - name: Set up Xcode (only on macOS)
-        if: runner.os == 'macOS'
-        run: |
-          #          echo "sudo xcode-select -s /Applications/Xcode.app/Contents/Developer"
-          #          sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
           echo "xcodebuild -version"
           xcodebuild -version
           echo "clang --version"
