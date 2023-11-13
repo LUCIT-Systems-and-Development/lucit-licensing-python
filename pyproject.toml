@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lucit-licensing-python"
-version = "1.7.7"
+version = "1.7.8"
 description = "LUCIT Licensing Client Module"
 authors = ["LUCIT Systems and Development <info@lucit.tech>"]
 license = "LSOSL - LUCIT Synergetic Open Source License"

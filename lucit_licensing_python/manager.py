@@ -48,7 +48,7 @@ class LucitLicensingManager(threading.Thread):
                  parent_shutdown_function: Callable[[bool], bool] = None,
                  needed_license_type: str = None):
         super().__init__()
-        self.module_version: str = "1.7.7"
+        self.module_version: str = "1.7.8"
         self.parent_shutdown_function = parent_shutdown_function
         self.is_started = start
         self.sigterm = False
