@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
     branches:
       - main
-
 jobs:
   conda_deployment_with_new_tag:
     name: Build conda on ${{ matrix.os }} with Python ${{ matrix.python-version }}
@@ -12,14 +11,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - os: ubuntu-20.04
-            python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        os: [macos-11]
+#        os: [ubuntu-20.04, windows-2019, macos-11]
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
+        exclude:
           - os: windows-2019
-            python-version: ["3.8", "3.9", "3.10", "3.11"]
-          - os: macos-11
-            python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
-
+            version: "3.12"
     steps:
       - uses: actions/checkout@v4
       - name: Conda environment creation and activation
