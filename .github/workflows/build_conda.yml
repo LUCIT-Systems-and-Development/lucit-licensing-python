@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           environment-file: environment.yml
-          auto-update-conda: true
+          auto-update-conda: false
           auto-activate-base: false
           show-channel-urls: true
 
@@ -48,7 +48,10 @@ jobs:
       - name: Set up Xcode (only on macOS)
         if: runner.os == 'macOS'
         run: |
+          echo "port version"
           port version
+          echo "sudo port install clang-12"
+          sudo port install clang-12
           echo "xcodebuild -version"
           xcodebuild -version
           echo "clang --version"
@@ -66,7 +69,6 @@ jobs:
           echo $PATH
           echo "which -a ld"
           which -a ld
-          echo "port version"
 
 
       - name: Build and upload the conda packages
