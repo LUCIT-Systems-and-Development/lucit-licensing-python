@@ -229,7 +229,7 @@ The current dependencies are listed
 If you run into errors during the installation take a look [here](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/wiki/Installation).
 
 ### A Cython binary, PyPy or source code based CPython wheel of the latest version with `pip` from [PyPI](https://pypi.org/project/lucit-licensing-python/)
-Our [Cython](https://cython.org/) and [PyPy](https://www.pypy.org/) Wheels are available on [PyPI](https://pypi.org/, 
+Our [Cython](https://cython.org/) and [PyPy](https://www.pypy.org/) Wheels are available on [PyPI](https://pypi.org/), 
 these wheels offer significant advantages for Python developers:
 - ***Performance Boost with Cython Wheels:*** 
   Cython is a programming language that supplements Python with static typing and C-level performance. By compiling 
