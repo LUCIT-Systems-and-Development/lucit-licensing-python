@@ -60,9 +60,6 @@ jobs:
         with:
           meta_yaml_dir: .
           overwrite: False
-          platform_linux-64: True
-          platform_osx-64: True
-          platform_win-64: True
           python-version: ${{ matrix.python-version }}
           user: lucit
           label: main
