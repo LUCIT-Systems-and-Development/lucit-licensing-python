@@ -286,6 +286,7 @@ or the [current master branch](https://github.com/LUCIT-Systems-and-Development/
  and use:
 
 - ./environment.yml
+- ./meta.yaml
 - ./pyproject.toml
 - ./requirements.txt
 - ./setup.py

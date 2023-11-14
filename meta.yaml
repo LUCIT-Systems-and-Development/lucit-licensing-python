@@ -336,6 +336,7 @@ about:
      and use:
     
     - ./environment.yml
+    - ./meta.yaml
     - ./pyproject.toml
     - ./requirements.txt
     - ./setup.py
