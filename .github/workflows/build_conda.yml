@@ -8,7 +8,6 @@ on:
 jobs:
   build_noarch_package:
     runs-on: ubuntu-latest
-    needs: build_conda_packages
     steps:
       - uses: actions/checkout@v4
       - name: Setup Conda
@@ -34,3 +33,4 @@ jobs:
       - name: Upload noarch Conda package
         run: |
           anaconda upload ./build-output/noarch/*.tar.bz2 --user lucit --token ${{ secrets.ANACONDA_API_TOKEN }}
+
