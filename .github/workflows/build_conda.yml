@@ -36,4 +36,4 @@ jobs:
 
       - name: Upload noarch Conda package
         run: |
-          anaconda upload ./build-output/noarch/*.tar.bz2 --channel lucit --token ${{ secrets.ANACONDA_API_TOKEN }}
+          anaconda --token ${{ secrets.ANACONDA_API_TOKEN }} upload --user lucit ./build-output/noarch/*.tar.bz2 
