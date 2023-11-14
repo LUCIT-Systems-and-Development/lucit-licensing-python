@@ -59,8 +59,11 @@ jobs:
         uses: uibcdf/action-build-and-upload-conda-packages@v1.2.0
         with:
           meta_yaml_dir: .
-          python-version: ${{ matrix.python-version }}
           overwrite: True
+          platform_linux-64: True
+          platform_osx-64: True
+          platform_win-64: True
+          python-version: ${{ matrix.python-version }}
           user: lucit
           label: main
           token: ${{ secrets.ANACONDA_API_TOKEN }}
