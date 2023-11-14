@@ -1,8 +1,10 @@
 name: lucit_licensing_python
+
 channels:
   - lucit
   - conda-forge
   - defaults
+
 dependencies:
 - python>=3.7
 - pip:
