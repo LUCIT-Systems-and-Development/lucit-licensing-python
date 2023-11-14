@@ -251,12 +251,9 @@ configuration.
 `pip install lucit-licensing-python --upgrade`
 
 ### A Conda Package of the latest version with `conda` from [Anaconda](https://anaconda.org/lucit)
-The `lucit-licensing-python` package is available through our [custom Anaconda channel](https://anaconda.org/lucit) 
-named `lucit`. For optimal compatibility and performance, it is recommended to source the necessary dependencies from 
-the [`conda-forge` channel](https://anaconda.org/conda-forge). We have already preconfigured these settings in the 
-environment.yml and meta.yaml files. This ensures that when you install our package, the dependencies are automatically 
-fetched from the appropriate channels, streamlining your installation process and ensuring that you have the right 
-versions of each dependency.
+The `lucit-licensing-python` package is available in [Conda](https://docs.conda.io/en/latest/) through our 
+[custom Anaconda channel](https://anaconda.org/lucit) named `lucit`. For optimal compatibility and performance, it is recommended to source 
+the necessary dependencies from the [`conda-forge` channel](https://anaconda.org/conda-forge). 
 
 #### Installation
 `conda install -c lucit lucit-licensing-python`
