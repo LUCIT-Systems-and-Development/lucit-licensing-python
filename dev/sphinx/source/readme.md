@@ -229,11 +229,40 @@ The current dependencies are listed
 If you run into errors during the installation take a look [here](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/wiki/Installation).
 
 ### A Cython binary, PyPy or source code based CPython wheel of the latest version with `pip` from [PyPI](https://pypi.org/project/lucit-licensing-python/)
+We are pleased to announce that our [Cython](https://cython.org/) and [PyPy](https://www.pypy.org/) Wheels are now 
+available on [PyPI](https://pypi.org/). These wheels offer significant advantages for Python developers:
+
+- ***Performance Boost with Cython Wheels:*** 
+  Cython is a programming language that supplements Python with static typing and C-level performance. By compiling 
+  Python code into C, Cython Wheels can significantly enhance the execution speed of Python code, especially in 
+  computationally intensive tasks. This means faster runtimes and more efficient processing for users of our package. 
+- ***PyPy Wheels for Enhanced Efficiency:*** 
+  PyPy is an alternative Python interpreter known for its speed and efficiency. It uses Just-In-Time (JIT) compilation, 
+  which can dramatically improve the performance of Python code. Our PyPy Wheels are tailored for compatibility with 
+  PyPy, allowing users to leverage this speed advantage seamlessly.
+
+Both Cython and PyPy Wheels on PyPI make the installation process simpler and more straightforward. They ensure that 
+you get the optimized version of our package with minimal setup, allowing you to focus on development rather than 
+configuration.
+
+#### Installation
+`pip install lucit-licensing-python`
+
+#### Update
 `pip install lucit-licensing-python --upgrade`
 
 ### A Conda Package of the latest version with `conda` from [Anaconda](https://anaconda.org/lucit)
+The `lucit-licensing-python` package is available through our [custom Anaconda channel](https://anaconda.org/lucit) 
+named `lucit`. For optimal compatibility and performance, it is recommended to source the necessary dependencies from 
+the [`conda-forge` channel](https://anaconda.org/conda-forge). We have already preconfigured these settings in the 
+environment.yml and meta.yaml files. This ensures that when you install our package, the dependencies are automatically 
+fetched from the appropriate channels, streamlining your installation process and ensuring that you have the right 
+versions of each dependency.
+
+#### Installation
 `conda install -c lucit lucit-licensing-python`
 
+#### Update
 `conda update -c lucit lucit-licensing-python`
 
 ### From source of the latest release with PIP from [GitHub](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
@@ -247,6 +276,7 @@ Use the below command with the version (such as 1.8.0) you determined
 [here](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/releases/latest):
 
 `pip install https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/archive/1.8.0.tar.gz --upgrade`
+
 ### From the latest source (dev-stage) with PIP from [GitHub](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
 This is not a release version and can not be considered to be stable!
 
