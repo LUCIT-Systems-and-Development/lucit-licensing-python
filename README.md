@@ -258,7 +258,11 @@ For optimal compatibility and performance, it is recommended to source the neces
 [`conda-forge` channel](https://anaconda.org/conda-forge). 
 
 #### Installation
-`conda install -c lucit lucit-licensing-python`
+```
+conda config --add channels conda-forge
+conda config --add channels lucit
+conda install -c lucit lucit-licensing-python
+```
 
 #### Update
 `conda update -c lucit lucit-licensing-python`

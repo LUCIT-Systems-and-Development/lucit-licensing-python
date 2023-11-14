@@ -1,8 +1,9 @@
 # Changes must also be made in the following files:
 # ./environment.yml
+# ./meta.yaml
 # ./pyproject.toml
 # ./setup.py
-# https://github.com/conda-forge/lucit-licensing-python-feedstock/blob/main/recipe/meta.yaml
+
 
 Cython
 requests
