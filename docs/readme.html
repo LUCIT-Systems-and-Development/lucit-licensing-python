@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>LUCIT Licensing Python (Module) &#8212; lucit-licensing-python 1.8.0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUCIT Licensing Python (Module) &#8212; lucit-licensing-python 1.8.1 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
     <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?v=fdf8e9ae" />
@@ -228,9 +228,9 @@
 <a class="reference external" href="https://lucit-licensing-python.docs.lucit.tech/license.html"><img alt="License" src="https://img.shields.io/badge/license-LSOSL-blue" /></a>
 <a class="reference external" href="https://www.python.org/downloads/"><img alt="Supported Python Version" src="https://img.shields.io/pypi/pyversions/lucit_licensing_python.svg" /></a>
 <a class="reference external" href="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues"><img alt="PyPI - Status" src="https://img.shields.io/pypi/status/lucit-licensing-python.svg" /></a>
-<a class="reference external" href="https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python"><img alt="codecov" src="https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python/graph/badge.svg?token=Y95LLP231L" /></a>
-<a class="reference external" href="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/unit-tests.yml"><img alt="Unit Tests" src="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/unit-tests.yml/badge.svg" /></a>
 <a class="reference external" href="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/codeql-analysis.yml"><img alt="CodeQL" src="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/codeql-analysis.yml/badge.svg" /></a>
+<a class="reference external" href="https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python"><img alt="codecov" src="https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python/graph/badge.svg?token=Y95LLP231L" /></a>
+<a class="reference external" href="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/unit-tests.yml"><img alt="Unittests" src="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/unit-tests.yml/badge.svg" /></a>
 <a class="reference external" href="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml"><img alt="Build and Publish GH+PyPi" src="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml/badge.svg" /></a>
 <a class="reference external" href="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_conda.yml"><img alt="Build and Publish Anaconda" src="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_conda.yml/badge.svg" /></a>
 <a class="reference external" href="https://lucit-licensing-python.docs.lucit.tech"><img alt="Read the Docs" src="https://img.shields.io/badge/read-%20docs-yellow" /></a>
@@ -444,7 +444,11 @@ configuration.</p>
 <a class="reference external" href="https://anaconda.org/conda-forge"><code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel</a>.</p>
 <section id="id1">
 <h4>Installation<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">lucit</span> <span class="pre">lucit-licensing-python</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">config</span> <span class="o">--</span><span class="n">add</span> <span class="n">channels</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
+<span class="n">conda</span> <span class="n">config</span> <span class="o">--</span><span class="n">add</span> <span class="n">channels</span> <span class="n">lucit</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">lucit</span> <span class="n">lucit</span><span class="o">-</span><span class="n">licensing</span><span class="o">-</span><span class="n">python</span>
+</pre></div>
+</div>
 </section>
 <section id="id2">
 <h4>Update<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
@@ -460,9 +464,9 @@ configuration.</p>
 </section>
 <section id="windows">
 <h4>Windows<a class="headerlink" href="#windows" title="Link to this heading">¶</a></h4>
-<p>Use the below command with the version (such as 1.8.0) you determined
+<p>Use the below command with the version (such as 1.8.1) you determined
 <a class="reference external" href="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/releases/latest">here</a>:</p>
-<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/archive/1.8.0.tar.gz</span> <span class="pre">--upgrade</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/archive/1.8.1.tar.gz</span> <span class="pre">--upgrade</span></code></p>
 </section>
 </section>
 <section id="from-the-latest-source-dev-stage-with-pip-from-github">
@@ -512,7 +516,12 @@ and use:</p>
 </section>
 <section id="receive-notifications">
 <h2>Receive Notifications<a class="headerlink" href="#receive-notifications" title="Link to this heading">¶</a></h2>
-<p>Follow us on <a class="reference external" href="https://www.linkedin.com/company/lucit-systems-and-development">LinkedIn</a>,
+<p>To receive notifications on available updates you can
+<a class="reference external" href="https://github.com/LUCIT-Systems-and-Development/unicorn-binance-rest-api/watchers"><img alt="watch" src="https://raw.githubusercontent.com/lucit-systems-and-development/unicorn-binance-rest-api/master/images/misc/watch.png" /></a>
+the repository on <a class="reference external" href="https://github.com/LUCIT-Systems-and-Development/unicorn-binance-rest-api">GitHub</a>.</p>
+<p>Follow us on <a class="reference external" href="https://github.com/LUCIT-Systems-and-Development">GitHub</a>, <a class="reference external" href="https://medium.lucit.tech/">Medium</a>,
+<a class="reference external" href="https://www.youtube.com/&#64;LUCIT_Systems_and_Development">YouTube</a>,
+<a class="reference external" href="https://www.linkedin.com/company/lucit-systems-and-development">LinkedIn</a>,
 <a class="reference external" href="https://twitter.com/LUCIT_SysDev">X</a> or <a class="reference external" href="https://www.facebook.com/lucit.systems.and.development">Facebook</a>!</p>
 </section>
 <section id="how-to-report-bugs-or-suggest-improvements">
@@ -717,7 +726,7 @@ contribute follow
     <div class="footer">
     &copy; <a href="/license.html">Copyright</a> 2023-2023, LUCIT Systems and Development. All Rights Reserved..
     See <a href="/license.html">License</a> for more information.<br />
-    Last updated on Nov 14 2023 at 05:15 (CET).
+    Last updated on Nov 15 2023 at 14:21 (CET).
     <a href="https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues/new/choose">Found a bug</a>?
     <br />
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.

@@ -10,9 +10,9 @@
 [![License](https://img.shields.io/badge/license-LSOSL-blue)](https://lucit-licensing-python.docs.lucit.tech/license.html)
 [![Supported Python Version](https://img.shields.io/pypi/pyversions/lucit_licensing_python.svg)](https://www.python.org/downloads/)
 [![PyPI - Status](https://img.shields.io/pypi/status/lucit-licensing-python.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/issues)
-[![codecov](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python/graph/badge.svg?token=Y95LLP231L)](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python)
-[![Unit Tests](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/unit-tests.yml)
 [![CodeQL](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/codeql-analysis.yml)
+[![codecov](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python/graph/badge.svg?token=Y95LLP231L)](https://codecov.io/gh/LUCIT-Systems-and-Development/lucit-licensing-python)
+[![Unittests](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/unit-tests.yml)
 [![Build and Publish GH+PyPi](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml)
 [![Build and Publish Anaconda](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_conda.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_conda.yml)
 [![Read the Docs](https://img.shields.io/badge/read-%20docs-yellow)](https://lucit-licensing-python.docs.lucit.tech)
@@ -258,7 +258,11 @@ For optimal compatibility and performance, it is recommended to source the neces
 [`conda-forge` channel](https://anaconda.org/conda-forge). 
 
 #### Installation
-`conda install -c lucit lucit-licensing-python`
+```
+conda config --add channels conda-forge
+conda config --add channels lucit
+conda install -c lucit lucit-licensing-python
+```
 
 #### Update
 `conda update -c lucit lucit-licensing-python`
@@ -270,10 +274,10 @@ Run in bash:
 `pip install https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/archive/$(curl -s https://api.github.com/repos/LUCIT-Systems-and-Development/lucit-licensing-python/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")').tar.gz --upgrade`
 
 #### Windows
-Use the below command with the version (such as 1.8.0) you determined 
+Use the below command with the version (such as 1.8.1) you determined 
 [here](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/releases/latest):
 
-`pip install https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/archive/1.8.0.tar.gz --upgrade`
+`pip install https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/archive/1.8.1.tar.gz --upgrade`
 
 ### From the latest source (dev-stage) with PIP from [GitHub](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
 This is not a release version and can not be considered to be stable!
@@ -309,7 +313,13 @@ or the [current master branch](https://github.com/LUCIT-Systems-and-Development/
 - [https://t.me/unicorndevs](https://t.me/unicorndevs)
 
 ## Receive Notifications
-Follow us on [LinkedIn](https://www.linkedin.com/company/lucit-systems-and-development), 
+To receive notifications on available updates you can 
+[![watch](https://raw.githubusercontent.com/lucit-systems-and-development/unicorn-binance-rest-api/master/images/misc/watch.png)](https://github.com/LUCIT-Systems-and-Development/unicorn-binance-rest-api/watchers) 
+the repository on [GitHub](https://github.com/LUCIT-Systems-and-Development/unicorn-binance-rest-api).
+
+Follow us on [GitHub](https://github.com/LUCIT-Systems-and-Development), [Medium](https://medium.lucit.tech/),
+[YouTube](https://www.youtube.com/@LUCIT_Systems_and_Development), 
+[LinkedIn](https://www.linkedin.com/company/lucit-systems-and-development), 
 [X](https://twitter.com/LUCIT_SysDev) or [Facebook](https://www.facebook.com/lucit.systems.and.development)!
 
 ## How to report Bugs or suggest Improvements?
