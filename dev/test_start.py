@@ -16,10 +16,13 @@ from lucit_licensing_python.exceptions import NoValidatedLucitLicense
 class LTC:
     def __init__(self):
         self.sigterm = False
-        self.llm = LucitLicensingManager(parent_shutdown_function=self.close,
+        self.llm = LucitLicensingManager(api_secret=None,
+                                         license_ini=None,
+                                         license_profile=None,
+                                         license_token=None,
+                                         parent_shutdown_function=self.close,
                                          program_used="unicorn-binance-websocket-api",
                                          needed_license_type="UNICORN-BINANCE-SUITE",
-                                         license_profile="LUCIT",
                                          start=True)
         licensing_exception = self.llm.get_license_exception()
         if licensing_exception is not None:

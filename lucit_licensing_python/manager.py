@@ -33,7 +33,7 @@ from operator import itemgetter
 from pathlib import Path
 from requests.exceptions import ConnectionError, RequestException, HTTPError
 from simplejson.errors import JSONDecodeError
-from typing import Callable
+from typing import Optional, Callable
 try:
     from exceptions import NoValidatedLucitLicense
 except ModuleNotFoundError:
@@ -43,13 +43,17 @@ logger = logging.getLogger("lucit_licensing_python")
 
 
 class LucitLicensingManager(threading.Thread):
-    def __init__(self, api_secret: str = None, license_token: str = None,
-                 license_ini: str = None, license_profile: str = None,
-                 program_used: str = None, start: bool = True,
+    def __init__(self,
+                 api_secret: Optional[str] = None,
+                 license_token: Optional[str] = None,
+                 license_ini: Optional[str] = None,
+                 license_profile: Optional[str] = None,
+                 program_used: Optional[str] = None,
+                 start: bool = True,
                  parent_shutdown_function: Callable[[bool], bool] = None,
-                 needed_license_type: str = None):
+                 needed_license_type: Optional[str] = None):
         super().__init__()
-        self.module_version: str = "1.8.0"
+        self.module_version: str = "1.8.1"
         self.parent_shutdown_function = parent_shutdown_function
         self.is_started = start
         self.sigterm = False
