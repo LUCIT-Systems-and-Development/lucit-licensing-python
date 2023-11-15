@@ -11,7 +11,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## 1.8.0.dev (development stage/unreleased/unstable)
 ## 1.8.0
-- Ported to Anaconda 
+- Building conda packages and distribute them via https://anaconda.org/lucit
 
 ## 1.7.0
 ### Changed
