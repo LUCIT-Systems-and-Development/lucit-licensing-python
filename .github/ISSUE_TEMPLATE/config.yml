@@ -11,4 +11,7 @@ contact_links:
     about: The complete LUCIT Licensing Python Documentation.
   - name: Get Professional and Fast Support
     url: https://www.lucit.tech/get-support.html
-    about: Contact the LUCIT Support Team.
+    about: Contact the LUCIT Development Team.
+  - name: Get a LUCIT License
+    url: https://shop.lucit.services/software
+    about: LUCIT Online Shop
