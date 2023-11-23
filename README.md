@@ -231,12 +231,12 @@ If you run into errors during the installation take a look [here](https://github
 ### A Cython binary, PyPy or source code based CPython wheel of the latest version with `pip` from [PyPI](https://pypi.org/project/lucit-licensing-python/)
 Our [Cython](https://cython.org/) and [PyPy](https://www.pypy.org/) Wheels are available on [PyPI](https://pypi.org/), 
 these wheels offer significant advantages for Python developers:
-- ***Performance Boost with Cython Wheels:*** 
-  Cython is a programming language that supplements Python with static typing and C-level performance. By compiling 
+
+- ***Performance Boost with Cython Wheels:*** Cython is a programming language that supplements Python with static typing and C-level performance. By compiling 
   Python code into C, Cython Wheels can significantly enhance the execution speed of Python code, especially in 
   computationally intensive tasks. This means faster runtimes and more efficient processing for users of our package. 
-- ***PyPy Wheels for Enhanced Efficiency:*** 
-  PyPy is an alternative Python interpreter known for its speed and efficiency. It uses Just-In-Time (JIT) compilation, 
+
+- ***PyPy Wheels for Enhanced Efficiency:*** PyPy is an alternative Python interpreter known for its speed and efficiency. It uses Just-In-Time (JIT) compilation, 
   which can dramatically improve the performance of Python code. Our PyPy Wheels are tailored for compatibility with 
   PyPy, allowing users to leverage this speed advantage seamlessly.
 
@@ -251,7 +251,8 @@ configuration.
 `pip install lucit-licensing-python --upgrade`
 
 ### A Conda Package of the latest version with `conda` from [Anaconda](https://anaconda.org/lucit)
-The `lucit-licensing-python` package is available with [Conda](https://docs.conda.io/en/latest/) through the 
+The `lucit-licensing-python` package is also available as a Cython version for the `linux-64`, `osx-64` 
+and `win-64` architectures withh [Conda](https://docs.conda.io/en/latest/) through the 
 [`lucit` channel](https://anaconda.org/lucit). 
 
 For optimal compatibility and performance, it is recommended to source the necessary dependencies from the 
