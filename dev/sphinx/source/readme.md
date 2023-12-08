@@ -1,10 +1,10 @@
 [![Get a UNICORN Binance Suite License](https://raw.githubusercontent.com/LUCIT-Systems-and-Development/unicorn-binance-suite/master/images/logo/LUCIT-UBS-License-Offer.png)](https://shop.lucit.services)
 
-[![Github](https://img.shields.io/badge/source-github-cbc2c8)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
+
 [![GitHub Release](https://img.shields.io/github/release/LUCIT-Systems-and-Development/lucit-licensing-python.svg?label=github)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/releases)
 [![GitHub Downloads](https://img.shields.io/github/downloads/LUCIT-Systems-and-Development/lucit-licensing-python/total?color=blue)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/releases)
-[![Anaconda Release](https://anaconda.org/lucit/lucit-licensing-python/badges/version.svg)](https://anaconda.org/lucit/lucit-licensing-python)
-[![Anaconda Downloads](https://anaconda.org/lucit/lucit-licensing-python/badges/downloads.svg)](https://anaconda.org/lucit/lucit-licensing-python)
+![Anaconda Release](https://img.shields.io/conda/v/lucit/lucit-licensing-python?color=blue)
+![Anaconda Downloads](https://img.shields.io/conda/dn/lucit/lucit-licensing-python?color=blue)
 [![PyPi Release](https://img.shields.io/pypi/v/lucit-licensing-python?color=blue)](https://pypi.org/project/lucit-licensing-python/)
 [![PyPi Downloads](https://pepy.tech/badge/lucit-licensing-python)](https://pepy.tech/project/lucit-licensing-python)
 [![License](https://img.shields.io/badge/license-LSOSL-blue)](https://lucit-licensing-python.docs.lucit.tech/license.html)
@@ -16,8 +16,10 @@
 [![Build and Publish GH+PyPi](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_wheels.yml)
 [![Build and Publish Anaconda](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_conda.yml/badge.svg)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/actions/workflows/build_conda.yml)
 [![Read the Docs](https://img.shields.io/badge/read-%20docs-yellow)](https://lucit-licensing-python.docs.lucit.tech)
-[![Telegram](https://img.shields.io/badge/chat-telegram-41ab8c)](https://t.me/unicorndevs)
-[![Gitter](https://badges.gitter.im/lucit-licensing-python.svg)](https://app.gitter.im/#/room/#lucit-licensing-python:gitter.im)
+[![Github](https://img.shields.io/badge/source-github-cbc2c8)](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
+[![Telegram](https://img.shields.io/badge/community-telegram-41ab8c)](https://t.me/unicorndevs)
+[![Gitter](https://img.shields.io/badge/community-gitter-41ab8c)](https://app.gitter.im/#/room/#lucit-licensing-python:gitter.im)
+[![Get Free Professional Support](https://img.shields.io/badge/chat-lucit%20support-004166)](https://www.lucit.tech/get-support.html)
 
 # LUCIT Licensing Python (Module)
 
@@ -231,12 +233,12 @@ If you run into errors during the installation take a look [here](https://github
 ### A Cython binary, PyPy or source code based CPython wheel of the latest version with `pip` from [PyPI](https://pypi.org/project/lucit-licensing-python/)
 Our [Cython](https://cython.org/) and [PyPy](https://www.pypy.org/) Wheels are available on [PyPI](https://pypi.org/), 
 these wheels offer significant advantages for Python developers:
-- ***Performance Boost with Cython Wheels:*** 
-  Cython is a programming language that supplements Python with static typing and C-level performance. By compiling 
+
+- ***Performance Boost with Cython Wheels:*** Cython is a programming language that supplements Python with static typing and C-level performance. By compiling 
   Python code into C, Cython Wheels can significantly enhance the execution speed of Python code, especially in 
   computationally intensive tasks. This means faster runtimes and more efficient processing for users of our package. 
-- ***PyPy Wheels for Enhanced Efficiency:*** 
-  PyPy is an alternative Python interpreter known for its speed and efficiency. It uses Just-In-Time (JIT) compilation, 
+
+- ***PyPy Wheels for Enhanced Efficiency:*** PyPy is an alternative Python interpreter known for its speed and efficiency. It uses Just-In-Time (JIT) compilation, 
   which can dramatically improve the performance of Python code. Our PyPy Wheels are tailored for compatibility with 
   PyPy, allowing users to leverage this speed advantage seamlessly.
 
@@ -251,7 +253,8 @@ configuration.
 `pip install lucit-licensing-python --upgrade`
 
 ### A Conda Package of the latest version with `conda` from [Anaconda](https://anaconda.org/lucit)
-The `lucit-licensing-python` package is available with [Conda](https://docs.conda.io/en/latest/) through the 
+The `lucit-licensing-python` package is also available as a Cython version for the `linux-64`, `osx-64` 
+and `win-64` architectures with [Conda](https://docs.conda.io/en/latest/) through the 
 [`lucit` channel](https://anaconda.org/lucit). 
 
 For optimal compatibility and performance, it is recommended to source the necessary dependencies from the 
@@ -302,7 +305,7 @@ or the [current master branch](https://github.com/LUCIT-Systems-and-Development/
 - [How to Obtain and Use a Unicorn Binance Suite License Key and Run the UBS Module According to Best Practice](https://medium.lucit.tech/how-to-obtain-and-use-a-unicorn-binance-suite-license-key-and-run-the-ubs-module-according-to-best-87b0088124a8)
 
 ## Project Homepage
-[https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
+[https://www.lucit.tech/lucit-licensing-python.html](https://www.lucit.tech/lucit-licensing-python.html)
 
 ## Wiki
 [https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/wiki](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/wiki)
