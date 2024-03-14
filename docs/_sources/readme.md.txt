@@ -225,6 +225,8 @@ $ lucitlicmgr --help
 ## Installation and Upgrade
 The module requires Python 3.7 or above.
 
+For Anaconda we offer packages only from Python version 3.8 and higher.
+
 The current dependencies are listed 
 [here](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/blob/master/requirements.txt).
 
