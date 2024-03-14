@@ -140,11 +140,11 @@ class LucitLicensingManager(threading.Thread):
             logger.debug(f"LUCIT License Manager is ready!")
 
     def __enter__(self):
-        logger.debug(f"Entering 'with-context' ...")
+        logger.debug(f"Entering with-context of LucitLicensingManager() ...")
         return self
 
     def __exit__(self, exc_type, exc_value, error_traceback):
-        logger.debug(f"Leaving 'with-context' ...")
+        logger.debug(f"Leaving with-context of LucitLicensingManager() ...")
         if self.is_started:
             self.stop()
         if exc_type is not None:
