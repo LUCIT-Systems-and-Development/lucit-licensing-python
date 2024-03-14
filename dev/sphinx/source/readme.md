@@ -246,6 +246,10 @@ Both Cython and PyPy Wheels on PyPI make the installation process simpler and mo
 you get the optimized version of our package with minimal setup, allowing you to focus on development rather than 
 configuration.
 
+On Raspberry Pi and other architectures for which there are no pre-compiled versions, the package can still be 
+installed with PIP. PIP then compiles the package locally on the target system during installation. Please be patient, 
+this may take some time!
+
 #### Installation
 `pip install lucit-licensing-python`
 
@@ -277,10 +281,10 @@ Run in bash:
 `pip install https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/archive/$(curl -s https://api.github.com/repos/LUCIT-Systems-and-Development/lucit-licensing-python/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")').tar.gz --upgrade`
 
 #### Windows
-Use the below command with the version (such as 1.8.1) you determined 
+Use the below command with the version (such as 1.8.2) you determined 
 [here](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/releases/latest):
 
-`pip install https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/archive/1.8.1.tar.gz --upgrade`
+`pip install https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python/archive/1.8.2.tar.gz --upgrade`
 
 ### From the latest source (dev-stage) with PIP from [GitHub](https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python)
 This is not a release version and can not be considered to be stable!
