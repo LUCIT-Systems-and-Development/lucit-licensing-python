@@ -43,9 +43,11 @@ jobs:
         run: |
           pip install setuptools wheel --upgrade       
 
-      - name: Install libc6-dev equivalent in Conda environment
+      - name: Set include and library paths on Linux
+        if: runner.os == 'Linux'
         run: |
-          conda install -c anaconda glibc
+          echo "C_INCLUDE_PATH=$CONDA_PREFIX/include:$C_INCLUDE_PATH" >> $GITHUB_ENV
+          echo "LIBRARY_PATH=$CONDA_PREFIX/lib:$LIBRARY_PATH" >> $GITHUB_ENV
 
       - name: Install macOS SDK (only on macOS)
         if: runner.os == 'macOS'
