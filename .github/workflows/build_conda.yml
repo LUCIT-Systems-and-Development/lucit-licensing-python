@@ -43,18 +43,16 @@ jobs:
         run: |
           pip install setuptools wheel --upgrade       
 
+      - name: Install libc6-dev equivalent in Conda environment
+        run: |
+          conda install -c anaconda glibc
+
       - name: Install macOS SDK (only on macOS)
         if: runner.os == 'macOS'
         run: |
           sudo mkdir -p /opt/MacOSX10.10.sdk
           sudo curl -L -o MacOSX10.10.sdk.tar.xz https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX10.10.sdk.tar.xz
           sudo tar -xJf MacOSX10.10.sdk.tar.xz -C /opt/
-
-      - name: Install libc development package
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libc6-dev
 
       - name: Set CONDA_BUILD_SYSROOT (only on macOS)
         if: runner.os == 'macOS'
