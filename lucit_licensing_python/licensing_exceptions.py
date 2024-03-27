@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# File: lucit_licensing_python/exceptions.py
+# File: lucit_licensing_python/licensing_exceptions.py
 #
 # Project website: https://www.lucit.tech/lucit-licensing-python.html
 # Github: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python

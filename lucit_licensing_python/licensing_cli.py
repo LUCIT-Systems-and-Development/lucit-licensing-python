@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# File: lucit_licensing_python/cli.py
+# File: lucit_licensing_python/licensing_cli.py
 #
 # Project website: https://www.lucit.tech/lucit-licensing-python.html
 # Github: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python
@@ -26,11 +26,11 @@ import sys
 import textwrap
 from pathlib import Path
 try:
-    from manager import LucitLicensingManager
-    from exceptions import NoValidatedLucitLicense
+    from licensing_manager import LucitLicensingManager
+    from licensing_exceptions import NoValidatedLucitLicense
 except ModuleNotFoundError:
-    from lucit_licensing_python.manager import LucitLicensingManager
-    from lucit_licensing_python.exceptions import NoValidatedLucitLicense
+    from lucit_licensing_python.licensing_manager import LucitLicensingManager
+    from lucit_licensing_python.licensing_exceptions import NoValidatedLucitLicense
 
 
 async def cli():

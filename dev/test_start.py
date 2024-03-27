@@ -9,8 +9,8 @@ import logging
 import sys
 import time
 import pprint
-from lucit_licensing_python.manager import LucitLicensingManager
-from lucit_licensing_python.exceptions import NoValidatedLucitLicense
+from lucit_licensing_python.licensing_manager import LucitLicensingManager
+from lucit_licensing_python.licensing_exceptions import NoValidatedLucitLicense
 
 
 class LTC:

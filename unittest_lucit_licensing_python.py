@@ -21,7 +21,7 @@ import asyncio
 import logging
 import time
 import pprint
-from lucit_licensing_python.manager import LucitLicensingManager
+from lucit_licensing_python.licensing_manager import LucitLicensingManager
 
 
 class LTC:

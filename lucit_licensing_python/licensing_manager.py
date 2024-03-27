@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# File: lucit_licensing_python/manager.py
+# File: lucit_licensing_python/licensing_manager.py
 #
 # Project website: https://www.lucit.tech/lucit-licensing-python.html
 # Github: https://github.com/LUCIT-Systems-and-Development/lucit-licensing-python
@@ -35,9 +35,9 @@ from requests.exceptions import ConnectionError, RequestException, HTTPError
 from simplejson.errors import JSONDecodeError
 from typing import Optional, Callable
 try:
-    from exceptions import NoValidatedLucitLicense
+    from licensing_exceptions import NoValidatedLucitLicense
 except ModuleNotFoundError:
-    from lucit_licensing_python.exceptions import NoValidatedLucitLicense
+    from lucit_licensing_python.licensing_exceptions import NoValidatedLucitLicense
 
 logger = logging.getLogger("lucit_licensing_python")
 
