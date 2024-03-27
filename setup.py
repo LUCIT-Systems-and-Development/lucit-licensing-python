@@ -74,5 +74,6 @@ setup(
         'Intended Audience :: Developers',
         "Operating System :: OS Independent",
         'Topic :: Software Development :: Libraries :: Python Modules',
+        'Programming Language :: Cython',
     ],
 )
