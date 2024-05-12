@@ -26,8 +26,8 @@ import sys
 import textwrap
 from pathlib import Path
 try:
-    from licensing_manager import LucitLicensingManager
-    from licensing_exceptions import NoValidatedLucitLicense
+    from .licensing_manager import LucitLicensingManager
+    from .licensing_exceptions import NoValidatedLucitLicense
 except ModuleNotFoundError:
     from lucit_licensing_python.licensing_manager import LucitLicensingManager
     from lucit_licensing_python.licensing_exceptions import NoValidatedLucitLicense

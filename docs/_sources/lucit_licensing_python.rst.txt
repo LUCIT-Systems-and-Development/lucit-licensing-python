@@ -16,7 +16,7 @@ lucit\_licensing\_python.cli module
 lucit\_licensing\_python.exceptions module
 ------------------------------------------------------------------------------------
 
-.. automodule:: lucit_licensing_python.exceptions
+.. automodule:: lucit_licensing_python.licensing_exceptions
     :members:
     :undoc-members:
     :show-inheritance:
@@ -24,7 +24,7 @@ lucit\_licensing\_python.exceptions module
 lucit\_licensing\_python.manager module
 ---------------------------------------------------------------------------------
 
-.. automodule:: lucit_licensing_python.manager
+.. automodule:: lucit_licensing_python.licensing_manager
     :members:
     :undoc-members:
     :show-inheritance:

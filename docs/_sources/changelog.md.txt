@@ -10,6 +10,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 [How to upgrade to the latest version!](https://lucit-licensing-python.docs.lucit.tech/readme.html#installation-and-upgrade)
 
 ## 1.8.2.dev (development stage/unreleased/unstable)
+### Added
+- `__app_name__` and `__version__`
+### Fixed
+- Import in `licensing_manager.py` and `licensing_cli.py`.
+- Type of global `logger` variable.
 
 ## 1.8.2
 `lucit-licensing-python` can now also be installed on all architectures on which there are no precompiled packages from 

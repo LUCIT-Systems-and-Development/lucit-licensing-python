@@ -1,3 +1,3 @@
-from lucit_licensing_python.licensing_cli import cli
-from lucit_licensing_python.licensing_exceptions import NoValidatedLucitLicense
-from lucit_licensing_python.licensing_manager import LucitLicensingManager
+from .licensing_cli import cli
+from .licensing_exceptions import NoValidatedLucitLicense
+from .licensing_manager import LucitLicensingManager

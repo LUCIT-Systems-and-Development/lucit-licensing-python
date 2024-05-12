@@ -35,11 +35,14 @@ from requests.exceptions import ConnectionError, RequestException, HTTPError
 from simplejson.errors import JSONDecodeError
 from typing import Optional, Callable
 try:
-    from licensing_exceptions import NoValidatedLucitLicense
+    from .licensing_exceptions import NoValidatedLucitLicense
 except ModuleNotFoundError:
     from lucit_licensing_python.licensing_exceptions import NoValidatedLucitLicense
 
-logger = logging.getLogger("lucit_licensing_python")
+__app_name__: str = "lucit-licensing-python"
+__version__: str = "1.8.2.dev"
+__logger__ = logging.getLogger("lucit_licensing_python")
+logger = __logger__
 
 
 class LucitLicensingManager(threading.Thread):
@@ -53,7 +56,7 @@ class LucitLicensingManager(threading.Thread):
                  parent_shutdown_function: Callable[[bool], bool] = None,
                  needed_license_type: Optional[str] = None):
         super().__init__()
-        self.module_version: str = "1.8.2.dev"
+        self.module_version: str = __version__
         self.parent_shutdown_function = parent_shutdown_function
         self.is_started = start
         self.sigterm = False
