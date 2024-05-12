@@ -36,4 +36,4 @@ build-backend = "setuptools.build_meta"
 lucitlicmgr = "lucit_licensing_python.cli:main"
 
 [tool.poetry.package_data]
-lucit_licensing_python = ["*.so", "*.dll", "*.py"]
+lucit_licensing_python = ["*.so", "*.dll", "*.py", "*.pyd"]

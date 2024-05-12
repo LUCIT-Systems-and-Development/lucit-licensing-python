@@ -56,6 +56,7 @@ setup(
     },
     python_requires='>=3.7.0',
     package_data={'': ['lucit_licensing_python/*.so',
+                       'lucit_licensing_python/*.pyd',
                        'lucit_licensing_python/*.dll',
                        'lucit_licensing_python/*.py']},
     entry_points={
