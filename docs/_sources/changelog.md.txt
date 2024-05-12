@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Fixed
 - Import in `licensing_manager.py` and `licensing_cli.py`.
 - Type of global `logger` variable.
+- Error in sphinx config
 
 ## 1.8.2
 `lucit-licensing-python` can now also be installed on all architectures on which there are no precompiled packages from 

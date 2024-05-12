@@ -8,7 +8,7 @@ Submodules
 lucit\_licensing\_python.cli module
 ------------------------------------------------------------------------------------
 
-.. automodule:: lucit_licensing_python.cli
+.. automodule:: lucit_licensing_python.licensing_cli
     :members:
     :undoc-members:
     :show-inheritance:
