@@ -39,6 +39,8 @@ If you have already installed modules of LUCIT like the
 [UNICORN Binance Suite](https://www.lucit.tech/unicorn-binance-suite.html), which use the `lucit-licensing-python` 
 library, you have already installed the commandline tool `lucitlicmgr` automatically.
 
+[Get help](https://www.lucit.tech/get-support.html) with the integration of our modules!
+
 ### Query contingents of your license
 ```` 
 $ lucitlicmgr --quotas --apisecret bf7df011327d09b70fb0c6bfbc8661x33fdb0c58d42629c94ab35188d8d011ba  --licensetoken 5e84cbd7-acfa-489f-a84d-z7d1b615af40d
